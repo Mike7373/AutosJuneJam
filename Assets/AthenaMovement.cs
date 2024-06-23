@@ -17,8 +17,8 @@ public class AthenaMovement : MonoBehaviour
     InputAction jumpAction;
     Rigidbody rigidBody;
 
-    bool isJumping = false;
-    float jumpDistance = 0;
+    bool isPressingJump;
+    bool isFloating;
     
     void Start()
     {
@@ -35,14 +35,16 @@ public class AthenaMovement : MonoBehaviour
 
     void EndJump(InputAction.CallbackContext obj)
     {
-        isJumping = false;
+        isPressingJump = false;
     }
 
     void OnJump(InputAction.CallbackContext obj)
     {
-        if (isJumping) return;
+        if (isPressingJump) return;
+        if (isFloating) return;
         
-        isJumping = true;
+        isPressingJump = true;
+        isFloating = true;
         StartCoroutine(Jump());
     }
 
@@ -54,7 +56,7 @@ public class AthenaMovement : MonoBehaviour
     {
         float jumpDistance = 0;
         float lastPos = rigidBody.position.y;
-        while (isJumping && jumpDistance < jumpRange)
+        while (isPressingJump && jumpDistance < jumpRange)
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
             yield return new WaitForFixedUpdate();
@@ -73,6 +75,37 @@ public class AthenaMovement : MonoBehaviour
         Vector2 inputValue = obj.ReadValue<Vector2>();
         int v = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
         rigidBody.velocity = new Vector3(walkSpeed*v, rigidBody.velocity.y, rigidBody.velocity.z);
+    }
+
+    void OnCollisionEnter(Collision c)
+    {
+    //    DebugContacts(c, Color.red);
+
+        // Se collido con qualcosa e la normale del punto di contatto è 
+        // verso l'alto, allora lo consideriamo come atterraggio.
+        for (int i = 0; i < c.contactCount; i++)
+        {
+            if (c.GetContact(i).normal.y > 0)
+            {
+                isFloating = false;
+                return;
+            }
+        }
+    }
+    
+    void OnCollisionExit(Collision c)
+    {
+
+    }
+
+    void DebugContacts(Collision c, Color color)
+    {
+        for (int i = 0; i < c.contactCount; i++)
+        {
+            Debug.Log("Disegno contatto!");
+            var contact = c.GetContact(i);
+            Debug.DrawRay(contact.point, contact.normal*5, color, 4);
+        }
     }
 
 }
