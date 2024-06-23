@@ -30,7 +30,9 @@ public class AthenaMovement : MonoBehaviour
         moveAction.canceled += EndMove;
         jumpAction.performed += OnJump;
         jumpAction.canceled += EndJump;
-        
+
+        Application.targetFrameRate = 244;
+
     }
 
     void EndJump(InputAction.CallbackContext obj)
@@ -72,14 +74,22 @@ public class AthenaMovement : MonoBehaviour
 
     void OnMove(InputAction.CallbackContext obj)
     {
-        Vector2 inputValue = obj.ReadValue<Vector2>();
-        int v = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-        rigidBody.velocity = new Vector3(walkSpeed*v, rigidBody.velocity.y, rigidBody.velocity.z);
+      
+    }
+
+    void Update()
+    {
+        if (moveAction.IsInProgress())
+        {
+            Vector2 inputValue = moveAction.ReadValue<Vector2>();
+            int v = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
+            rigidBody.velocity = new Vector3(walkSpeed*v, rigidBody.velocity.y, rigidBody.velocity.z);
+        }
     }
 
     void OnCollisionEnter(Collision c)
     {
-    //    DebugContacts(c, Color.red);
+        DebugContacts(c, Color.red);
 
         // Se collido con qualcosa e la normale del punto di contatto è 
         // verso l'alto, allora lo consideriamo come atterraggio.
@@ -93,10 +103,6 @@ public class AthenaMovement : MonoBehaviour
         }
     }
     
-    void OnCollisionExit(Collision c)
-    {
-
-    }
 
     void DebugContacts(Collision c, Color color)
     {
@@ -104,7 +110,7 @@ public class AthenaMovement : MonoBehaviour
         {
             Debug.Log("Disegno contatto!");
             var contact = c.GetContact(i);
-            Debug.DrawRay(contact.point, contact.normal*5, color, 4);
+            Debug.DrawRay(contact.point, contact.normal, color, 4);
         }
     }
 
