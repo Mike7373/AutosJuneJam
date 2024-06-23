@@ -133,7 +133,7 @@
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Localization\mergetool.zh-Hant.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Localization\guihelp.ko.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Localization\differences.zh-Hans.txt" />
-     <Folder Include="Library\PackageCache\com.unity.visualscripting@1.9.1\Editor" />
+     <Folder Include="Library\PackageCache\com.unity.visualscripting@1.9.4\Editor" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Localization\clientcommon.en.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Localization\differences.es.txt" />
      <None Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Lib\Editor\PlasticSCM\Localization\basecommands.ko.txt" />
