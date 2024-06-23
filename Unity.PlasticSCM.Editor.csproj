@@ -200,8 +200,8 @@
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\GetRelativePath.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\UI\Avatar\AvatarImages.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\UI\UIElements\UIElementsExtensions.cs" />
-     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Views\Changesets\ChangesetsListHeaderState.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Views\Locks\LocksListHeaderState.cs" />
+     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Views\Changesets\ChangesetsListHeaderState.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Views\PendingChanges\Changelists\MoveToChangelistMenuBuilder.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Tool\ToolConstants.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\UI\EditorDispatcher.cs" />
@@ -299,8 +299,8 @@
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\UI\OverlayRect.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Inspector\InspectorAssetSelection.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\AssetsUtils\SaveAssets.cs" />
-     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\UI\UIElements\LoadingSpinner.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Views\Locks\LocksListViewItem.cs" />
+     <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\UI\UIElements\LoadingSpinner.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Help\HelpData.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\UI\ShowWindow.cs" />
      <Compile Include="Library\PackageCache\com.unity.collab-proxy@2.3.1\Editor\PlasticSCM\Views\Welcome\DownloadAndInstallOperation.cs" />
@@ -1088,13 +1088,13 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{b0fb01fe-e3a7-dbe3-a546-a5c5098b1ffa}</Project>
-      <Name>UnityEngine.TestRunner</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
       <Project>{844af12e-5622-6a05-ae09-3552ad26dc4d}</Project>
       <Name>UnityEditor.TestRunner</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.TestRunner.csproj">
+      <Project>{b0fb01fe-e3a7-dbe3-a546-a5c5098b1ffa}</Project>
+      <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

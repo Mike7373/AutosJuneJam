@@ -756,13 +756,13 @@
      </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityEngine.TestRunner.csproj">
-      <Project>{b0fb01fe-e3a7-dbe3-a546-a5c5098b1ffa}</Project>
-      <Name>UnityEngine.TestRunner</Name>
-    </ProjectReference>
     <ProjectReference Include="UnityEditor.TestRunner.csproj">
       <Project>{844af12e-5622-6a05-ae09-3552ad26dc4d}</Project>
       <Name>UnityEditor.TestRunner</Name>
+    </ProjectReference>
+    <ProjectReference Include="UnityEngine.TestRunner.csproj">
+      <Project>{b0fb01fe-e3a7-dbe3-a546-a5c5098b1ffa}</Project>
+      <Name>UnityEngine.TestRunner</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
