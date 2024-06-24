@@ -2,8 +2,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(PlayerInput)), RequireComponent(typeof(Rigidbody))]
-public class AthenaMovement : MonoBehaviour
+[RequireComponent(typeof(PlayerInput)), RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator))]
+public class AthenaMovementV2 : MonoBehaviour
 {
     public float walkAcceleration = 0.3f;        // Accelerazione/Decelerazione prima di raggiungere la walkSpeed 
     public float walkSpeed = 1.0f;
@@ -18,15 +18,21 @@ public class AthenaMovement : MonoBehaviour
     InputAction punchAction;
     Rigidbody rigidBody;
     Animator animator;
+
+    static readonly int IsMoving = Animator.StringToHash("IsMoving");
+    static readonly int SpeedModifier = Animator.StringToHash("SpeedModifier");
+    static readonly int JumpTrigger = Animator.StringToHash("Jump");
+    static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
+    static readonly int IsPunching = Animator.StringToHash("IsPunching");
+    static readonly int PunchTrigger = Animator.StringToHash("Punch");
+
+
+    int movingDirection;
+    bool speedModifier;
+    bool isGrounded;
+    bool isJumping;
+    bool isPunching;
     
-
-    AthenaState state;
-
-    static readonly int WalkTrigger = Animator.StringToHash("walk");
-    static readonly int IdleTrigger = Animator.StringToHash("idle");
-    static readonly int JumpTrigger = Animator.StringToHash("jump");
-    static readonly int IsWalking = Animator.StringToHash("isWalking");
-    static readonly int RunTrigger = Animator.StringToHash("Run");
 
     void Start()
     {
@@ -37,165 +43,127 @@ public class AthenaMovement : MonoBehaviour
         punchAction = GetComponent<PlayerInput>().actions["Punch"];
         animator = GetComponent<Animator>();
         
-        moveAction.performed += WalkActionPerformed;
-        moveAction.canceled += WalkActionEnd;
+        moveAction.performed += MoveActionPerformed;
+        moveAction.canceled += MoveActionEnd;
         jumpAction.performed += JumpActionPerformed;
         jumpAction.canceled += EndJumpActionPerformed;
         runModifierAction.performed += RunModifierPerformed;
-        runModifierAction.canceled -= RunModifierCancelled;
+        runModifierAction.canceled += RunModifierCancelled;
         punchAction.performed += PunchActionPerformed;
 
         Application.targetFrameRate = 244;
-    }
-    
-    void PunchActionPerformed(InputAction.CallbackContext obj)
-    {
-        // Posso dare un pugno se sono Idle, Walking o Running.
-        // Quando do un pugno fermo il movimento.
-        // Per riprendere il movimento devo ripremere il tasto movimento.
-        throw new System.NotImplementedException();
+        
     }
 
+    void MoveActionPerformed(InputAction.CallbackContext evt)
+    {
+        Vector2 inputValue = moveAction.ReadValue<Vector2>();
+        movingDirection = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
+        animator.SetBool(IsMoving, true);
+        StartCoroutine(movementCoroutine());
+    }
+    void MoveActionEnd(InputAction.CallbackContext obj)
+    {
+        movingDirection = 0;
+        animator.SetBool(IsMoving, false);
+    }
+
+    IEnumerator movementCoroutine()
+    {
+        while (movingDirection != 0)
+        {
+            if (isPunching)
+            {
+                yield return null;
+                continue;
+            }
+            
+            Camera.main.ScreenToWorldPoint()
+            float speed = speedModifier ? runSpeed : walkSpeed;
+            transform.rotation = Quaternion.LookRotation(Vector3.right * movingDirection, Vector3.up);
+            rigidBody.velocity = new Vector3(speed*movingDirection, rigidBody.velocity.y, rigidBody.velocity.z);
+            yield return null;
+        }
+        rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, rigidBody.velocity.z);
+    }
+    
     void RunModifierPerformed(InputAction.CallbackContext obj)
     {
-        // Modifica la velocità corrente di movimento.
-        throw new System.NotImplementedException();
+        animator.SetBool(SpeedModifier, true);
+        speedModifier = true;
     }
 
     void RunModifierCancelled(InputAction.CallbackContext obj)
     {
-        throw new System.NotImplementedException();
+        animator.SetBool(SpeedModifier, false);
+        speedModifier = false;
     }
     
-    void WalkActionPerformed(InputAction.CallbackContext evt)
-    {
-        Walk();
-    }
-    void WalkActionEnd(InputAction.CallbackContext obj)
-    {
-        EndWalk();
-    }
     void JumpActionPerformed(InputAction.CallbackContext obj)
     {
-        Jump();
+        if (isPunching) return;
+        
+        isJumping = true;
+        if (isGrounded)
+        {
+            animator.SetTrigger(JumpTrigger);
+            animator.SetBool(IsGrounded, false);
+            isGrounded = false;
+            StartCoroutine(JumpCoroutine());
+        }
     }
     void EndJumpActionPerformed(InputAction.CallbackContext obj)
     {
-        EndJump();
+        isJumping = false;
     }
-
-    void Walk()
-    {
-        switch (state)
-        {
-            case AthenaState.IDLE:
-                state = AthenaState.WALKING;
-                animator.SetTrigger(WalkTrigger);
-                break;
-            case AthenaState.RUNNING:
-                state = AthenaState.WALKING;
-                animator.SetTrigger(WalkTrigger);
-                break;
-        }
-    }
-
-    void EndWalk()
-    {
-        rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, rigidBody.velocity.z);
-        switch (state)
-        {
-            case AthenaState.WALKING:
-                state = AthenaState.IDLE;
-                animator.SetTrigger(IdleTrigger);
-                break;
-        }
-    }
-
-    void Jump()
-    {
-        switch (state)
-        {
-            case AthenaState.IDLE:
-            case AthenaState.WALKING:
-            case AthenaState.RUNNING:
-                state = AthenaState.JUMPING;
-                animator.SetTrigger(JumpTrigger);
-                StartCoroutine(ManageJump());
-                break;
-        }
-    }
-
-    void EndJump()
-    {
-        switch (state)
-        {
-            case AthenaState.JUMPING:
-                state = AthenaState.FALLING;
-                break;
-        }
-    }
-
-    void Grounded()
-    {
-        switch (state)
-        {
-            case AthenaState.FALLING:
-                if (moveAction.IsInProgress())
-                {
-                    //state = Ath
-                    
-                }
-                else
-                {
-                    state = AthenaState.IDLE;
-                    animator.SetTrigger(IdleTrigger);
-                }
-                break;
-        }
-    }
-
- 
-
+    
     /**
      * Il salto imposta la velocità direttamente, finchè si tiene premuto il tasto di salto questa velocità viene
      * mantenuta. Se viene rilasciato prima, si cade prima. Serve a fare anche i saltini.
      */
-    IEnumerator ManageJump()
+    IEnumerator JumpCoroutine()
     {
         float jumpDistance = 0;
         float lastPos = rigidBody.position.y;
-        while (state == AthenaState.JUMPING && jumpDistance < jumpRange)
+        while (isJumping && jumpDistance < jumpRange)
         {
             rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpSpeed, rigidBody.velocity.z);
             yield return new WaitForFixedUpdate();
             jumpDistance += rigidBody.position.y - lastPos;
         }
-        EndJump();
     }
     
-
-    void Update()
+    
+    void PunchActionPerformed(InputAction.CallbackContext obj)
     {
-        if (moveAction.IsInProgress())
+        if (isGrounded && !isPunching)
         {
-            Vector2 inputValue = moveAction.ReadValue<Vector2>();
-            int v = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-            transform.rotation = Quaternion.LookRotation(Vector3.right * v, Vector3.up);
-            rigidBody.velocity = new Vector3(walkSpeed*v, rigidBody.velocity.y, rigidBody.velocity.z);
+            isPunching = true;  
+            animator.SetBool(IsPunching, isPunching);
+            animator.SetTrigger(PunchTrigger);
+            rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, rigidBody.velocity.z);
+            StartCoroutine(PunchCoroutine());
         }
+    }
+
+    IEnumerator PunchCoroutine()
+    {
+        yield return new WaitForSeconds(0.8f);
+        isPunching = false;
+        animator.SetBool(IsPunching, isPunching);
     }
 
     void OnCollisionEnter(Collision c)
     {
         DebugContacts(c, Color.red);
-
         // Se collido con qualcosa e la normale del punto di contatto è 
         // verso l'alto, allora lo consideriamo come atterraggio.
         for (int i = 0; i < c.contactCount; i++)
         {
             if (c.GetContact(i).normal.y > 0)
             {
-                Grounded();
+                animator.SetBool(IsGrounded, true);
+                isGrounded = true;
                 return;
             }
         }
