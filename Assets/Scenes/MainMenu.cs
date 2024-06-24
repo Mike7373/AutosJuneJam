@@ -14,12 +14,12 @@ public class MainMenu : MonoBehaviour
     // Load Scene
     public void Play()
     {
-        StartCoroutine(DelaySceneLoad());
+        StartCoroutine(DelaySceneLoad(2.0f));
     }
 
     public void Gallery()
     {
-        StartCoroutine(DelaySceneLoad("Galleria"));   
+        StartCoroutine(DelaySceneLoad(("Galleria"), 0.5f));   
     }
     
     // Quit Game
@@ -29,15 +29,15 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Il giocatore ha interrotto la partita");
     }
 
-    IEnumerator DelaySceneLoad()
+    IEnumerator DelaySceneLoad(float delay)
     {
-    	yield return new WaitForSeconds(2.0f);
+    	yield return new WaitForSeconds(delay);
 	    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    IEnumerator DelaySceneLoad(string name)
+    IEnumerator DelaySceneLoad(string name, float delay)
     {
-    	yield return new WaitForSeconds(2.0f);
+    	yield return new WaitForSeconds(delay);
 	    SceneManager.LoadScene(name);
     }
 

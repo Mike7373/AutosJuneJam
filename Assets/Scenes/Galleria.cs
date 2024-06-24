@@ -12,33 +12,20 @@ public class Galleria : MonoBehaviour
         ost.Play();
     }
     // Load Scene
-    public void Play()
+    public void BackToMain()
     {
-        StartCoroutine(DelaySceneLoad());
+        StartCoroutine(DelaySceneLoad(("MainMenu"), 0.5f));
     }
 
-    public void Gallery()
+   IEnumerator DelaySceneLoad(float delay)
     {
-        StartCoroutine(DelaySceneLoad("Galleria"));   
-    }
-    
-    // Quit Game
-    public void Quit()
-    {
-        Application.Quit(); 
-        Debug.Log("Il giocatore ha interrotto la partita");
-    }
-
-    IEnumerator DelaySceneLoad()
-    {
-    	yield return new WaitForSeconds(2.0f);
+    	yield return new WaitForSeconds(delay);
 	    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    IEnumerator DelaySceneLoad(string name)
+    IEnumerator DelaySceneLoad(string name, float delay)
     {
-    	yield return new WaitForSeconds(2.0f);
+    	yield return new WaitForSeconds(delay);
 	    SceneManager.LoadScene(name);
     }
-
 }
