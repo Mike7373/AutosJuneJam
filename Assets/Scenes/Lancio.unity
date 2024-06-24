@@ -1606,6 +1606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67986d810f46bf44b216c0936a33e62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clampArc: 90
   _crosshairSprite: {fileID: 471795920}
 --- !u!1 &1883388072
 GameObject:

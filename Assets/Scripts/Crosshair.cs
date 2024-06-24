@@ -1,12 +1,8 @@
-using System;
-using System.Runtime.InteropServices;
-using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Crosshair : MonoBehaviour
 {
+    [SerializeField] private float _clampArc = 120;
     [SerializeField] private SpriteRenderer _crosshairSprite;
     public static Crosshair Instance;
 
@@ -70,27 +66,27 @@ public class Crosshair : MonoBehaviour
     {
         if (parentRotation < 0)
         {
-            if (angle < 120 && angle > 0)
+            if (angle < 180-_clampArc/2 && angle > 0)
             {
-                angle = 120;
+                angle = 180-_clampArc/2;
             }
 
-            if (angle > -120 && angle < 0)
+            if (angle > -(180-_clampArc/2) && angle < 0)
             {
-                angle = -120;
+                angle = -(180-_clampArc/2);
             }
             angle = -angle + 180;
         }
         else
         {
-            if (angle > 60)
+            if (angle > _clampArc/2)
             {
-                angle = 60;
+                angle = _clampArc/2;
             }
 
-            if (angle < -60)
+            if (angle < -_clampArc/2)
             {
-                angle = -60;
+                angle = -_clampArc/2;
             }
         }
         newAngle = angle;
