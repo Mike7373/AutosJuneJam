@@ -1,24 +1,100 @@
+using System;
+using System.Runtime.InteropServices;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Crosshair : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _crosshairSprite;
+    public static Crosshair Instance;
+
+    #region Unity Default Functions
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this);
+        }
+        Instance = this;
+    }
+
+    private void Start()
+    {
+        ToggleCrosshair(false);
+    }
+
     private void Update()
+    {
+        TakeAim();
+        if (Input.GetMouseButtonDown(0))
+        {
+            ToggleCrosshair(true);
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            ToggleCrosshair(false);
+        }
+    }
+
+    #endregion
+
+    #region Crosshair Functions
+
+    public static void ToggleCrosshair(bool toggle)
+    {
+        Instance._crosshairSprite.enabled = toggle;
+    }
+
+    public void TakeAim()
     {
         Vector2 crosshairScreenPos = Camera.main.WorldToScreenPoint(transform.position);
         Vector2 mousePos = Input.mousePosition;
         Vector2 screenResult = mousePos - crosshairScreenPos;
-        
-        float angle = Vector2.SignedAngle(Vector2.right, screenResult);
-        Debug.Log(Vector2.SignedAngle(Vector2.right, screenResult));
-        transform.localRotation = Quaternion.AngleAxis(transform.parent.localRotation.y > 0 ? angle : -angle + 180, Vector3.left);
 
-        // Vector3 startingVector = new(Input.mousePosition.x, Input.mousePosition.y, transform.position.z - Camera.main.transform.position.z);
-        // Debug.Log(Camera.main.ScreenToWorldPoint(startingVector));
+        float parentRotation = transform.parent.localRotation.y;
+        float angle = Vector2.SignedAngle(Vector2.right, screenResult);
         
-        //Debug.Log($"[{gameObject.name}] Rotation: {transform.rotation}");
+        ClampAimAngle(angle, parentRotation, out float newAngle);
+        angle = newAngle;
         
+        Debug.Log(Vector2.SignedAngle(Vector2.right, screenResult));
+        transform.localRotation = Quaternion.AngleAxis(angle, Vector3.left);
+        Debug.Log(angle);
     }
+
+    public void ClampAimAngle(float angle, float parentRotation, out float newAngle)
+    {
+        if (parentRotation < 0)
+        {
+            if (angle < 120 && angle > 0)
+            {
+                angle = 120;
+            }
+
+            if (angle > -120 && angle < 0)
+            {
+                angle = -120;
+            }
+            angle = -angle + 180;
+        }
+        else
+        {
+            if (angle > 60)
+            {
+                angle = 60;
+            }
+
+            if (angle < -60)
+            {
+                angle = -60;
+            }
+        }
+        newAngle = angle;
+    }
+    
+    #endregion
 }
