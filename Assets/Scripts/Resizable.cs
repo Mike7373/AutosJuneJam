@@ -1,16 +1,29 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Resizable : MonoBehaviour
 {
-    [Header("Size params")] [SerializeField]
-    private float _defaultScale = 1f;
+    [Header("Size params")] 
+    [SerializeField] private float _defaultScale = 1f;
     [SerializeField] private float _shrinkScale = .2f;
     [SerializeField] private float _enlargeScale = 3f;
     [Header("Debug")]
     [SerializeField] private bool _isDebug;
+    
+    /// <summary>
+    /// Shrink or enlarge the object dimension
+    /// </summary>
+    /// <param name="shrinking">If true use shrink scaling, else use enlarge scaling</param>
+    public Action<bool> ResizeAction;
+    public Action SizeResetAction;
 
     #region Unity Default Functions
+    private void Awake()
+    {
+        ResizeAction += Resize;
+        SizeResetAction += ResetScale;
+    }
     private void Start()
     {
         if (_defaultScale == 0f)
@@ -53,24 +66,23 @@ public class Resizable : MonoBehaviour
         transform.localScale = new Vector3(_defaultScale, _defaultScale, _defaultScale);
     }
     #endregion
-    
     #region Debug
     private void DebugResize()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Resize(true);
+            ResizeAction.Invoke(true);
             Debug.Log($"[{gameObject.name}] Shrink applied");
         }
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Resize(false);
+            ResizeAction.Invoke(false);
             Debug.Log($"[{gameObject.name}] Enlarge applied");
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            ResetScale();
+            SizeResetAction.Invoke();
             Debug.Log($"[{gameObject.name}] Scale reset applied");
         }
     }
