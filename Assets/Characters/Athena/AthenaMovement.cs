@@ -78,7 +78,6 @@ public class AthenaMovementV2 : MonoBehaviour
                 continue;
             }
             
-            Camera.main.ScreenToWorldPoint()
             float speed = speedModifier ? runSpeed : walkSpeed;
             transform.rotation = Quaternion.LookRotation(Vector3.right * movingDirection, Vector3.up);
             rigidBody.velocity = new Vector3(speed*movingDirection, rigidBody.velocity.y, rigidBody.velocity.z);
