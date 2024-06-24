@@ -440,7 +440,7 @@ GameObject:
   - component: {fileID: 376276801}
   - component: {fileID: 376276803}
   - component: {fileID: 376276802}
-  - component: {fileID: 376276799}
+  - component: {fileID: 376276805}
   - component: {fileID: 376276804}
   m_Layer: 0
   m_Name: Athena
@@ -465,24 +465,6 @@ Transform:
   - {fileID: 1763853557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &376276799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376276793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 747dce8a6b535db4bbc4680806399eab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkAcceleration: 0.3
-  walkSpeed: 4
-  runAcceleration: 0.4
-  runSpeed: 5
-  jumpSpeed: 7
-  jumpRange: 18
 --- !u!114 &376276800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,6 +546,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0dd5d3b2-185a-43b8-9205-1c94bc787185
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92aafc6d-bef8-4fee-9393-9c2ab3ace49e
+    m_ActionName: Player/RunModifier[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2c766688-848e-476d-b5a4-b5166a9e9645
+    m_ActionName: Player/Punch[/Mouse/rightButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -650,6 +640,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &376276805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 376276793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f636d6e0f10d441eaf7aa609fd4a87fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkAcceleration: 0.3
+  walkSpeed: 4
+  runAcceleration: 0.4
+  runSpeed: 10
+  jumpSpeed: 7
+  jumpRange: 18
 --- !u!1 &699325077
 GameObject:
   m_ObjectHideFlags: 0

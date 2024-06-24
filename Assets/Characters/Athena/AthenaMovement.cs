@@ -14,8 +14,11 @@ public class AthenaMovement : MonoBehaviour
     
     InputAction moveAction;
     InputAction jumpAction;
+    InputAction runModifierAction;
+    InputAction punchAction;
     Rigidbody rigidBody;
     Animator animator;
+    
 
     AthenaState state;
 
@@ -30,14 +33,55 @@ public class AthenaMovement : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         moveAction = GetComponent<PlayerInput>().actions["Move"];
         jumpAction = GetComponent<PlayerInput>().actions["Jump"];
+        runModifierAction = GetComponent<PlayerInput>().actions["RunModifier"];
+        punchAction = GetComponent<PlayerInput>().actions["Punch"];
         animator = GetComponent<Animator>();
         
         moveAction.performed += WalkActionPerformed;
         moveAction.canceled += WalkActionEnd;
         jumpAction.performed += JumpActionPerformed;
         jumpAction.canceled += EndJumpActionPerformed;
+        runModifierAction.performed += RunModifierPerformed;
+        runModifierAction.canceled -= RunModifierCancelled;
+        punchAction.performed += PunchActionPerformed;
 
         Application.targetFrameRate = 244;
+    }
+    
+    void PunchActionPerformed(InputAction.CallbackContext obj)
+    {
+        // Posso dare un pugno se sono Idle, Walking o Running.
+        // Quando do un pugno fermo il movimento.
+        // Per riprendere il movimento devo ripremere il tasto movimento.
+        throw new System.NotImplementedException();
+    }
+
+    void RunModifierPerformed(InputAction.CallbackContext obj)
+    {
+        // Modifica la velocità corrente di movimento.
+        throw new System.NotImplementedException();
+    }
+
+    void RunModifierCancelled(InputAction.CallbackContext obj)
+    {
+        throw new System.NotImplementedException();
+    }
+    
+    void WalkActionPerformed(InputAction.CallbackContext evt)
+    {
+        Walk();
+    }
+    void WalkActionEnd(InputAction.CallbackContext obj)
+    {
+        EndWalk();
+    }
+    void JumpActionPerformed(InputAction.CallbackContext obj)
+    {
+        Jump();
+    }
+    void EndJumpActionPerformed(InputAction.CallbackContext obj)
+    {
+        EndJump();
     }
 
     void Walk()
@@ -110,22 +154,7 @@ public class AthenaMovement : MonoBehaviour
         }
     }
 
-    void WalkActionPerformed(InputAction.CallbackContext evt)
-    {
-        Walk();
-    }
-    void WalkActionEnd(InputAction.CallbackContext obj)
-    {
-        EndWalk();
-    }
-    void JumpActionPerformed(InputAction.CallbackContext obj)
-    {
-        Jump();
-    }
-    void EndJumpActionPerformed(InputAction.CallbackContext obj)
-    {
-        EndJump();
-    }
+ 
 
     /**
      * Il salto imposta la velocità direttamente, finchè si tiene premuto il tasto di salto questa velocità viene
@@ -177,7 +206,6 @@ public class AthenaMovement : MonoBehaviour
     {
         for (int i = 0; i < c.contactCount; i++)
         {
-            Debug.Log("Disegno contatto!");
             var contact = c.GetContact(i);
             Debug.DrawRay(contact.point, contact.normal, color, 4);
         }
