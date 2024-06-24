@@ -16,6 +16,11 @@ public class MainMenu : MonoBehaviour
     {
         StartCoroutine(DelaySceneLoad());
     }
+
+    public void Gallery()
+    {
+        StartCoroutine(DelaySceneLoad("Galleria"));   
+    }
     
     // Quit Game
     public void Quit()
@@ -26,8 +31,14 @@ public class MainMenu : MonoBehaviour
 
     IEnumerator DelaySceneLoad()
     {
-    	yield return new WaitForSeconds(0.5f);
+    	yield return new WaitForSeconds(2.0f);
 	    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    IEnumerator DelaySceneLoad(string name)
+    {
+    	yield return new WaitForSeconds(2.0f);
+	    SceneManager.LoadScene(name);
     }
 
 }
