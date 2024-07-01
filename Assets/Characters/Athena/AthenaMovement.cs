@@ -1,9 +1,10 @@
 using System.Collections;
+using Characters;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerInput)), RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator))]
-public class AthenaMovementV2 : MonoBehaviour
+public class AthenaMovement : MonoBehaviour
 {
     public float walkAcceleration = 0.3f;        // Accelerazione/Decelerazione prima di raggiungere la walkSpeed 
     public float walkSpeed = 1.0f;
@@ -18,14 +19,6 @@ public class AthenaMovementV2 : MonoBehaviour
     InputAction punchAction;
     Rigidbody rigidBody;
     Animator animator;
-
-    static readonly int IsMoving = Animator.StringToHash("IsMoving");
-    static readonly int SpeedModifier = Animator.StringToHash("SpeedModifier");
-    static readonly int JumpTrigger = Animator.StringToHash("Jump");
-    static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
-    static readonly int IsPunching = Animator.StringToHash("IsPunching");
-    static readonly int PunchTrigger = Animator.StringToHash("Punch");
-
 
     int movingDirection;
     bool speedModifier;
@@ -59,13 +52,13 @@ public class AthenaMovementV2 : MonoBehaviour
     {
         Vector2 inputValue = moveAction.ReadValue<Vector2>();
         movingDirection = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-        animator.SetBool(IsMoving, true);
+        animator.SetBool(AnimatorProperties.IsMoving, true);
         StartCoroutine(movementCoroutine());
     }
     void MoveActionEnd(InputAction.CallbackContext obj)
     {
         movingDirection = 0;
-        animator.SetBool(IsMoving, false);
+        animator.SetBool(AnimatorProperties.IsMoving, false);
     }
 
     IEnumerator movementCoroutine()
@@ -79,22 +72,23 @@ public class AthenaMovementV2 : MonoBehaviour
             }
             
             float speed = speedModifier ? runSpeed : walkSpeed;
-            transform.rotation = Quaternion.LookRotation(Vector3.right * movingDirection, Vector3.up);
+            Vector3 movementAxis = Vector3.right;
+            transform.rotation = Quaternion.LookRotation(movementAxis * movingDirection, Vector3.up);
             rigidBody.velocity = new Vector3(speed*movingDirection, rigidBody.velocity.y, rigidBody.velocity.z);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, rigidBody.velocity.z);
     }
     
     void RunModifierPerformed(InputAction.CallbackContext obj)
     {
-        animator.SetBool(SpeedModifier, true);
+        animator.SetBool(AnimatorProperties.SpeedModifier, true);
         speedModifier = true;
     }
 
     void RunModifierCancelled(InputAction.CallbackContext obj)
     {
-        animator.SetBool(SpeedModifier, false);
+        animator.SetBool(AnimatorProperties.SpeedModifier, false);
         speedModifier = false;
     }
     
@@ -105,8 +99,8 @@ public class AthenaMovementV2 : MonoBehaviour
         isJumping = true;
         if (isGrounded)
         {
-            animator.SetTrigger(JumpTrigger);
-            animator.SetBool(IsGrounded, false);
+            animator.SetTrigger(AnimatorProperties.JumpTrigger);
+            animator.SetBool(AnimatorProperties.IsGrounded, false);
             isGrounded = false;
             StartCoroutine(JumpCoroutine());
         }
@@ -138,8 +132,8 @@ public class AthenaMovementV2 : MonoBehaviour
         if (isGrounded && !isPunching)
         {
             isPunching = true;  
-            animator.SetBool(IsPunching, isPunching);
-            animator.SetTrigger(PunchTrigger);
+            animator.SetBool(AnimatorProperties.IsPunching, isPunching);
+            animator.SetTrigger(AnimatorProperties.PunchTrigger);
             rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, rigidBody.velocity.z);
             StartCoroutine(PunchCoroutine());
         }
@@ -149,7 +143,7 @@ public class AthenaMovementV2 : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f);
         isPunching = false;
-        animator.SetBool(IsPunching, isPunching);
+        animator.SetBool(AnimatorProperties.IsPunching, isPunching);
     }
 
     void OnCollisionEnter(Collision c)
@@ -161,7 +155,7 @@ public class AthenaMovementV2 : MonoBehaviour
         {
             if (c.GetContact(i).normal.y > 0)
             {
-                animator.SetBool(IsGrounded, true);
+                animator.SetBool(AnimatorProperties.IsGrounded, true);
                 isGrounded = true;
                 return;
             }
@@ -169,7 +163,7 @@ public class AthenaMovementV2 : MonoBehaviour
     }
     
 
-    void DebugContacts(Collision c, Color color)
+    public static void DebugContacts(Collision c, Color color)
     {
         for (int i = 0; i < c.contactCount; i++)
         {
