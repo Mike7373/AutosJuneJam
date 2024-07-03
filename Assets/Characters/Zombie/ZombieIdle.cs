@@ -1,3 +1,5 @@
+using System;
+using Characters.Zombie;
 using UnityEngine;
 
 public class ZombieIdle : MonoBehaviour
@@ -7,6 +9,17 @@ public class ZombieIdle : MonoBehaviour
     void Start()
     {
         zombie = GetComponent<ZombieBehaviour>();
+        zombie.punchAction.performed += PunchActionOnperformed;
+    }
+    
+    void OnDestroy()
+    {
+        zombie.punchAction.performed -= PunchActionOnperformed;
+    }
+
+    void PunchActionOnperformed(float obj)
+    {
+        zombie.StartAction<ZombiePunch>();
     }
 
     void FixedUpdate()

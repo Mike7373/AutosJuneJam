@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Characters
 {
@@ -148,7 +147,7 @@ public class AthenaWalk : CharacterAction
                 break;
             }
 
-            // LAVORO SPORCO
+            // LAVORO
             bool speedModifier = player.runModifierAction.IsInProgress();
             float speed = speedModifier ? player.runSpeed : player.speed;
             Vector2 inputValue = player.moveAction.ReadValue();

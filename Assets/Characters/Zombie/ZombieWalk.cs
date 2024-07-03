@@ -1,14 +1,32 @@
+using Characters;
+using Characters.Zombie;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class ZombieWalk : MonoBehaviour
 {
     Vector3 movementDirection;
     ZombieBehaviour zombie;
+    
 
     void Start()
     {
         zombie = GetComponent<ZombieBehaviour>();
+        zombie.moveAction.canceled += MoveActionOncanceled;
+        zombie.punchAction.performed += PunchActionOnperformed;
+        zombie.animator.SetBool(AnimatorProperties.IsMoving, true);
+    }
+
+    void PunchActionOnperformed(float obj)
+    {
+        zombie.StartAction<ZombiePunch>();
+    }
+
+    void OnDisable()
+    {
+        zombie.moveAction.canceled -= MoveActionOncanceled;
+        zombie.punchAction.performed -= PunchActionOnperformed;
+        zombie.rigidBody.velocity = Vector3.zero;
+        zombie.animator.SetBool(AnimatorProperties.IsMoving, false);
     }
     
     void FixedUpdate()
@@ -20,7 +38,7 @@ public class ZombieWalk : MonoBehaviour
             return;
         }
         
-        // LAVORO SPORCO
+        // LAVORO
         bool speedModifier = zombie.runModifierAction.IsInProgress();
         float speed = speedModifier ? zombie.runSpeed : zombie.speed;
         Vector2 inputValue = zombie.moveAction.ReadValue();
@@ -36,7 +54,7 @@ public class ZombieWalk : MonoBehaviour
         }
     }
     
-    void MoveActionOncanceled(InputAction.CallbackContext obj)
+    void MoveActionOncanceled()
     {
         zombie.StartAction<ZombieIdle>();
     }

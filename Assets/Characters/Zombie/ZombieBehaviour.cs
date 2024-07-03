@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Input;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Random = Unity.Mathematics.Random;
 
 
@@ -19,15 +18,13 @@ public class ZombieBehaviour : MonoBehaviour
 {
     public float speed = 1.0f;
     public float runSpeed = 6.0f;
-    public float alarmDistance = 5.0f;
-    public float punchDistance = 2.0f;
-    public float attackDelay = 0.6f;
+    public float walkIdleTime = 3.0f;
 
     public Vector3 movementAxis = Vector3.right;
 
     [NonSerialized] public AInputAction<Vector2> moveAction = new();
-    [NonSerialized] public AInputAction<bool> runModifierAction = new();
-    [NonSerialized] public AInputAction<bool> punchAction = new();
+    [NonSerialized] public AInputAction<float> runModifierAction = new();
+    [NonSerialized] public AInputAction<float> punchAction = new();
 
     [NonSerialized]
     public Animator animator;
@@ -42,7 +39,7 @@ public class ZombieBehaviour : MonoBehaviour
     {
         if (currentBehaviour)
         {
-            DestroyImmediate(currentBehaviour);
+            Destroy(currentBehaviour);
         }
         currentBehaviour = gameObject.AddComponent<T>();
         return currentBehaviour;
@@ -65,50 +62,77 @@ public class ZombieBehaviour : MonoBehaviour
 
     IEnumerator Think()
     {
+        MonoBehaviour lastObservedBehaviour = currentBehaviour;
+        float whenLastObservedBehaviour = Time.time;
+        
         while (true)
         {
-
-
-            /*switch (currentBehaviour)
+            // Ci ricordiamo il tempo dell'ultima azione effettuata
+            if (lastObservedBehaviour != currentBehaviour)
             {
-                case ZombieIdle:
-                    if (rng.NextBool())
+                lastObservedBehaviour = currentBehaviour;
+                whenLastObservedBehaviour = Time.time;
+            }
+            
+            if (chasingTarget)
+            {
+                var distance = chasingTarget.position - transform.position;
+                if (distance.magnitude <= 1.1f)
+                {
+                    // PUGNO
+                    // Mentre meno il pugno l'IA può cliccare o fare quante cose vuole, non avranno effetto.
+                    // E' come se il giocatore continuasse a cliccare ma l'azione deve finire di compiersi.
+                    punchAction.Perform(1.0f);
+                }
+                else
+                {
+                    // CHASE
+                    // La IA ha disposizione i controlli per muovere lo zombie, un Vector2 come se utilizzasse
+                    // lo stick di un gamepad. Verso destra si muove verso il movementAxis, verso sinistra al contrario.
+                    // Lo zombie vuole muoversi verso la direzione 3d però può muoversi solo lungo il movementAxis,
+                    // per cui deve trovare il verso in cui muoversi lungo questo asse che diminuisce la distanza.
+                    // Il Dot product di due vettori unitari è il coseno dell'angolo fra i due, il segno mi da
+                    // quindi la direzione di movimento.
+                    var direction3d = distance.normalized;
+                    int axisDirection = Math.Sign(Vector3.Dot(direction3d, movementAxis));
+                    moveAction.Perform(new Vector2(axisDirection, 0));
+                }
+            }
+            else if (currentBehaviour is ZombieIdle or ZombieWalk)
+            {
+                // Vediamo per quanto tempo siamo rimasti in questo stato
+                if (Time.time - whenLastObservedBehaviour >= walkIdleTime)
+                {
+                    int direction = (int) rng.NextUInt(3) - 1;
+                    if (direction != 0)
                     {
-                        // Decide di muoversi
-                        Debug.Log("Lo zombie preme D!");
-                        KeyboardState kb = new KeyboardState(Key.D);
-                        InputSystem.QueueStateEvent(zombieInputDevice, kb);
+                        moveAction.Perform(new Vector2(direction, 0));
                     }
                     else
                     {
-                        Debug.Log("Lo zombie non fa un cazzo");
+                        moveAction.Cancel();
                     }
-
-                    break;
-                case ZombieWalk:
-                    if (rng.NextBool())
-                    {
-                        Debug.Log("Lo zombie rilascia tutti i tasti");
-                        // Decide di fermarsi
-                        KeyboardState kb = new KeyboardState();
-                        InputSystem.QueueStateEvent(zombieInputDevice, kb);
-                    }
-                    else
-                    {
-                        Debug.Log("Lo zombie continua a premere D!");
-                    }
-
-                    break;
-            }*/
-
-            yield return new WaitForSeconds(1.0f);
-
+                }
+            }
+            yield return null;
         }
     }
 
+
+    Transform chasingTarget;
+    void OnTriggerEnter(Collider other)
+    {
+        chasingTarget = other.transform;
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        chasingTarget = null;
+        moveAction.Cancel();
+    }
+    
     
     public bool IsGrounded() => groundingColliders.Count > 0;
-    
     HashSet<Collider> groundingColliders = new ();
 
     void OnCollisionEnter(Collision c)
