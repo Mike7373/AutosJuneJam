@@ -1,13 +1,14 @@
-using System;
 using Characters.Zombie;
 using UnityEngine;
 
 public class ZombieIdle : MonoBehaviour
 {
     ZombieBehaviour zombie;
+    GroundChecker groundChecker;    
     
-    void Start()
+    void Awake()
     {
+        groundChecker = GetComponent<GroundChecker>();
         zombie = GetComponent<ZombieBehaviour>();
         zombie.punchAction.performed += PunchActionOnperformed;
     }
@@ -24,7 +25,7 @@ public class ZombieIdle : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!zombie.IsGrounded())
+        if (!groundChecker.IsGrounded())
         {
             zombie.StartAction<ZombieFalling>();
         }

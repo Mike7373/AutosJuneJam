@@ -9,7 +9,7 @@ namespace Input
      * programmaticamente.
      *
      */
-    public interface ICharacterAction<T>
+    public interface CharacterAction<T>
     {
         public event Action<T> performed;
         public event Action<T> started;
@@ -21,10 +21,9 @@ namespace Input
         public void Perform(T obj);
         public void Start(T obj);
         public void Cancel();
-        
     }
     
-    public class AInputAction<T> : ICharacterAction<T>
+    public class AIInputAction<T> : CharacterAction<T> where T : struct
     {
         bool isInProgress;
         T value;
@@ -67,35 +66,16 @@ namespace Input
     
     
     // TODO: Gli handlers sull'azione wrappata vanno rimossi.
-    public class PlayerInputAction<T> : ICharacterAction<T> where T : struct
+    public class DeviceInputAction<T> : CharacterAction<T> where T : struct
     {
         InputAction wrapped;
         PropertyChangedEventHandler a;
         
-        event Action<T> _performed;
-        event Action<T> _started;
-        event Action _canceled;
+        public event Action<T> performed;
+        public event Action<T> started;
+        public event Action canceled;
         
-        public event Action<T> performed
-        {
-            add => _performed += value;
-            remove => _performed -= value;
-        }
-        
-        public event Action<T> started
-        {
-            add => _started += value;
-            remove => _started -= value;
-        }
-        
-        public event Action canceled
-        {
-            add => _canceled += value;
-            remove => _canceled -= value;
-        }
-        
-
-        public PlayerInputAction(InputAction toWrap)
+        public DeviceInputAction(InputAction toWrap)
         {
             wrapped = toWrap;
 
@@ -106,17 +86,17 @@ namespace Input
 
         public void Perform(T obj)
         {
-            _performed?.Invoke(obj);
+            performed?.Invoke(obj);
         }
 
         public void Start(T obj)
         {
-            _started?.Invoke(obj);
+            started?.Invoke(obj);
         }
 
         public void Cancel()
         {
-            _canceled?.Invoke();
+            canceled?.Invoke();
         }
 
         public T ReadValue()

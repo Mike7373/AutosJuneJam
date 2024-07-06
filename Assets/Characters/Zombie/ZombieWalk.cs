@@ -6,11 +6,12 @@ public class ZombieWalk : MonoBehaviour
 {
     Vector3 movementDirection;
     ZombieBehaviour zombie;
-    
+    GroundChecker groundChecker;    
 
-    void Start()
+    void Awake()
     {
         zombie = GetComponent<ZombieBehaviour>();
+        groundChecker = GetComponent<GroundChecker>();
         zombie.moveAction.canceled += MoveActionOncanceled;
         zombie.punchAction.performed += PunchActionOnperformed;
         zombie.animator.SetBool(AnimatorProperties.IsMoving, true);
@@ -32,7 +33,7 @@ public class ZombieWalk : MonoBehaviour
     void FixedUpdate()
     {
         // TRANSAZIONE
-        if (!zombie.IsGrounded())
+        if (!groundChecker.IsGrounded())
         {
             zombie.StartAction<ZombieFalling>();
             return;

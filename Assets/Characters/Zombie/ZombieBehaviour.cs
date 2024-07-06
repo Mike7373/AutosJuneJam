@@ -1,19 +1,10 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using Input;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = Unity.Mathematics.Random;
 
-
-/**
- * Parto da quanto fatto con Athena, solo che invece che utilizzare le "Actions" create da me, rendo ciascuna
- * Action un MonoBehaviour, la coroutine principale diventa l'update di questo behaviour e sfrutto la gestione
- * del ciclo di vita per le callback Start e Exit
- */
-
-[RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator)), RequireComponent(typeof(GroundChecker))]
 public class ZombieBehaviour : MonoBehaviour
 {
     public float speed = 1.0f;
@@ -22,9 +13,9 @@ public class ZombieBehaviour : MonoBehaviour
 
     public Vector3 movementAxis = Vector3.right;
 
-    [NonSerialized] public AInputAction<Vector2> moveAction = new();
-    [NonSerialized] public AInputAction<float> runModifierAction = new();
-    [NonSerialized] public AInputAction<float> punchAction = new();
+    [NonSerialized] public AIInputAction<Vector2> moveAction = new();
+    [NonSerialized] public AIInputAction<float> runModifierAction = new();
+    [NonSerialized] public AIInputAction<float> punchAction = new();
 
     [NonSerialized]
     public Animator animator;
@@ -130,32 +121,4 @@ public class ZombieBehaviour : MonoBehaviour
         chasingTarget = null;
         moveAction.Cancel();
     }
-    
-    
-    public bool IsGrounded() => groundingColliders.Count > 0;
-    HashSet<Collider> groundingColliders = new ();
-
-    void OnCollisionEnter(Collision c)
-    {
-        // Se collido con qualcosa e la normale del punto di contatto è 
-        // verso l'alto, allora lo consideriamo come atterraggio.
-        for (int i = 0; i < c.contactCount; i++)
-        {
-            if (c.GetContact(i).normal.y > 0)
-            {
-                groundingColliders.Add(c.collider);
-                // TODO: Sporco, fallo da un'altra parte, tipo in un handler quando cambia "isGrounded"
-                // TODO: Questa gestione del "Grounded" Può andare in una componente.
-                //animator.SetBool(AnimatorProperties.IsGrounded, IsGrounded());
-                return;
-            }
-        }
-    }
-
-    void OnCollisionExit(Collision c)
-    {
-        groundingColliders.Remove(c.collider);
-        //animator.SetBool(AnimatorProperties.IsGrounded, IsGrounded());
-    }
-    
 }

@@ -7,9 +7,8 @@ namespace Characters.Zombie
     {
         ZombieBehaviour zombie;
         
-        public void Start()
+        public void Awake()
         {
-            Debug.Log("PUNCH!");
             zombie = GetComponent<ZombieBehaviour>();
             zombie.animator.SetBool(AnimatorProperties.IsPunching, true);
             zombie.StartCoroutine(Punch());

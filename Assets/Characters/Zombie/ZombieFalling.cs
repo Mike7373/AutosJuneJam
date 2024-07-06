@@ -3,10 +3,12 @@ using UnityEngine;
 public class ZombieFalling : MonoBehaviour
 {
     ZombieBehaviour zombie;
-    void Start()
+    GroundChecker groundChecker;
+    
+    void Awake()
     {
         zombie = GetComponent<ZombieBehaviour>();
-        
+        groundChecker = GetComponent<GroundChecker>();
         zombie.rigidBody.useGravity = true;
     }
 
@@ -18,7 +20,7 @@ public class ZombieFalling : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (zombie.IsGrounded())
+        if (groundChecker.IsGrounded())
         {
             zombie.StartAction<ZombieIdle>();
         }

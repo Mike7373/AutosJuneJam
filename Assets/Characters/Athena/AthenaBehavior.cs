@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using Characters;
 using Input;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 /**
  * E' un movimento bidimensionale che avviene lungo una direzione stabilita.
@@ -15,7 +13,8 @@ using UnityEngine.InputSystem;
  * scegliere quale collider lavora con la gravità, oppure modificarne il comportamento.
  * 
  */
-[RequireComponent(typeof(PlayerInput)), RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CharacterInput), typeof(Rigidbody),typeof(Animator)),
+ RequireComponent(typeof(GroundChecker), typeof(ActionRunner))]
 public class AthenaBehavior : MonoBehaviour
 {
     public Vector3 movementAxis = Vector3.right;
@@ -24,46 +23,35 @@ public class AthenaBehavior : MonoBehaviour
     public float jumpRange      = 8;
     public float jumpSpeed      = 3;
 
-    public PlayerInputAction<Vector2> moveAction;
-    public PlayerInputAction<float> jumpAction;
-    public PlayerInputAction<float> runModifierAction;
-    public PlayerInputAction<float> punchAction;
-
-    public Rigidbody rigidBody;
-    public Animator animator;
+    Animator animator;
+    GroundChecker groundChecker;
+    ActionRunner actionRunner;
     
-    public bool IsGrounded() => groundingColliders.Count > 0;
-
-    // TODO: Mettere questa gestione del grounded in una componente a parte, se continua a restare
-    // uguale anche per altre entità.
-    HashSet<Collider> groundingColliders = new ();
-    CharacterAction currentAction;
+    CharacterAction<float> runModifierAction;
     
-    public void StartAction(CharacterAction action)
-    {
-        currentAction?.Stop();
-        currentAction = action;
-        currentAction.Start();
-    }
-
     void Awake()
     {
-        var playerInput = GetComponent<PlayerInput>();
-        moveAction = new PlayerInputAction<Vector2>(playerInput.actions["Move"]);
-        jumpAction = new PlayerInputAction<float>(playerInput.actions["Jump"]);
-        runModifierAction = new PlayerInputAction<float>(playerInput.actions["RunModifier"]);
-        punchAction = new PlayerInputAction<float>(playerInput.actions["Punch"]);
-    }
-    
-    void Start()
-    {
-        rigidBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        groundChecker = GetComponent<GroundChecker>();
+        actionRunner = GetComponent<ActionRunner>();
         
+        var characterInput = GetComponent<CharacterInput>();
+        runModifierAction = characterInput.GetAction<float>("RunModifier");
         runModifierAction.performed += RunModifierPerformed;
         runModifierAction.canceled += RunModifierCancelled;
-        
-        StartAction(new AthenaIdle(this));
+        actionRunner.StartAction<AthenaIdle>();
+    }
+
+    void FixedUpdate()
+    {
+        // TODO: Setta l'animator solo quando cambia il valore di "IsGrounded()"
+        animator.SetBool(AnimatorProperties.IsGrounded, groundChecker.IsGrounded());
+    }
+
+    void OnDestroy()
+    {
+        runModifierAction.performed -= RunModifierPerformed;
+        runModifierAction.canceled -= RunModifierCancelled;
     }
     
     void RunModifierPerformed(float _)
@@ -75,28 +63,13 @@ public class AthenaBehavior : MonoBehaviour
     {
         animator.SetBool(AnimatorProperties.SpeedModifier, false);
     }
-
-    void OnCollisionEnter(Collision c)
+    
+    public static void DebugContacts(Collision c, Color color)
     {
-        // Se collido con qualcosa e la normale del punto di contatto è 
-        // verso l'alto, allora lo consideriamo come atterraggio.
-        AthenaMovement.DebugContacts(c, Color.red);
         for (int i = 0; i < c.contactCount; i++)
         {
-            if (c.GetContact(i).normal.y > 0)
-            {
-                groundingColliders.Add(c.collider);
-                // TODO: Sporco, fallo da un'altra parte, tipo in un handler quando cambia "isGrounded"
-                animator.SetBool(AnimatorProperties.IsGrounded, IsGrounded());
-                return;
-            }
+            var contact = c.GetContact(i);
+            Debug.DrawRay(contact.point, contact.normal, color, 4);
         }
     }
-
-    void OnCollisionExit(Collision c)
-    {
-        groundingColliders.Remove(c.collider);
-        animator.SetBool(AnimatorProperties.IsGrounded, IsGrounded());
-    }
-
 }
