@@ -29,7 +29,7 @@ public class AthenaBehavior : MonoBehaviour
     
     CharacterInputAction<float> runModifierAction;
     
-    void Awake()
+    void Start()
     {
         animator = GetComponent<Animator>();
         groundChecker = GetComponent<GroundChecker>();

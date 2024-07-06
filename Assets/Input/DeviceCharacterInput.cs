@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Input
@@ -10,6 +11,7 @@ namespace Input
 
         void Awake()
         {
+            Debug.Log("Starting device character input");
             playerInput = FindObjectOfType<PlayerInput>();
         }
         
