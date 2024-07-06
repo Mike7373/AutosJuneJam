@@ -9,8 +9,8 @@ public class AthenaFalling : MonoBehaviour
     GroundChecker groundChecker;
     ActionRunner actionRunner;
     
-    CharacterAction<float> runModifierAction;
-    CharacterAction<Vector2> moveAction;
+    CharacterInputAction<float> runModifierAction;
+    CharacterInputAction<Vector2> moveAction;
     
     void Awake()
     {

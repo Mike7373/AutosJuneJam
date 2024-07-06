@@ -1,37 +1,47 @@
+using Characters;
 using Characters.Zombie;
+using Input;
 using UnityEngine;
 
 public class ZombieIdle : MonoBehaviour
 {
-    ZombieBehaviour zombie;
-    GroundChecker groundChecker;    
+    ActionRunner actionRunner;
+    GroundChecker groundChecker;
+    
+    CharacterInputAction<float> punchAction;
+    CharacterInputAction<Vector2> moveAction;
     
     void Awake()
     {
         groundChecker = GetComponent<GroundChecker>();
-        zombie = GetComponent<ZombieBehaviour>();
-        zombie.punchAction.performed += PunchActionOnperformed;
+        actionRunner = GetComponent<ActionRunner>();
+        
+        var characterInput = GetComponent<CharacterInput>();
+        punchAction = characterInput.GetAction<float>("Punch");
+        moveAction = characterInput.GetAction<Vector2>("Move");
+        
+        punchAction.performed += PunchActionOnperformed;
     }
     
     void OnDestroy()
     {
-        zombie.punchAction.performed -= PunchActionOnperformed;
+        punchAction.performed -= PunchActionOnperformed;
     }
 
     void PunchActionOnperformed(float obj)
     {
-        zombie.StartAction<ZombiePunch>();
+        actionRunner.StartAction<ZombiePunch>();
     }
 
     void FixedUpdate()
     {
         if (!groundChecker.IsGrounded())
         {
-            zombie.StartAction<ZombieFalling>();
+            actionRunner.StartAction<ZombieFalling>();
         }
-        else if (zombie.moveAction.IsInProgress())
+        else if (moveAction.IsInProgress())
         {
-            zombie.StartAction<ZombieWalk>();
+            actionRunner.StartAction<ZombieWalk>();
         }
     }
 }

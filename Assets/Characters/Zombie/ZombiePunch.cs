@@ -5,24 +5,26 @@ namespace Characters.Zombie
 {
     public class ZombiePunch : MonoBehaviour
     {
-        ZombieBehaviour zombie;
+        Animator animator;
+        ActionRunner actionRunner;
         
         public void Awake()
         {
-            zombie = GetComponent<ZombieBehaviour>();
-            zombie.animator.SetBool(AnimatorProperties.IsPunching, true);
-            zombie.StartCoroutine(Punch());
+            animator = GetComponent<Animator>();
+            actionRunner = GetComponent<ActionRunner>();
+            animator.SetBool(AnimatorProperties.IsPunching, true);
+            StartCoroutine(Punch());
         }
 
         public void OnDestroy()
         {
-            zombie.animator.SetBool(AnimatorProperties.IsPunching, false);
+            animator.SetBool(AnimatorProperties.IsPunching, false);
         }
 
         IEnumerator Punch()
         {
             yield return new WaitForSeconds(0.8f);
-            zombie.StartAction<ZombieIdle>();
+            actionRunner.StartAction<ZombieIdle>();
         }
         
     }

@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
+using Characters;
 using Input;
 using UnityEngine;
 using Random = Unity.Mathematics.Random;
 
-[RequireComponent(typeof(Rigidbody)), RequireComponent(typeof(Animator)), RequireComponent(typeof(GroundChecker))]
+[RequireComponent(typeof(Rigidbody),typeof(Animator),typeof(GroundChecker)),
+ RequireComponent(typeof(CharacterInput), typeof(ActionRunner))]
 public class ZombieBehaviour : MonoBehaviour
 {
     public float speed = 1.0f;
@@ -13,35 +15,21 @@ public class ZombieBehaviour : MonoBehaviour
 
     public Vector3 movementAxis = Vector3.right;
 
-    [NonSerialized] public AIInputAction<Vector2> moveAction = new();
-    [NonSerialized] public AIInputAction<float> runModifierAction = new();
-    [NonSerialized] public AIInputAction<float> punchAction = new();
+    ActionRunner actionRunner;
+    CharacterInputAction<Vector2> moveAction;
+    CharacterInputAction<float> punchAction;
 
-    [NonSerialized]
-    public Animator animator;
-    
-    [NonSerialized]
-    public Rigidbody rigidBody;
-    
     Random rng;
-    MonoBehaviour currentBehaviour;
 
-    public Component StartAction<T>() where T : MonoBehaviour
-    {
-        if (currentBehaviour)
-        {
-            Destroy(currentBehaviour);
-        }
-        currentBehaviour = gameObject.AddComponent<T>();
-        return currentBehaviour;
-    }
-    
     void Start()
     {
+        var characterInput = GetComponent<CharacterInput>();
+        moveAction = characterInput.GetAction<Vector2>("Move");
+        punchAction = characterInput.GetAction<float>("Punch");
+        
+        actionRunner = GetComponent<ActionRunner>();
+        actionRunner.StartAction<ZombieIdle>();
         rng = new Random((uint)DateTime.Now.ToFileTime());
-        animator = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody>();
-        StartAction<ZombieIdle>();
         StartCoroutine(Think());
     }
     
@@ -53,15 +41,15 @@ public class ZombieBehaviour : MonoBehaviour
 
     IEnumerator Think()
     {
-        MonoBehaviour lastObservedBehaviour = currentBehaviour;
+        MonoBehaviour lastObservedBehaviour = actionRunner.currentBehaviour;
         float whenLastObservedBehaviour = Time.time;
         
         while (true)
         {
             // Ci ricordiamo il tempo dell'ultima azione effettuata
-            if (lastObservedBehaviour != currentBehaviour)
+            if (lastObservedBehaviour != actionRunner.currentBehaviour)
             {
-                lastObservedBehaviour = currentBehaviour;
+                lastObservedBehaviour = actionRunner.currentBehaviour;
                 whenLastObservedBehaviour = Time.time;
             }
             
@@ -89,7 +77,7 @@ public class ZombieBehaviour : MonoBehaviour
                     moveAction.Perform(new Vector2(axisDirection, 0));
                 }
             }
-            else if (currentBehaviour is ZombieIdle or ZombieWalk)
+            else if (actionRunner.currentBehaviour is ZombieIdle or ZombieWalk)
             {
                 // Vediamo per quanto tempo siamo rimasti in questo stato
                 if (Time.time - whenLastObservedBehaviour >= walkIdleTime)

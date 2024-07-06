@@ -30,7 +30,7 @@ namespace Input
      */
     public abstract class CharacterInput : MonoBehaviour
     {
-        public abstract CharacterAction<T> GetAction<T>(string actionName) where T : struct;
+        public abstract CharacterInputAction<T> GetAction<T>(string actionName) where T : struct;
     }
     
 }

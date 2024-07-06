@@ -1,45 +1,58 @@
+using Characters;
+using Input;
 using UnityEngine;
 
 public class ZombieFalling : MonoBehaviour
 {
     ZombieBehaviour zombie;
+    Rigidbody rigidBody;
     GroundChecker groundChecker;
+    ActionRunner actionRunner;
     
+    CharacterInputAction<float> runModifierAction;
+    CharacterInputAction<Vector2> moveAction;
+
     void Awake()
     {
         zombie = GetComponent<ZombieBehaviour>();
         groundChecker = GetComponent<GroundChecker>();
-        zombie.rigidBody.useGravity = true;
+        actionRunner = GetComponent<ActionRunner>();
+        rigidBody = GetComponent<Rigidbody>();
+        rigidBody.useGravity = true;
+        
+        var characterInput = GetComponent<CharacterInput>();
+        moveAction = characterInput.GetAction<Vector2>("Move");
+        runModifierAction = characterInput.GetAction<float>("RunModifier");
     }
 
     void OnDisable()
     {
-        zombie.rigidBody.useGravity = false;
-        zombie.rigidBody.velocity = Vector3.zero;
+        rigidBody.useGravity = false;
+        rigidBody.velocity = Vector3.zero;
     }
 
     void FixedUpdate()
     {
         if (groundChecker.IsGrounded())
         {
-            zombie.StartAction<ZombieIdle>();
+            actionRunner.StartAction<ZombieIdle>();
         }
         else
         {
             // In volo mi muovo
-            Vector2 inputValue = zombie.moveAction.ReadValue();
+            Vector2 inputValue = moveAction.ReadValue();
             int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-            bool speedModifier = zombie.runModifierAction.IsInProgress();
+            bool speedModifier = runModifierAction.IsInProgress();
             float speed = speedModifier ? zombie.runSpeed : zombie.speed;
             if (axisDirection != 0)
             {
                 Vector3 velocity = speed * axisDirection * zombie.movementAxis;
-                zombie.rigidBody.rotation = Quaternion.LookRotation(zombie.movementAxis * axisDirection, Vector3.up);
-                zombie.rigidBody.velocity = new Vector3(velocity.x, zombie.rigidBody.velocity.y, velocity.z);
+                rigidBody.rotation = Quaternion.LookRotation(zombie.movementAxis * axisDirection, Vector3.up);
+                rigidBody.velocity = new Vector3(velocity.x, rigidBody.velocity.y, velocity.z);
             }
             else
             {
-                zombie.rigidBody.velocity = new Vector3(0, zombie.rigidBody.velocity.y, 0);
+                rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0);
             }
         }
     }

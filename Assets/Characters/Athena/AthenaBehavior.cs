@@ -27,7 +27,7 @@ public class AthenaBehavior : MonoBehaviour
     GroundChecker groundChecker;
     ActionRunner actionRunner;
     
-    CharacterAction<float> runModifierAction;
+    CharacterInputAction<float> runModifierAction;
     
     void Awake()
     {

@@ -9,7 +9,7 @@ namespace Input
      * programmaticamente.
      *
      */
-    public interface CharacterAction<T>
+    public interface CharacterInputAction<T>
     {
         public event Action<T> performed;
         public event Action<T> started;
@@ -23,7 +23,7 @@ namespace Input
         public void Cancel();
     }
     
-    public class AIInputAction<T> : CharacterAction<T> where T : struct
+    public class AIInputAction<T> : CharacterInputAction<T> where T : struct
     {
         bool isInProgress;
         T value;
@@ -66,7 +66,7 @@ namespace Input
     
     
     // TODO: Gli handlers sull'azione wrappata vanno rimossi.
-    public class DeviceInputAction<T> : CharacterAction<T> where T : struct
+    public class DeviceInputAction<T> : CharacterInputAction<T> where T : struct
     {
         InputAction wrapped;
         PropertyChangedEventHandler a;

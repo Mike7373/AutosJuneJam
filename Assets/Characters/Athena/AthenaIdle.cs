@@ -8,9 +8,9 @@ public class AthenaIdle : MonoBehaviour
     ActionRunner actionRunner;
     GroundChecker groundChecker;
 
-    CharacterAction<float> jumpAction;
-    CharacterAction<float> punchAction;
-    CharacterAction<Vector2> moveAction;
+    CharacterInputAction<float> jumpAction;
+    CharacterInputAction<float> punchAction;
+    CharacterInputAction<Vector2> moveAction;
 
     void Awake()
     {

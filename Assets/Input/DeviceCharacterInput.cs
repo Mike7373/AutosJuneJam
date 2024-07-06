@@ -13,7 +13,7 @@ namespace Input
             playerInput = FindObjectOfType<PlayerInput>();
         }
         
-        public override CharacterAction<T> GetAction<T>(string actionName)
+        public override CharacterInputAction<T> GetAction<T>(string actionName)
         {
             if (actions.TryGetValue(actionName, out var action))
             {

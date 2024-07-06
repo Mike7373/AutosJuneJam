@@ -1,10 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Characters
 {
 public class ActionRunner : MonoBehaviour
 {
-    MonoBehaviour currentBehaviour;
+    [NonSerialized]
+    public MonoBehaviour currentBehaviour;
     
     public Component StartAction<T>() where T : MonoBehaviour
     {

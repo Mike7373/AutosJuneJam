@@ -10,9 +10,9 @@ public class AthenaJump : MonoBehaviour
     Animator animator;
     Rigidbody rigidBody;
     
-    CharacterAction<float> jumpAction;
-    CharacterAction<Vector2> moveAction;
-    CharacterAction<float> runModifierAction;
+    CharacterInputAction<float> jumpAction;
+    CharacterInputAction<Vector2> moveAction;
+    CharacterInputAction<float> runModifierAction;
 
     
     void Awake()

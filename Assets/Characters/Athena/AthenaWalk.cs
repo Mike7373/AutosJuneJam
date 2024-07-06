@@ -10,10 +10,10 @@ public class AthenaWalk : MonoBehaviour
     GroundChecker groundChecker;
     ActionRunner actionRunner;
 
-    CharacterAction<float> jumpAction;
-    CharacterAction<float> punchAction;
-    CharacterAction<float> runModifierAction;
-    CharacterAction<Vector2> moveAction;
+    CharacterInputAction<float> jumpAction;
+    CharacterInputAction<float> punchAction;
+    CharacterInputAction<float> runModifierAction;
+    CharacterInputAction<Vector2> moveAction;
     
     void Awake()
     {

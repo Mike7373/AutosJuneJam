@@ -7,7 +7,7 @@ namespace Input
     {
         public Dictionary<string, object> actions = new();
 
-        public override CharacterAction<T> GetAction<T>(string actionName)
+        public override CharacterInputAction<T> GetAction<T>(string actionName)
         {
             if (actions.TryGetValue(actionName, out var action))
             {

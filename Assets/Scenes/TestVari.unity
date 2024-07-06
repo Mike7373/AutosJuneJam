@@ -1345,6 +1345,7 @@ GameObject:
   - component: {fileID: 1513784220}
   - component: {fileID: 1513784221}
   - component: {fileID: 1513784222}
+  - component: {fileID: 1513784223}
   m_Layer: 6
   m_Name: PLAYER
   m_TagString: Untagged
@@ -1478,6 +1479,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e14136cecdd4505b6ac1b60e2849016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1513784223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513784211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dcf76eeb23c4646a778d48fb53dc608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentBehaviour: {fileID: 0}
 --- !u!1 &1562635476
 GameObject:
   m_ObjectHideFlags: 0
@@ -1795,6 +1809,7 @@ GameObject:
   - component: {fileID: 1741666567}
   - component: {fileID: 1741666568}
   - component: {fileID: 1741666569}
+  - component: {fileID: 1741666571}
   m_Layer: 0
   m_Name: ZOMBIE
   m_TagString: Untagged
@@ -1934,6 +1949,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e14136cecdd4505b6ac1b60e2849016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1741666571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741666563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37b06571ec3342bfa2933840b43d8db7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1798896589
