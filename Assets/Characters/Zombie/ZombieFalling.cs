@@ -9,8 +9,8 @@ public class ZombieFalling : MonoBehaviour
     GroundChecker groundChecker;
     ActionRunner actionRunner;
     
-    CharacterInputAction<float> runModifierAction;
-    CharacterInputAction<Vector2> moveAction;
+    CharacterInputAction runModifierAction;
+    CharacterInputAction moveAction;
 
     void Awake()
     {
@@ -21,8 +21,8 @@ public class ZombieFalling : MonoBehaviour
         rigidBody.useGravity = true;
         
         var characterInput = GetComponent<CharacterInput>();
-        moveAction = characterInput.GetAction<Vector2>("Move");
-        runModifierAction = characterInput.GetAction<float>("RunModifier");
+        moveAction = characterInput.GetAction("Move");
+        runModifierAction = characterInput.GetAction("RunModifier");
     }
 
     void OnDisable()
@@ -40,7 +40,7 @@ public class ZombieFalling : MonoBehaviour
         else
         {
             // In volo mi muovo
-            Vector2 inputValue = moveAction.ReadValue();
+            Vector2 inputValue = moveAction.ReadValue<Vector2>();
             int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
             bool speedModifier = runModifierAction.IsInProgress();
             float speed = speedModifier ? zombie.runSpeed : zombie.speed;

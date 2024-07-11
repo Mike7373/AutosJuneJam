@@ -8,18 +8,16 @@ public class ZombieIdle : MonoBehaviour
     ActionRunner actionRunner;
     GroundChecker groundChecker;
     
-    CharacterInputAction<float> punchAction;
-    CharacterInputAction<Vector2> moveAction;
+    CharacterInputAction punchAction;
+    CharacterInputAction moveAction;
     
     void Awake()
     {
         groundChecker = GetComponent<GroundChecker>();
         actionRunner = GetComponent<ActionRunner>();
-        
         var characterInput = GetComponent<CharacterInput>();
-        punchAction = characterInput.GetAction<float>("Punch");
-        moveAction = characterInput.GetAction<Vector2>("Move");
-        
+        punchAction = characterInput.GetAction("Punch");
+        moveAction = characterInput.GetAction("Move");
         punchAction.performed += PunchActionOnperformed;
     }
     
@@ -28,7 +26,7 @@ public class ZombieIdle : MonoBehaviour
         punchAction.performed -= PunchActionOnperformed;
     }
 
-    void PunchActionOnperformed(float obj)
+    void PunchActionOnperformed(object _)
     {
         actionRunner.StartAction<ZombiePunch>();
     }

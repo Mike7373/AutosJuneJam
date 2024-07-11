@@ -10,9 +10,9 @@ public class AthenaJump : MonoBehaviour
     Animator animator;
     Rigidbody rigidBody;
     
-    CharacterInputAction<float> jumpAction;
-    CharacterInputAction<Vector2> moveAction;
-    CharacterInputAction<float> runModifierAction;
+    CharacterInputAction jumpAction;
+    CharacterInputAction moveAction;
+    CharacterInputAction runModifierAction;
 
     
     void Awake()
@@ -23,9 +23,9 @@ public class AthenaJump : MonoBehaviour
         actionRunner = GetComponent<ActionRunner>();
         
         var characterInput = GetComponent<CharacterInput>();
-        runModifierAction = characterInput.GetAction<float>("RunModifier");
-        moveAction = characterInput.GetAction<Vector2>("Move");
-        jumpAction = characterInput.GetAction<float>("Jump");
+        runModifierAction = characterInput.GetAction("RunModifier");
+        moveAction = characterInput.GetAction("Move");
+        jumpAction = characterInput.GetAction("Jump");
         
         jumpAction.canceled += EndJumpInput;
         animator.SetTrigger(AnimatorProperties.JumpTrigger);
@@ -57,7 +57,7 @@ public class AthenaJump : MonoBehaviour
         {
             // In volo mi muovo
             Vector3 velocity = Vector3.zero;
-            Vector2 inputValue = moveAction.ReadValue();
+            Vector2 inputValue = moveAction.ReadValue<Vector2>();
             int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
             bool speedModifier = runModifierAction.IsInProgress();
             float speed = speedModifier ? player.runSpeed : player.speed;

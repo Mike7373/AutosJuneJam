@@ -9,8 +9,8 @@ public class AthenaFalling : MonoBehaviour
     GroundChecker groundChecker;
     ActionRunner actionRunner;
     
-    CharacterInputAction<float> runModifierAction;
-    CharacterInputAction<Vector2> moveAction;
+    CharacterInputAction runModifierAction;
+    CharacterInputAction moveAction;
     
     void Awake()
     {
@@ -20,8 +20,8 @@ public class AthenaFalling : MonoBehaviour
         groundChecker = GetComponent<GroundChecker>();
         
         var characterInput = GetComponent<CharacterInput>();
-        runModifierAction = characterInput.GetAction<float>("RunModifier");
-        moveAction = characterInput.GetAction<Vector2>("Move");
+        runModifierAction = characterInput.GetAction("RunModifier");
+        moveAction = characterInput.GetAction("Move");
     }
     
     void OnDestroy()
@@ -40,7 +40,7 @@ public class AthenaFalling : MonoBehaviour
         else
         {
             // In volo mi muovo
-            Vector2 inputValue = moveAction.ReadValue();
+            Vector2 inputValue = moveAction.ReadValue<Vector2>();
             int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
             bool speedModifier = runModifierAction.IsInProgress();
             float speed = speedModifier ? player.runSpeed : player.speed;

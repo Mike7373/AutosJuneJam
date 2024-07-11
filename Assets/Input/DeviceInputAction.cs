@@ -1,129 +1,222 @@
 ﻿using System;
-using System.ComponentModel;
 using UnityEngine.InputSystem;
 
 namespace Input
 {
-    /*
-     * Un'azione che può essere legata ad una InputAction, ma che può essere anche gestita
-     * programmaticamente.
-     *
-     */
-    public interface CharacterInputAction<T>
+    public interface InputBinder
     {
-        public event Action<T> performed;
-        public event Action<T> started;
-        public event Action    canceled;
-
-        public T ReadValue();
+        public T ReadValue<T>();
         public bool IsInProgress();
-
-        public void Perform(T obj);
-        public void Start(T obj);
+        public void Start(object obj);
+        public void Perform(object obj);
         public void Cancel();
+        public void Bind(CharacterInputAction c);
+        public void Unbind();
+
     }
-    
-    public class AIInputAction<T> : CharacterInputAction<T> where T : struct
+
+    public class AIInputBinder : InputBinder
     {
+        object value;
         bool isInProgress;
-        T value;
+        CharacterInputAction binded;
 
-        public event Action<T> performed;
-        public event Action<T> started;
-        public event Action canceled;
-
-        public T ReadValue()
+        public void Start(object obj)
         {
-            return value;
+            isInProgress = true;
+            value = obj;
+            binded?.started?.Invoke(obj);
+        }
+
+        public void Perform(object o)
+        {
+            isInProgress = true;
+            value = o;
+            binded?.performed?.Invoke(value);
+        }
+
+        public void Cancel()
+        {
+            isInProgress = false;
+            binded?.canceled?.Invoke();
+        }
+
+        public void Bind(CharacterInputAction c)
+        {
+            binded = c;
+        }
+
+        public void Unbind()
+        {
+            binded = null;
+        }
+
+        public T ReadValue<T>()
+        {
+            object val = value ?? default(T);
+            return (T) val;
         }
 
         public bool IsInProgress()
         {
             return isInProgress;
         }
-
-        public void Perform(T obj)
-        {
-            isInProgress = true;
-            value = obj;
-            performed?.Invoke(obj);
-        }
-
-        public void Start(T obj)
-        {
-            isInProgress = true;
-            value = obj;
-            started?.Invoke(obj);
-        }
-
-        public void Cancel()
-        {
-            isInProgress = false;
-            value = default(T);
-            canceled?.Invoke();
-        }
     }
     
-    
-    // TODO: Gli handlers sull'azione wrappata vanno rimossi.
-    public class DeviceInputAction<T> : CharacterInputAction<T> where T : struct
+
+    public class NoOpInputBinder : InputBinder
     {
-        InputAction wrapped;
-        PropertyChangedEventHandler a;
-        
-        public event Action<T> performed;
-        public event Action<T> started;
-        public event Action canceled;
-        
-        public DeviceInputAction(InputAction toWrap)
+        public T ReadValue<T>()
         {
-            wrapped = toWrap;
-
-            wrapped.performed += WrappedOnperformed;
-            wrapped.started += WrappedOnStarted;
-            wrapped.canceled += WrappedOnCanceled;
+            return default(T);
         }
 
-        public void Perform(T obj)
+        public bool IsInProgress()
         {
-            performed?.Invoke(obj);
+            return false;
         }
 
-        public void Start(T obj)
+        public void Start(object obj)
         {
-            started?.Invoke(obj);
+            return;
+        }
+
+        public void Perform(object obj)
+        {
+            return;
         }
 
         public void Cancel()
         {
-            canceled?.Invoke();
+            return;
         }
 
-        public T ReadValue()
+        public void Bind(CharacterInputAction c)
         {
-            return wrapped.ReadValue<T>();
         }
+
+        public void Unbind()
+        {
+            
+        }
+    }
+
+    // TODO: Gli handlers sull'azione wrappata vanno rimossi.
+
+    public class DeviceInputBinder : InputBinder
+    {
+        InputAction wrapped;
+        CharacterInputAction binded;
+
+        public DeviceInputBinder(InputAction toWrap)
+        {
+            wrapped = toWrap;
+        }
+        
+        public T ReadValue<T>()
+        {
+            object val = wrapped.ReadValueAsObject() ?? default(T);
+            return (T) val;        }
 
         public bool IsInProgress()
         {
             return wrapped.IsInProgress();
         }
-        
+
+        public void Start(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Perform(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Cancel()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Bind(CharacterInputAction c)
+        {
+            binded = c;
+            wrapped.performed += WrappedOnperformed;
+            wrapped.started += WrappedOnStarted;
+            wrapped.canceled += WrappedOnCanceled;
+        }
+
+        public void Unbind()
+        {
+            wrapped.performed -= WrappedOnperformed;
+            wrapped.started -= WrappedOnStarted;
+            wrapped.canceled -= WrappedOnCanceled;
+        }
+
         void WrappedOnperformed(InputAction.CallbackContext obj)
         {
-            Perform(obj.ReadValue<T>());
+            binded.performed?.Invoke(obj.ReadValueAsObject());
         }
 
         void WrappedOnStarted(InputAction.CallbackContext obj)
         {
-            Start(obj.ReadValue<T>());
+            binded.started?.Invoke(obj.ReadValueAsObject());
         }
 
         void WrappedOnCanceled(InputAction.CallbackContext obj)
         {
-            Cancel();
+            binded.canceled?.Invoke();
+        }
+    }
+
+    public class CharacterInputAction
+    {
+        public Action<object> performed;
+        public Action<object> started;
+        public Action    canceled;
+
+        InputBinder binder;
+
+        public CharacterInputAction(InputBinder inputBinder)
+        {
+            Bind(inputBinder);
+        }
+
+        public T ReadValue<T>()
+        {
+            return binder.ReadValue<T>();
+        }
+
+        public bool IsInProgress()
+        {
+            return binder.IsInProgress();
         }
         
+        public void Start(object obj)
+        {
+            binder.Start(obj);
+        }
+
+        public void Perform(object obj)
+        {
+            binder.Perform(obj);
+        }
+
+        public void Cancel()
+        {
+            binder.Cancel();
+        }
+
+        public void Bind(InputBinder b)
+        {
+            binder?.Unbind();
+            binder = b;
+            b.Bind(this);
+        }
+
     }
+    
+
+
     
 }

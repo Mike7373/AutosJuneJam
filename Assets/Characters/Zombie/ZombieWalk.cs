@@ -12,9 +12,9 @@ public class ZombieWalk : MonoBehaviour
     ActionRunner actionRunner;
     Rigidbody rigidBody;
     
-    CharacterInputAction<float> punchAction;
-    CharacterInputAction<float> runModifierAction;
-    CharacterInputAction<Vector2> moveAction;
+    CharacterInputAction punchAction;
+    CharacterInputAction runModifierAction;
+    CharacterInputAction moveAction;
 
     void Awake()
     {
@@ -25,16 +25,16 @@ public class ZombieWalk : MonoBehaviour
         rigidBody = GetComponent<Rigidbody>();
         
         var characterInput = GetComponent<CharacterInput>();
-        punchAction = characterInput.GetAction<float>("Punch");
-        moveAction = characterInput.GetAction<Vector2>("Move");
-        runModifierAction = characterInput.GetAction<float>("RunModifier");
+        punchAction = characterInput.GetAction("Punch");
+        moveAction = characterInput.GetAction("Move");
+        runModifierAction = characterInput.GetAction("RunModifier");
         
         moveAction.canceled += MoveActionOncanceled;
         punchAction.performed += PunchActionOnperformed;
         animator.SetBool(AnimatorProperties.IsMoving, true);
     }
 
-    void PunchActionOnperformed(float obj)
+    void PunchActionOnperformed(object _)
     {
         actionRunner.StartAction<ZombiePunch>();
     }
@@ -59,7 +59,7 @@ public class ZombieWalk : MonoBehaviour
         // LAVORO
         bool speedModifier = runModifierAction.IsInProgress();
         float speed = speedModifier ? zombie.runSpeed : zombie.speed;
-        Vector2 inputValue = moveAction.ReadValue();
+        Vector2 inputValue = moveAction.ReadValue<Vector2>();
         int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
         if (axisDirection != 0)
         {

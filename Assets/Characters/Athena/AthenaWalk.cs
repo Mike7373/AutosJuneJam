@@ -10,10 +10,10 @@ public class AthenaWalk : MonoBehaviour
     GroundChecker groundChecker;
     ActionRunner actionRunner;
 
-    CharacterInputAction<float> jumpAction;
-    CharacterInputAction<float> punchAction;
-    CharacterInputAction<float> runModifierAction;
-    CharacterInputAction<Vector2> moveAction;
+    CharacterInputAction jumpAction;
+    CharacterInputAction punchAction;
+    CharacterInputAction runModifierAction;
+    CharacterInputAction moveAction;
     
     void Awake()
     {
@@ -24,10 +24,10 @@ public class AthenaWalk : MonoBehaviour
         groundChecker = GetComponent<GroundChecker>();
         
         var characterInput = GetComponent<CharacterInput>();
-        jumpAction = characterInput.GetAction<float>("Jump");
-        punchAction = characterInput.GetAction<float>("Punch");
-        moveAction = characterInput.GetAction<Vector2>("Move");
-        runModifierAction = characterInput.GetAction<float>("RunModifier");
+        jumpAction = characterInput.GetAction("Jump");
+        punchAction = characterInput.GetAction("Punch");
+        moveAction = characterInput.GetAction("Move");
+        runModifierAction = characterInput.GetAction("RunModifier");
         
         moveAction.canceled += MoveActionOncanceled;
         jumpAction.performed += JumpActionOnperformed;
@@ -45,12 +45,12 @@ public class AthenaWalk : MonoBehaviour
         animator.SetBool(AnimatorProperties.IsMoving, false);
     }
     
-    void PunchActionOnperformed(float f)
+    void PunchActionOnperformed(object f)
     {
         actionRunner.StartAction<AthenaPunch>();
     }
     
-    void JumpActionOnperformed(float f)
+    void JumpActionOnperformed(object f)
     {
         actionRunner.StartAction<AthenaJump>();
     }
@@ -72,7 +72,7 @@ public class AthenaWalk : MonoBehaviour
         // LAVORO
         bool speedModifier = runModifierAction.IsInProgress();
         float speed = speedModifier ? player.runSpeed : player.speed;
-        Vector2 inputValue = moveAction.ReadValue();
+        Vector2 inputValue = moveAction.ReadValue<Vector2>();
         int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
         if (axisDirection != 0)
         {

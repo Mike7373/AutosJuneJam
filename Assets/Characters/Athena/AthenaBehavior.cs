@@ -27,7 +27,7 @@ public class AthenaBehavior : MonoBehaviour
     GroundChecker groundChecker;
     ActionRunner actionRunner;
     
-    CharacterInputAction<float> runModifierAction;
+    CharacterInputAction runModifierAction;
     
     void Start()
     {
@@ -36,7 +36,7 @@ public class AthenaBehavior : MonoBehaviour
         actionRunner = GetComponent<ActionRunner>();
         
         var characterInput = GetComponent<CharacterInput>();
-        runModifierAction = characterInput.GetAction<float>("RunModifier");
+        runModifierAction = characterInput.GetAction("RunModifier");
         runModifierAction.performed += RunModifierPerformed;
         runModifierAction.canceled += RunModifierCancelled;
         actionRunner.StartAction<AthenaIdle>();
@@ -54,7 +54,7 @@ public class AthenaBehavior : MonoBehaviour
         runModifierAction.canceled -= RunModifierCancelled;
     }
     
-    void RunModifierPerformed(float _)
+    void RunModifierPerformed(object _)
     {
         animator.SetBool(AnimatorProperties.SpeedModifier, true);
     }

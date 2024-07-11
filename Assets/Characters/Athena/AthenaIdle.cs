@@ -8,9 +8,9 @@ public class AthenaIdle : MonoBehaviour
     ActionRunner actionRunner;
     GroundChecker groundChecker;
 
-    CharacterInputAction<float> jumpAction;
-    CharacterInputAction<float> punchAction;
-    CharacterInputAction<Vector2> moveAction;
+    CharacterInputAction jumpAction;
+    CharacterInputAction punchAction;
+    CharacterInputAction moveAction;
 
     void Awake()
     {
@@ -18,9 +18,9 @@ public class AthenaIdle : MonoBehaviour
         groundChecker = GetComponent<GroundChecker>();
 
         var characterInput = GetComponent<CharacterInput>();
-        jumpAction = characterInput.GetAction<float>("Jump");
-        punchAction = characterInput.GetAction<float>("Punch");
-        moveAction = characterInput.GetAction<Vector2>("Move");
+        jumpAction = characterInput.GetAction("Jump");
+        punchAction = characterInput.GetAction("Punch");
+        moveAction = characterInput.GetAction("Move");
         
         // Qui devo prima registrare gli handlers, perchè la coroutine mi fa un passaggio di stato 
         // nello stesso frame e non capisco perchè, la Stop non deregistra gli handlers
@@ -36,13 +36,13 @@ public class AthenaIdle : MonoBehaviour
     }
 
     
-    void PunchActionOnperformed(float f)
+    void PunchActionOnperformed(object f)
     {
         actionRunner.StartAction<AthenaPunch>();
     }
     
     
-    public void JumpActionOnperformed(float f)
+    public void JumpActionOnperformed(object f)
     {
         actionRunner.StartAction<AthenaJump>();
     }

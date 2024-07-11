@@ -11,8 +11,8 @@ public class ZombieIA : MonoBehaviour
 
     ZombieBehaviour zombie;
     ActionRunner actionRunner;
-    CharacterInputAction<Vector2> moveAction;
-    CharacterInputAction<float> punchAction;
+    CharacterInputAction moveAction;
+    CharacterInputAction punchAction;
     
     // Start is called before the first frame update
     void Start()
@@ -21,8 +21,8 @@ public class ZombieIA : MonoBehaviour
         zombie = GetComponent<ZombieBehaviour>();
         actionRunner = GetComponent<ActionRunner>();
         var characterInput = GetComponent<CharacterInput>();
-        moveAction = characterInput.GetAction<Vector2>("Move");
-        punchAction = characterInput.GetAction<float>("Punch");
+        moveAction = characterInput.GetAction("Move");
+        punchAction = characterInput.GetAction("Punch");
         lastObservedBehaviour = actionRunner.currentBehaviour;
         whenLastObservedBehaviour = Time.time;
     }

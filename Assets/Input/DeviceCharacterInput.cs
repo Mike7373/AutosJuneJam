@@ -1,32 +1,29 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Input
+{ 
+    
+/**
+ * Costruisce e gestisce azioni bindate sul DeviceInputBinder
+ * 
+ */
+public class DeviceCharacterInput : CharacterInput
 {
-    public class DeviceCharacterInput : CharacterInput
-    {
-        PlayerInput playerInput;
-        Dictionary<string, object> actions = new();
+    PlayerInput playerInput;
 
-        void Awake()
-        {
-            Debug.Log("Starting device character input");
-            playerInput = FindObjectOfType<PlayerInput>();
-        }
-        
-        public override CharacterInputAction<T> GetAction<T>(string actionName)
-        {
-            if (actions.TryGetValue(actionName, out var action))
-            {
-                return (DeviceInputAction<T>) action;
-            }
-            else
-            {
-                var newAction = new DeviceInputAction<T>(playerInput.actions[actionName]);
-                actions.Add(actionName, newAction);
-                return newAction;
-            }
-        }
+    void Awake()
+    {
+        Debug.Log("Starting device character input");
+        playerInput = FindObjectOfType<PlayerInput>();
     }
+
+    public override InputBinder GetInputBinder(string actionName)
+    {
+        return new DeviceInputBinder(playerInput.actions[actionName]);
+    }
+
+    
+}
+
 }

@@ -26,11 +26,43 @@ namespace Input
      * 
      * 
      * E' possibile a runtime sostituire il characterInput di una entità.
-     *     
+     *
+     * TODO: Incapsulamento.
      */
     public abstract class CharacterInput : MonoBehaviour
     {
-        public abstract CharacterInputAction<T> GetAction<T>(string actionName) where T : struct;
+        public Dictionary<string, CharacterInputAction> actions = new();
+
+        public abstract InputBinder GetInputBinder(string actionName);
+
+        public CharacterInputAction GetAction(string actionName)
+        {
+            if (actions.TryGetValue(actionName, out var action))
+            {
+                return action;
+            }
+            else
+            {
+                var noOpBinder = GetInputBinder(actionName);
+                var newAction = new CharacterInputAction(noOpBinder);
+                actions.Add(actionName, newAction);
+                return newAction;
+            }
+        }
+
+        /**
+         * Prende possesso delle azioni del CharacterInput argomento, utilizzando l'InputBinder.
+         *
+         * TODO: Spegnere l'altro input?
+         */
+        public void Acquire(CharacterInput other)
+        {
+            foreach (var (actionName, a) in other.actions)
+            {
+                a.Bind(GetInputBinder(actionName));
+                actions[actionName] = a;
+            }
+        }
     }
     
 }
