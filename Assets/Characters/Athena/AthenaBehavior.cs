@@ -41,11 +41,14 @@ public class AthenaBehavior : MonoBehaviour
         runModifierAction.canceled += RunModifierCancelled;
         actionRunner.StartAction<AthenaIdle>();
     }
+    
 
     void FixedUpdate()
     {
         // TODO: Setta l'animator solo quando cambia il valore di "IsGrounded()"
         animator.SetBool(AnimatorProperties.IsGrounded, groundChecker.IsGrounded());
+
+        //transform.position += Vector3.left * Time.fixedDeltaTime * 5;
     }
 
     void OnDestroy()
