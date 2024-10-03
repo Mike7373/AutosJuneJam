@@ -17,14 +17,10 @@ public class DialogueActor : MonoBehaviour
     [SerializeField] private ActorType _actorType;
     [VerticalGroup("ActorData/Info")]
     [LabelWidth(100)]
-    [SerializeField] private List<DialogueData> _dialogues;
-    public int _dialogueIndex { get; private set; }
+    [SerializeField]
+    private string _actorID;
 
     public Sprite GetIcon() { return _icon; }
     public string GetActorName() { return _actorName; }
     
-    public void NextDialogue()
-    {
-        _dialogueIndex++;
-    }
 }
