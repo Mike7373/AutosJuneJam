@@ -31,6 +31,7 @@ public class HighlitedSelectable : MonoBehaviour
     
     void OnMouseEnter()
     {
+        settings.material.color = settings.highlightedColor;
         SetLayerRecursively(gameObject, LayerMask.NameToLayer("Highlight"));
     }
 
@@ -48,12 +49,12 @@ public class HighlitedSelectable : MonoBehaviour
 
     void OnMouseDown()
     {
-        //selectionMaterial.color = Color.blue;
+        settings.material.color = settings.selectedColor;
     }
 
     void OnMouseUp()
     {
-        //selectionMaterial.color = Color.white;
+        settings.material.color = settings.highlightedColor;
     }
 
     // 
