@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7d591cb731cdd94cab9f68ff9ac010c, type: 3}
+  m_Name: HighlightSettings
+  m_EditorClassIdentifier: 
+  material: {fileID: 2100000, guid: c2411cf4461e00b4b99bd476a809691c, type: 2}
+  highlightedColor: {r: 0.49991274, g: 0.8396226, b: 0.46337664, a: 0.2901961}
+  selectedColor: {r: 0.49803925, g: 0.83921576, b: 0.46274513, a: 0.78039217}

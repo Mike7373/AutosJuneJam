@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+/**
+ *
+ *  Fa la sovrailluminazione (highlight) di un oggetto, spostandolo nel layer "Highlight"
+ *  Una RenderFeature aggiuntiva si preoccupa di fare il disegno con il materiale unlit di override.
+ *
+ *  NOTA: Non ho trovato un modo migliore al momento per dargli uno scriptable object di default, se non eseguire la
+ *  start nell'editor e fargli trovare l'asset di default.
+ */
+[ExecuteInEditMode]
+public class HighlitedSelectable : MonoBehaviour
+{
+    [SerializeField]
+    HighlightSettings settings;
+    
+    void Start()
+    {
+        #if UNITY_EDITOR
+        if (settings == null)
+        {
+            // TODO:  Gestisci l'assenza delle settings
+            settings = AssetDatabase.LoadAssetAtPath<HighlightSettings>("Assets/Config/HighlightSettings.asset");
+        }
+        #endif
+        
+    }
+    
+    void OnMouseEnter()
+    {
+        SetLayerRecursively(gameObject, LayerMask.NameToLayer("Highlight"));
+    }
+
+    /*
+    void OnMouseOver()
+    {
+        Debug.Log("Il Mouse è over!");
+    }
+    */
+    
+    void OnMouseExit()
+    {
+        SetLayerRecursively(gameObject, LayerMask.NameToLayer("Default"));
+    }
+
+    void OnMouseDown()
+    {
+        //selectionMaterial.color = Color.blue;
+    }
+
+    void OnMouseUp()
+    {
+        //selectionMaterial.color = Color.white;
+    }
+
+    // 
+    static void SetLayerRecursively(GameObject gameObject, int layer)
+    {
+        gameObject.layer = layer;
+        // TODO: Brutale, vedi se è veramente efficiente o se è meglio navigare tutti i figli manualmente
+        foreach (var t in gameObject.GetComponentsInChildren<Transform>())
+        {
+            t.gameObject.layer = layer;
+        }
+    }
+}
