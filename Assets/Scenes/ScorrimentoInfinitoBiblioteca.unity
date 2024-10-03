@@ -1891,7 +1891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b8f8a49bd1633464dbdb6bfed2a3dcf9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.021
+      value: -2.144
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b8f8a49bd1633464dbdb6bfed2a3dcf9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1960,6 +1960,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8f8a49bd1633464dbdb6bfed2a3dcf9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 710376312}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b8f8a49bd1633464dbdb6bfed2a3dcf9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 710376313}
   m_SourcePrefab: {fileID: 100100000, guid: b8f8a49bd1633464dbdb6bfed2a3dcf9, type: 3}
 --- !u!1 &385102776
 GameObject:
@@ -3198,6 +3201,7 @@ GameObject:
   m_Component:
   - component: {fileID: 532403368}
   - component: {fileID: 532403369}
+  - component: {fileID: 532403370}
   m_Layer: 0
   m_Name: ScaffaleConRoba
   m_TagString: Untagged
@@ -3239,6 +3243,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 75822211d0acd604eacfac59ec024e9a, type: 2}
+--- !u!65 &532403370
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 532403367}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2584457, y: 2.0474358, z: 0.7694212}
+  m_Center: {x: -0.01720047, y: -1.0432305, z: -0.5090441}
 --- !u!1001 &544937594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3898,7 +3923,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4802913596437088308, guid: b0024ffc29286dd478dc0b89aa47b385, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 33.85
       objectReference: {fileID: 0}
     - target: {fileID: 4802913596437088308, guid: b0024ffc29286dd478dc0b89aa47b385, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4470,6 +4495,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 75822211d0acd604eacfac59ec024e9a, type: 2}
+--- !u!65 &710376313
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459390165}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.58568275, z: 0.64352226}
+  m_Center: {x: 0, y: 0.29480532, z: -0.014247065}
 --- !u!4 &714719539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1415129284491778981, guid: 49dcc3cea4b7fd04e97310aec7b7a4b0, type: 3}
@@ -15682,6 +15728,7 @@ GameObject:
   - component: {fileID: 7454531826960830826}
   - component: {fileID: 7830840187143875077}
   - component: {fileID: 7206005311412019648}
+  - component: {fileID: 7830840187143875078}
   m_Layer: 0
   m_Name: Prigioniero Zombie
   m_TagString: Untagged
@@ -16204,6 +16251,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkIdleTime: 3
+--- !u!114 &7830840187143875078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075581952289458102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8a7a0ecff5c0c4a82b1917cfce3b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 75822211d0acd604eacfac59ec024e9a, type: 2}
 --- !u!1001 &8483756343584105241
 PrefabInstance:
   m_ObjectHideFlags: 0

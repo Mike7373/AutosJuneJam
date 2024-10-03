@@ -10,6 +10,11 @@ using UnityEngine;
  *
  *  NOTA: Non ho trovato un modo migliore al momento per dargli uno scriptable object di default, se non eseguire la
  *  start nell'editor e fargli trovare l'asset di default.
+ *
+ * NOTA: Ho dovuto disabilitare nelle preferences della fisica ho "Query Hit Triggers".
+ * Non funzionava infatti con lo zombie che ha un grosso collider di allarme trigger intorno,
+ * e la OnMouseEnter veniva chiamata anche quando il mouse era lontano dallo zombie, ma dentro la
+ * sfera del trigger.
  */
 [ExecuteInEditMode]
 public class HighlitedSelectable : MonoBehaviour
