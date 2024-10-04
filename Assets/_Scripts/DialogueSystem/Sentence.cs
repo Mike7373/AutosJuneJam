@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public class Sentence
 {
-    public DialogueActor actor;
+    public string actorID;
     [TextArea(5,10)]
     public string text;
 }

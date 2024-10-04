@@ -782,9 +782,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aeeb8a70f0c34d41907f8dd5a8331cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _actorIcon: {fileID: 8604433426229630605}
-  _actorName: {fileID: 2576498022070637609}
-  _dialogueText: {fileID: 3483784695206720269}
+  actorIcon: {fileID: 8604433426229630605}
+  actorName: {fileID: 2576498022070637609}
+  dialogueText: {fileID: 3483784695206720269}
+  _arrow: {fileID: 1381529105595442221}
 --- !u!1 &7726177180264715761
 GameObject:
   m_ObjectHideFlags: 0

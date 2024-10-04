@@ -1,0 +1,12 @@
+{
+  "dialogue": [
+    {
+      "actorID": "_pippo",
+      "text": "Buongiorno! Benvenuto a Gotham City!"
+    },
+    {
+      "actorID": "_nemo",
+      "text": "Gotham City? La ho già sentita. Mi pare ci abitasse la Pimpa."
+    }
+  ]
+}
