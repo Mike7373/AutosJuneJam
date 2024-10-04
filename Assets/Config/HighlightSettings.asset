@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HighlightSettings
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: c2411cf4461e00b4b99bd476a809691c, type: 2}
-  highlightedColor: {r: 0.49991274, g: 0.8396226, b: 0.46337664, a: 0.2901961}
-  selectedColor: {r: 0.49803925, g: 0.83921576, b: 0.46274513, a: 0.78039217}
+  highlightedColor: {r: 0.3734022, g: 0.8018868, b: 0.3290762, a: 0.2784314}
+  selectedColor: {r: 0.37254903, g: 0.8000001, b: 0.32941177, a: 0.34901962}
