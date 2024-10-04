@@ -18,11 +18,11 @@ public class AudioManager : MonoBehaviour
   {
     if (instance != null)
     {
-        Debug.LogError("Found more than one Audio Manager in the Scene");
-        return;
+        Debug.LogWarning("Found more than one Audio Manager in the Scene");
+        //return;
     }
     instance = this;
-    DontDestroyOnLoad(gameObject);
+    //DontDestroyOnLoad(gameObject);
 
     eventInstances = new List<EventInstance>();
     eventEmitters = new List<StudioEventEmitter>();

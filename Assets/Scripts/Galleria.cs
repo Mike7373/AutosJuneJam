@@ -2,15 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMOD.Studio;
 
 public class Galleria : MonoBehaviour
 {
    
-   public AudioSource ost;
+   public EventInstance songGalleria, no;
+   public float gain;
+
     public void Awake()
     {
-        ost.Play();
+
     }
+
+    public void Start()
+    {
+        songGalleria = AudioManager.instance.CreateEventInstance(FMODEvents.instance.song2);
+        no = AudioManager.instance.CreateEventInstance(FMODEvents.instance.no);
+        songGalleria.setParameterByName("Gain", gain);
+        songGalleria.start();
+    }
+
     // Load Scene
     public void BackToMain()
     {
@@ -27,5 +39,10 @@ public class Galleria : MonoBehaviour
     {
     	yield return new WaitForSeconds(delay);
 	    SceneManager.LoadScene(name);
+    }
+
+    public void UINoSound()
+    {
+        no.start();
     }
 }

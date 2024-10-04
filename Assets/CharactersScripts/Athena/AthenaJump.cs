@@ -33,6 +33,7 @@ public class AthenaJump : MonoBehaviour
         animator.SetBool(AnimatorProperties.IsJumping, true);
         StartCoroutine(JumpCoroutine());
         jumpSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.jump);
+        jumpSound.setVolume(0.5f);
     }
     
     void Start()

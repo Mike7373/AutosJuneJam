@@ -2,15 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using FMOD.Studio;
 
 public class MainMenu : MonoBehaviour
 {
+   public EventInstance songMenu, yes, no, duality;
+   public float eqLow;
+   public float gain;
    
-   public AudioSource ost;
     public void Awake()
     {
-        ost.Play();
+
     }
+
+    public void Start()
+    {
+        songMenu = AudioManager.instance.CreateEventInstance(FMODEvents.instance.songMenu);
+        songMenu.setParameterByName("EQ-Low", eqLow);
+        songMenu.setParameterByName("Gain", gain);
+        songMenu.start();
+
+        yes = AudioManager.instance.CreateEventInstance(FMODEvents.instance.yes);
+        no = AudioManager.instance.CreateEventInstance(FMODEvents.instance.no);
+        duality = AudioManager.instance.CreateEventInstance(FMODEvents.instance.duality);
+    }
+    
     // Load Scene
     public void Play()
     {
@@ -19,7 +35,7 @@ public class MainMenu : MonoBehaviour
 
     public void Gallery()
     {
-        StartCoroutine(DelaySceneLoad(("Galleria"), 0.5f));   
+        StartCoroutine(DelaySceneLoad(("Galleria"), 0.5f));  
     }
     
     // Quit Game
@@ -32,7 +48,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator DelaySceneLoad(float delay)
     {
     	yield return new WaitForSeconds(delay);
-	    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+	    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
     }
 
     IEnumerator DelaySceneLoad(string name, float delay)
@@ -41,4 +57,18 @@ public class MainMenu : MonoBehaviour
 	    SceneManager.LoadScene(name);
     }
 
+    public void UIYesSound()
+    {
+        yes.start();
+    }
+
+    public void UINoSound()
+    {
+        no.start();
+    }
+
+    public void UIDualitySound()
+    {
+        duality.start();
+    }
 }

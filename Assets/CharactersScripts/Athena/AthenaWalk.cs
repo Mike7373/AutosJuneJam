@@ -38,6 +38,7 @@ public class AthenaWalk : MonoBehaviour
         animator.SetBool(AnimatorProperties.IsMoving, true);
 
         footsteps = AudioManager.instance.CreateEventInstance(FMODEvents.instance.footsteps);
+        footsteps.setVolume(0.2f);
     }
 
     void Start()
@@ -79,7 +80,7 @@ public class AthenaWalk : MonoBehaviour
             return;
         }
 
-        // LAVORO
+        // Corsa
         bool speedModifier = runModifierAction.IsInProgress();
         float speed = speedModifier ? player.runSpeed : player.speed;
         Vector2 inputValue = moveAction.ReadValue<Vector2>();

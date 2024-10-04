@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using FMOD.Studio;
 
 /**
  *
@@ -21,6 +22,7 @@ public class HighlitedSelectable : MonoBehaviour
 {
     [SerializeField]
     HighlightSettings settings;
+    EventInstance clickSound;
     
     void Start()
     {
@@ -31,7 +33,7 @@ public class HighlitedSelectable : MonoBehaviour
             settings = AssetDatabase.LoadAssetAtPath<HighlightSettings>("Assets/Config/HighlightSettings.asset");
         }
         #endif
-        
+        clickSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.yes);
     }
     
     void OnMouseEnter()
@@ -60,6 +62,7 @@ public class HighlitedSelectable : MonoBehaviour
     void OnMouseUp()
     {
         settings.material.color = settings.highlightedColor;
+        clickSound.start();
     }
 
     // 
