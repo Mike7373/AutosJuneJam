@@ -1,6 +1,7 @@
 using Characters;
 using Input;
 using UnityEngine;
+using FMOD.Studio;
 
 public class AthenaWalk : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class AthenaWalk : MonoBehaviour
     CharacterInputAction punchAction;
     CharacterInputAction runModifierAction;
     CharacterInputAction moveAction;
+    EventInstance footsteps;
     
     void Awake()
     {
@@ -34,6 +36,13 @@ public class AthenaWalk : MonoBehaviour
         punchAction.performed += PunchActionOnperformed;
         
         animator.SetBool(AnimatorProperties.IsMoving, true);
+
+        footsteps = AudioManager.instance.CreateEventInstance(FMODEvents.instance.footsteps);
+    }
+
+    void Start()
+    {    
+        footsteps.start();    
     }
 
     void OnDestroy()
@@ -43,6 +52,7 @@ public class AthenaWalk : MonoBehaviour
         jumpAction.performed -= JumpActionOnperformed;
         punchAction.performed -= PunchActionOnperformed;
         animator.SetBool(AnimatorProperties.IsMoving, false);
+        footsteps.stop(STOP_MODE.ALLOWFADEOUT);
     }
     
     void PunchActionOnperformed(object f)
