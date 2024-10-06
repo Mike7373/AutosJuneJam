@@ -1,7 +1,5 @@
-using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DialogueBox : MonoBehaviour
@@ -10,6 +8,7 @@ public class DialogueBox : MonoBehaviour
     public Image actorIcon;
     public TMP_Text actorName;
     public TMP_Text dialogueText;
+    public GameObject _choiceBox;
     [SerializeField] private GameObject _arrow;
 
     private void Awake()

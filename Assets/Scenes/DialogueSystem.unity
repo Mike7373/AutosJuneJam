@@ -561,10 +561,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueBoxPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 6449294706318621567, guid: 3311b5638a052e74583860e9315bc11b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9065347007686651965, guid: 3311b5638a052e74583860e9315bc11b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
