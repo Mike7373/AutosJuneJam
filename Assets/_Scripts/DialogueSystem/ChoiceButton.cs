@@ -16,8 +16,8 @@ public class ChoiceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private Color _normalTextColor = Color.black;
     [SerializeField] private Color _hoverTextColor = Color.white;
     //Aggiungere unità di misura (px)
-    [SerializeField] private int _normalTextSize = 30;
-    [SerializeField] private int _hoverTextSize = 60;
+    [SerializeField] private int _normalTextSize = 40;
+    [SerializeField] private int _hoverTextSize = 40;
 
     private static List<GameObject> _currentButtons = new();
     private Button _button;

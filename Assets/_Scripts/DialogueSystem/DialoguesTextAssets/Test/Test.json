@@ -1,20 +1,40 @@
 {
   "sentenceList": [
     {
-      "actorID": "_polso",
+      "actorID": "_athena",
       "sentenceID": "0",
       "text": "Buongiorno! Prima volta qui?",
       "choices": [
         {
-          "text": "si",
+          "text": "Sì, non passo spesso di qui. Lei deve essere il custode, sbaglio?",
           "nextSentence": "Prima volta"
         },
         {
-          "text": "no",
+          "text": "In verità sono un socio della biblioteca e spesso vengo qui per i libri. Non mi pare di averla mai incrociata, posso chiederle chi è?",
           "nextSentence": "Ci vengo spesso"
         },
         {
-          "text": "vattene",
+          "text": "Che schifo, una persona! Che vuoi? Fuori dalle scatole! VATTENEEEEEE!!!",
+          "nextSentence": "Vattene"
+        },
+        {
+          "text": "Che schifo, una persona! Che vuoi? Fuori dalle scatole! VATTENEEEEEE!!!",
+          "nextSentence": "Vattene"
+        },
+        {
+          "text": "Che schifo, una persona! Che vuoi? Fuori dalle scatole! VATTENEEEEEE!!!",
+          "nextSentence": "Vattene"
+        },
+        {
+          "text": "Che schifo, una persona! Che vuoi? Fuori dalle scatole! VATTENEEEEEE!!!",
+          "nextSentence": "Vattene"
+        },
+        {
+          "text": "Che schifo, una persona! Che vuoi? Fuori dalle scatole! VATTENEEEEEE!!!",
+          "nextSentence": "Vattene"
+        },
+        {
+          "text": "Che schifo, una persona! Che vuoi? Fuori dalle scatole! VATTENEEEEEE!!!",
           "nextSentence": "Vattene"
         }
       ]
@@ -42,17 +62,21 @@
       ]
     },
     {
-      "actorID": "_liquirizia",
+      "actorID": "_athena",
       "sentenceID": "Chi è?",
       "text": "Mi chiamo Pippo, e da oggi custodirò questa baracca. Ora scusami ma devo scappare. Ciao!",
       "choices": [
         {
-          "text": "Ciao!",
+          "text": "Arrivederci a lei!",
           "nextSentence": "Saluto"
         },
         {
-          "text": "Dove va?",
+          "text": "Ma dove va!? Le stavo parlando! INCIVILEEEEE!!!",
           "nextSentence": "Insulto"
+        },
+        {
+          "text": "Ma te sei rintronato!! Peggio di questo qui vestito da rana con una spada e n orologio!!",
+          "nextSentence": "Polso"
         }
       ]
     },
@@ -93,6 +117,17 @@
       "actorID": "_debora",
       "sentenceID": "Insulto",
       "text": "Ma dove va!? Le stavo parlando! INCIVILEEEEE!!!",
+      "choices": [
+        {
+          "text": "",
+          "nextSentence": ""
+        }
+      ]
+    },
+    {
+      "actorID": "_polso",
+      "sentenceID": "Polso",
+      "text": "Stai parlando di me?? Guarda che sono un GuErRieRooOoOooo!!",
       "choices": [
         {
           "text": "",

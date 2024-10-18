@@ -68,6 +68,7 @@ public class DialogueBrain : MonoBehaviour
         {
             _dialogueIndex++;
         }
+
         dialogueBox.gameObject.SetActive(false);
     }
 
@@ -116,7 +117,7 @@ public class DialogueBrain : MonoBehaviour
     }
 
     /// <summary>
-    /// Il maestroso luogo in cui cui la dialogue box prende forma :)
+    /// Il maestoso luogo in cui cui la dialogue box prende forma :)
     /// </summary>
     /// <returns></returns>
     private IEnumerator DialogueLoop()
@@ -127,15 +128,7 @@ public class DialogueBrain : MonoBehaviour
         do
         {
             choicebox.gameObject.SetActive(false);
-            if (_currentSentence.actorID != DialogueActor.PlayerActor.ActorID)
-            {
-                dialogueBox.characterIcon.sprite = DialogueActor.FindActorByID(_currentSentence.actorID).Icon;
-                dialogueBox.TogglePlayerSFocus(false);
-            }
-            else
-            {
-                dialogueBox.TogglePlayerSFocus(true);
-            }
+            dialogueBox.characterIcon.sprite = DialogueActor.FindActorByID(_currentSentence.actorID).Icon;
 
             dialogueBox.actorName.text = DialogueActor.FindActorByID(_currentSentence.actorID).ActorName;
             dialogueBox.dialogueText.text = _currentSentence.text;
