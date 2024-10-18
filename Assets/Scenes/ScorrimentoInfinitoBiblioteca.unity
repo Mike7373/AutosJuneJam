@@ -17893,11 +17893,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4802913596437088308, guid: b0024ffc29286dd478dc0b89aa47b385, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 64.75673
+      value: -22.94
       objectReference: {fileID: 0}
     - target: {fileID: 4802913596437088308, guid: b0024ffc29286dd478dc0b89aa47b385, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.08
       objectReference: {fileID: 0}
     - target: {fileID: 4802913596437088308, guid: b0024ffc29286dd478dc0b89aa47b385, type: 3}
       propertyPath: m_LocalPosition.z
@@ -46420,7 +46420,7 @@ MonoBehaviour:
   - Name: EQ-Low
     Value: 0.3
   - Name: Gain
-    Value: 0.6
+    Value: 0.3
   OverrideAttenuation: 1
   OverrideMinDistance: 8
   OverrideMaxDistance: 25
@@ -57350,7 +57350,9 @@ MonoBehaviour:
   TriggerOnce: 0
   Preload: 0
   NonRigidbodyVelocity: 0
-  Params: []
+  Params:
+  - Name: city_intensity
+    Value: 0.3
   OverrideAttenuation: 1
   OverrideMinDistance: 1
   OverrideMaxDistance: 18

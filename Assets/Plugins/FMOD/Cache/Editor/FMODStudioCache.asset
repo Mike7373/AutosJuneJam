@@ -125,7 +125,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638648751433384456
+  lastModified: 638648772202800564
   FileSizes:
   - Name: Desktop
     Value: 102304
@@ -169,7 +169,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638648751433244450
+  lastModified: 638648731109264195
   FileSizes:
   - Name: Desktop
     Value: 1486
@@ -319,7 +319,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638648751836086855
+  lastModified: 638648731109284175
   FileSizes:
   - Name: Desktop
     Value: 1758
@@ -362,7 +362,7 @@ MonoBehaviour:
   - {fileID: -4649071497674087366}
   StringsBanks:
   - {fileID: -138184828453362965}
-  cacheTime: 638648751836216860
+  cacheTime: 638648779873298060
   cacheVersion: 131620
 --- !u!114 &776673744977837303
 MonoBehaviour:
@@ -387,7 +387,8 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 2727035401908329278}
   MinDistance: 1
   MaxDistance: 20
   Length: 20000
@@ -418,6 +419,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1536
+--- !u!114 &2727035401908329278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/City2/city_intensity
+  m_EditorClassIdentifier: 
+  Name: city_intensity
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 247909194
+    data2: 4048493846
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &4817797685739272022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +458,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/OST.bank
   Name: OST
   StudioPath: bank:/OST
-  lastModified: 638648751836216860
+  lastModified: 638648779873298060
   FileSizes:
   - Name: Desktop
     Value: 3022944
@@ -488,7 +513,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 500
+  Length: 385
 --- !u!114 &6006017240402254777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,10 +685,10 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638648751433244450
+  lastModified: 638648777257372294
   FileSizes:
   - Name: Desktop
-    Value: 1008160
+    Value: 1008576
   Exists: 1
 --- !u!114 &8138197314814903726
 MonoBehaviour:
