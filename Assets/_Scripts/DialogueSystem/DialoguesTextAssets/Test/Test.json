@@ -1,7 +1,7 @@
 {
   "sentenceList": [
     {
-      "actorID": "_pippo",
+      "actorID": "_polso",
       "sentenceID": "0",
       "text": "Buongiorno! Prima volta qui?",
       "choices": [
@@ -20,7 +20,7 @@
       ]
     },
     {
-      "actorID": "_nemo",
+      "actorID": "_debora",
       "sentenceID": "Prima volta",
       "text": "Sì, non passo spesso di qui. Lei deve essere il custode, sbaglio?",
       "choices": [
@@ -31,7 +31,7 @@
       ]
     },
     {
-      "actorID": "_nemo",
+      "actorID": "_debora",
       "sentenceID": "Ci vengo spesso",
       "text": "In verità sono un socio della biblioteca e spesso vengo qui per i libri. Non mi pare di averla mai incrociata, posso chiederle chi è?",
       "choices": [
@@ -42,7 +42,7 @@
       ]
     },
     {
-      "actorID": "_pippo",
+      "actorID": "_liquirizia",
       "sentenceID": "Chi è?",
       "text": "Mi chiamo Pippo, e da oggi custodirò questa baracca. Ora scusami ma devo scappare. Ciao!",
       "choices": [
@@ -57,7 +57,7 @@
       ]
     },
     {
-      "actorID": "_nemo",
+      "actorID": "_debora",
       "sentenceID": "Vattene",
       "text": "Che schifo, una persona! Che vuoi? Fuori dalle scatole! VATTENEEEEEE!!!",
       "choices": [
@@ -68,7 +68,7 @@
       ]
     },
     {
-      "actorID": "_nemo",
+      "actorID": "_debora",
       "sentenceID": "Triste",
       "text": "Volevo solo essere cortese... Dopo questa rispostaccia ho capito che la mia unica via è passare la mia vita da solo...",
       "choices": [
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "actorID": "_nemo",
+      "actorID": "_debora",
       "sentenceID": "Saluto",
       "text": "Arrivederci a lei!",
       "choices": [
@@ -90,7 +90,7 @@
       ]
     },
     {
-      "actorID": "_nemo",
+      "actorID": "_debora",
       "sentenceID": "Insulto",
       "text": "Ma dove va!? Le stavo parlando! INCIVILEEEEE!!!",
       "choices": [

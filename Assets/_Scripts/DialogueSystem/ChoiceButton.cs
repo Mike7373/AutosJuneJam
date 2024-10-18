@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -16,6 +17,14 @@ public class ChoiceButton : MonoBehaviour
         _currentButtons.Add(gameObject);
     }
 
+    /// <summary>
+    /// Ridimensiona la dimensione di un bottone in base allo spazio e alla quantità di bottoni che devono essere generati.
+    /// </summary>
+    /// <param name="boxSize"></param>
+    /// <param name="parts"></param>
+    /// <param name="xPadding"></param>
+    /// <param name="yPadding"></param>
+    [Obsolete]
     public void ResizeButton(Vector2 boxSize, int parts, float xPadding, float yPadding)
     {
         float sizeX = (boxSize.x - xPadding) / parts;
