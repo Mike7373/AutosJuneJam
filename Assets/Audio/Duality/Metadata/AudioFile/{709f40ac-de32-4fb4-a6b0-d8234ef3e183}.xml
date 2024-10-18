@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{709f40ac-de32-4fb4-a6b0-d8234ef3e183}">
+		<property name="assetPath">
+			<value>Weapons/Explosion/weapons_explosion_debris_medium.ogg</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.1092970521541949</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0beb5d88-b10f-4905-84fd-f59a54a63572}</destination>
+		</relationship>
+	</object>
+</objects>
