@@ -1,8 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class MainMenu : MonoBehaviour
 {
@@ -10,23 +11,29 @@ public class MainMenu : MonoBehaviour
    public float eqLow;
    public float gain;
    
-    public void Awake()
-    {
-
-    }
 
     public void Start()
     {
-        songMenu = AudioManager.instance.CreateEventInstance(FMODEvents.instance.songMenu);
+        songMenu =  RuntimeManager.CreateInstance(FMODEvents.instance.songMenu);
         songMenu.setParameterByName("EQ-Low", eqLow);
         songMenu.setParameterByName("Gain", gain);
         songMenu.start();
 
-        yes = AudioManager.instance.CreateEventInstance(FMODEvents.instance.yes);
-        no = AudioManager.instance.CreateEventInstance(FMODEvents.instance.no);
-        duality = AudioManager.instance.CreateEventInstance(FMODEvents.instance.duality);
+        yes = RuntimeManager.CreateInstance(FMODEvents.instance.yes);
+        no = RuntimeManager.CreateInstance(FMODEvents.instance.no);
+        duality = RuntimeManager.CreateInstance(FMODEvents.instance.duality);
     }
-    
+
+    public void OnDestroy()
+    {
+        songMenu.stop(STOP_MODE.IMMEDIATE);
+
+        songMenu.release();
+        yes.release();
+        no.release();
+        duality.release();
+    }
+
     // Load Scene
     public void Play()
     {

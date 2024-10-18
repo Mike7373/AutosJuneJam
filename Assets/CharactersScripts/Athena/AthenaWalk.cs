@@ -2,6 +2,8 @@ using Characters;
 using Input;
 using UnityEngine;
 using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AthenaWalk : MonoBehaviour
 {
@@ -37,13 +39,14 @@ public class AthenaWalk : MonoBehaviour
         
         animator.SetBool(AnimatorProperties.IsMoving, true);
 
-        footsteps = AudioManager.instance.CreateEventInstance(FMODEvents.instance.footsteps);
+        footsteps = RuntimeManager.CreateInstance(FMODEvents.instance.footsteps);
         footsteps.setVolume(0.2f);
     }
 
     void Start()
     {    
-        footsteps.start();    
+        footsteps.start();
+        footsteps.release();
     }
 
     void OnDestroy()

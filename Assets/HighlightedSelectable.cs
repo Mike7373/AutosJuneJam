@@ -1,8 +1,8 @@
-using System;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 /**
  *
@@ -33,9 +33,15 @@ public class HighlitedSelectable : MonoBehaviour
             settings = AssetDatabase.LoadAssetAtPath<HighlightSettings>("Assets/Config/HighlightSettings.asset");
         }
         #endif
-        clickSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.yes);
+        clickSound = RuntimeManager.CreateInstance(FMODEvents.instance.yes);
     }
-    
+
+    void OnDestroy()
+    {
+        clickSound.stop(STOP_MODE.IMMEDIATE);
+        clickSound.release();
+    }
+
     void OnMouseEnter()
     {
         settings.material.color = settings.highlightedColor;

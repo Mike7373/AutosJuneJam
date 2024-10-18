@@ -1,26 +1,31 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class Galleria : MonoBehaviour
 {
    
    public EventInstance songGalleria, no;
    public float gain;
-
-    public void Awake()
+   
+    void Start()
     {
-
-    }
-
-    public void Start()
-    {
-        songGalleria = AudioManager.instance.CreateEventInstance(FMODEvents.instance.song2);
-        no = AudioManager.instance.CreateEventInstance(FMODEvents.instance.no);
+        songGalleria = RuntimeManager.CreateInstance(FMODEvents.instance.song2);
+        no =  RuntimeManager.CreateInstance(FMODEvents.instance.no);
         songGalleria.setParameterByName("Gain", gain);
         songGalleria.start();
+    }
+
+    void OnDestroy()
+    {
+        songGalleria.stop(STOP_MODE.IMMEDIATE);
+        songGalleria.release();
+        
+        no.stop(STOP_MODE.IMMEDIATE);
+        no.release();
     }
 
     // Load Scene
@@ -29,7 +34,7 @@ public class Galleria : MonoBehaviour
         StartCoroutine(DelaySceneLoad(("MainMenu"), 0.5f));
     }
 
-   IEnumerator DelaySceneLoad(float delay)
+    IEnumerator DelaySceneLoad(float delay)
     {
     	yield return new WaitForSeconds(delay);
 	    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

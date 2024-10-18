@@ -599,8 +599,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: ../../../../Programmi/Projects/Duality/Duality.fspro
-  sourceBankPath: ../../../../Programmi/Projects/Duality/Build
+  sourceProjectPath: Assets/Audio/Duality/Duality.fspro
+  sourceBankPath: Assets/Audio/Duality/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -642,18 +642,18 @@ MonoBehaviour:
   HideSetupWizard: 1
   LastEventReferenceScanVersion: 131620
   Platforms:
-  - {fileID: -4778669210775123339}
-  - {fileID: 742464298749104574}
-  - {fileID: -655303138813468467}
-  - {fileID: -229872400800686686}
-  - {fileID: 1896337976002090069}
-  - {fileID: -7000147624464736647}
-  - {fileID: -293634763820500599}
-  - {fileID: -4595176746643985405}
-  - {fileID: 7898028017875117779}
-  - {fileID: -1829121625330685098}
-  - {fileID: 8239151980232709387}
   - {fileID: -7305782903496272242}
+  - {fileID: -7000147624464736647}
+  - {fileID: -4778669210775123339}
+  - {fileID: -4595176746643985405}
+  - {fileID: -1829121625330685098}
+  - {fileID: -655303138813468467}
+  - {fileID: -293634763820500599}
+  - {fileID: -229872400800686686}
+  - {fileID: 742464298749104574}
+  - {fileID: 1896337976002090069}
+  - {fileID: 7898028017875117779}
+  - {fileID: 8239151980232709387}
   MigratedPlatforms: 080000001200000006000000050000000b000000000000000a000000090000000c000000150000000200000001000000
 --- !u!114 &742464298749104574
 MonoBehaviour:
@@ -725,16 +725,16 @@ MonoBehaviour:
     HasValue: 0
   displaySortOrder: 0
   childIdentifiers:
+  - 2c5177b11d81d824dbb064f9ac8527da
+  - b7716510a1f36934c87976f3a81dbf3d
+  - 0f8eb3f400726694eb47beb1a9f94ce8
+  - c88d16e5272a4e241b0ef0ac2e53b73d
   - 46fbfdf3fc43db0458918377fd40293e
+  - de700ef3f37a49b58a57ae3addf01ad9
   - 2fea114e74ecf3c4f920e1d5cc1c4c40
   - 52eb9df5db46521439908db3a29a1bbb
-  - b7716510a1f36934c87976f3a81dbf3d
-  - de700ef3f37a49b58a57ae3addf01ad9
-  - 0f8eb3f400726694eb47beb1a9f94ce8
   - fd7c55dab0fce234b8c25f6ffca523c1
-  - c88d16e5272a4e241b0ef0ac2e53b73d
   - e7a046c753c3c3d4aacc91f6597f310d
-  - 2c5177b11d81d824dbb064f9ac8527da
   codecChannels:
     Value: []
     HasValue: 0

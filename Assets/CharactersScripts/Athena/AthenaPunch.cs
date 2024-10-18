@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Characters;
 using UnityEngine;
 using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AthenaPunch : MonoBehaviour
 {
@@ -22,7 +24,8 @@ public class AthenaPunch : MonoBehaviour
 
     void Start()
     {
-        punchSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.punch);
+        punchSound = RuntimeManager.CreateInstance(FMODEvents.instance.punch);
+        punchSound.release();
         punchSound.start();    
     }
 

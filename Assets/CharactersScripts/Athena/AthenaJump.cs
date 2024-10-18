@@ -3,6 +3,8 @@ using Characters;
 using Input;
 using UnityEngine;
 using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AthenaJump : MonoBehaviour
 {
@@ -32,13 +34,14 @@ public class AthenaJump : MonoBehaviour
         jumpAction.canceled += EndJumpInput;
         animator.SetBool(AnimatorProperties.IsJumping, true);
         StartCoroutine(JumpCoroutine());
-        jumpSound = AudioManager.instance.CreateEventInstance(FMODEvents.instance.jump);
+        jumpSound = RuntimeManager.CreateInstance(FMODEvents.instance.jump);
         jumpSound.setVolume(0.5f);
     }
     
     void Start()
     {
         jumpSound.start();
+        jumpSound.release();
     }
 
     void OnDestroy()
@@ -46,7 +49,6 @@ public class AthenaJump : MonoBehaviour
         animator.SetBool(AnimatorProperties.IsJumping, false);
         jumpAction.canceled -= EndJumpInput;
         rigidBody.velocity = Vector3.zero;
-        jumpSound.stop(STOP_MODE.ALLOWFADEOUT);
     }
 
     void EndJumpInput()
