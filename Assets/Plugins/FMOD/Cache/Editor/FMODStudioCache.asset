@@ -84,6 +84,32 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1000
+--- !u!114 &-7550325979640209512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Level1/Mood
+  m_EditorClassIdentifier: 
+  Name: Mood
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1992935973
+    data2: 1475437516
+  Type: 2
+  IsGlobal: 0
+  Labels:
+  - Exploration
+  - Battle
+  Exists: 1
 --- !u!114 &-5822051638747960841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +125,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638648729217408428
+  lastModified: 638648751433384456
   FileSizes:
   - Name: Desktop
     Value: 102304
@@ -143,7 +169,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638648729217338428
+  lastModified: 638648751433244450
   FileSizes:
   - Name: Desktop
     Value: 1486
@@ -250,6 +276,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 750
+--- !u!114 &-693406133810162752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/OST/Level1
+  m_EditorClassIdentifier: 
+  Path: event:/OST/Level1
+  Guid:
+    Data1: -1559503731
+    Data2: 1323653232
+    Data3: 1198566583
+    Data4: -300672394
+  Banks:
+  - {fileID: 4817797685739272022}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -7550325979640209512}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-138184828453362965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,10 +319,10 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638648729217348428
+  lastModified: 638648751836086855
   FileSizes:
   - Name: Desktop
-    Value: 1674
+    Value: 1758
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -302,12 +356,13 @@ MonoBehaviour:
   - {fileID: -7663424093190161540}
   - {fileID: 5408849469906440360}
   - {fileID: 7231238361275057280}
+  - {fileID: -693406133810162752}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4649071497674087366}
   StringsBanks:
   - {fileID: -138184828453362965}
-  cacheTime: 638648729217408428
+  cacheTime: 638648751836216860
   cacheVersion: 131620
 --- !u!114 &776673744977837303
 MonoBehaviour:
@@ -378,10 +433,10 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/OST.bank
   Name: OST
   StudioPath: bank:/OST
-  lastModified: 638648729217408428
+  lastModified: 638648751836216860
   FileSizes:
   - Name: Desktop
-    Value: 2986688
+    Value: 3022944
   Exists: 1
 --- !u!114 &5216527107680648105
 MonoBehaviour:
@@ -605,7 +660,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638648729217338428
+  lastModified: 638648751433244450
   FileSizes:
   - Name: Desktop
     Value: 1008160
