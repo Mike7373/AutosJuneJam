@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{ba99649b-7a45-4207-94a6-1c77f5aad7c3}">
+		<property name="name">
+			<value>city_intensity</value>
+		</property>
+		<relationship name="folder">
+			<destination>{8231cbbe-86b9-43da-9c6d-bff302bd5d72}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{6cd0021b-c8bc-4e0d-ad74-1412729dfe14}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{6cd0021b-c8bc-4e0d-ad74-1412729dfe14}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+		<property name="seekSpeed">
+			<value>0.39999997615814209</value>
+		</property>
+	</object>
+</objects>

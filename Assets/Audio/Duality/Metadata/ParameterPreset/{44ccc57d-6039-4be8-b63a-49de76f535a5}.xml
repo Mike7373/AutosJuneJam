@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{44ccc57d-6039-4be8-b63a-49de76f535a5}">
+		<property name="name">
+			<value>footsteps_frequency</value>
+		</property>
+		<relationship name="folder">
+			<destination>{8231cbbe-86b9-43da-9c6d-bff302bd5d72}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{082c9e6b-6637-4a59-ae81-6ad1f7af13e0}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{082c9e6b-6637-4a59-ae81-6ad1f7af13e0}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
