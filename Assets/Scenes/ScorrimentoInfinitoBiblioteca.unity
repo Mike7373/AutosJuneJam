@@ -4810,6 +4810,73 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &817520352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 817520353}
+  - component: {fileID: 817520355}
+  - component: {fileID: 817520354}
+  m_Layer: 0
+  m_Name: MusicTrigger2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &817520353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817520352}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.46, y: 0.38, z: -1.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1484087568}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &817520354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817520352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e95561dc350e01429781da1b6dd1a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mood: 1
+--- !u!65 &817520355
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817520352}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.29999542, y: 3.0271046, z: 15.91133}
+  m_Center: {x: -0.3500023, y: -0.97159684, z: -3.8375144}
 --- !u!1 &823427644
 GameObject:
   m_ObjectHideFlags: 0
@@ -7316,6 +7383,13 @@ MonoBehaviour:
       Data3: 908550789
       Data4: 257940170
     Path: event:/OST/SongMenu
+  <level1>k__BackingField:
+    Guid:
+      Data1: -1559503731
+      Data2: 1323653232
+      Data3: 1198566583
+      Data4: -300672394
+    Path: event:/OST/Level1
   <footsteps>k__BackingField:
     Guid:
       Data1: 503461101
@@ -7358,6 +7432,13 @@ MonoBehaviour:
       Data3: -1286322517
       Data4: -1562786479
     Path: event:/SFX/UI/UI_no
+  <duality>k__BackingField:
+    Guid:
+      Data1: -753532944
+      Data2: 1100908414
+      Data3: 881177484
+      Data4: 1622705063
+    Path: event:/SFX/UI/UI_duality
   <ambience>k__BackingField:
     Guid:
       Data1: 812095860
@@ -8500,6 +8581,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1415129284491778981, guid: 49dcc3cea4b7fd04e97310aec7b7a4b0, type: 3}
   m_PrefabInstance: {fileID: 1480312554}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1484087567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484087568}
+  m_Layer: 0
+  m_Name: QuartoAmbiente
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484087568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484087567}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 94.31, y: 2.0430818, z: 12.744582}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1509238067}
+  - {fileID: 817520353}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1492610912
 GameObject:
   m_ObjectHideFlags: 0
@@ -8586,6 +8700,73 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 10, y: 1, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1509238066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1509238067}
+  - component: {fileID: 1509238069}
+  - component: {fileID: 1509238068}
+  m_Layer: 0
+  m_Name: MusicTrigger1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1509238067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509238066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.25, y: 0.38, z: -1.71}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1484087568}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1509238068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509238066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e95561dc350e01429781da1b6dd1a90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mood: 0
+--- !u!65 &1509238069
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1509238066}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.29999542, y: 3.0271046, z: 15.91133}
+  m_Center: {x: -0.3500023, y: -0.97159684, z: -3.8375144}
 --- !u!1001 &1543233940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16742,4 +16923,5 @@ SceneRoots:
   - {fileID: 515132138}
   - {fileID: 332116703}
   - {fileID: 689909447}
+  - {fileID: 1484087568}
   - {fileID: 826095216}

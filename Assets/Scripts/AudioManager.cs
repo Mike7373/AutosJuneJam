@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
 
   private EventInstance ambienceEventInstance;
 
+  private EventInstance OSTEventInstance;
+
   private void Awake()
   {
     if (instance != null)
@@ -31,6 +33,7 @@ public class AudioManager : MonoBehaviour
   private void Start()
   {
     InitializeAmbience(FMODEvents.instance.ambience);
+    InitializeOST(FMODEvents.instance.level1);
   }
 
   private void InitializeAmbience(EventReference ambienceEventReference)
@@ -39,11 +42,21 @@ public class AudioManager : MonoBehaviour
     //ambienceEventInstance.start();
   }
 
+  private void InitializeOST(EventReference OSTEventReference)
+  {
+    OSTEventInstance = CreateEventInstance(OSTEventReference);
+    OSTEventInstance.start();
+  }
+
   public void SetAmbienceParameter(string parameterName, float parameterValue)
   {
     ambienceEventInstance.setParameterByName(parameterName, parameterValue);
   }
 
+  public void SetOST(MusicArea mood)
+  {
+    OSTEventInstance.setParameterByName("Mood", (float)mood);
+  }
   // one time single sounds
   public void PlayOneShot(EventReference sound, Vector3 worldPos)
   {
