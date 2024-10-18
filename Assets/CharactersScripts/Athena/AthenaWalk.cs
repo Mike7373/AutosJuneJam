@@ -38,7 +38,7 @@ public class AthenaWalk : MonoBehaviour
         punchAction.performed += PunchActionOnperformed;
         
         animator.SetBool(AnimatorProperties.IsMoving, true);
-
+        
         footsteps = RuntimeManager.CreateInstance(FMODEvents.instance.footsteps);
         footsteps.setVolume(0.2f);
     }
