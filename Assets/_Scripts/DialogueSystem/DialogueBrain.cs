@@ -55,18 +55,22 @@ public class DialogueBrain : MonoBehaviour
         _currentSentence = _currentDialogue["0"];
 
         yield return DialogueLoop();
-        EndDialogue();
+        EndDialogue(true);
     }
 
     /// <summary>
-    /// Chiude la dialogue box ed incrementa il dialogue index.
+    /// Chiude la dialogue box
     /// </summary>
-    public void EndDialogue()
+    /// <param name="incrementIndex"> true -> _dialogueIndex++</param>
+    public void EndDialogue(bool incrementIndex)
     {
+        if (incrementIndex)
+        {
+            _dialogueIndex++;
+        }
         dialogueBox.gameObject.SetActive(false);
-        _dialogueIndex++;
     }
-    
+
     /// <summary>
     /// Carica un dialogo dal file json assegnato a _dialogues.
     /// </summary>

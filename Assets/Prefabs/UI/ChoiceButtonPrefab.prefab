@@ -99,7 +99,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -268,3 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62df48390973f6c469c71c26b7fca39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _buttonText: {fileID: 2253065531143653493}
+  _normalTextColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
+  _hoverTextColor: {r: 0, g: 0.8679245, b: 0.0591822, a: 1}
+  _normalTextSize: 30
+  _hoverTextSize: 60
