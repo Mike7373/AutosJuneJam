@@ -1,0 +1,24 @@
+﻿{
+  "dialogue": [
+    {
+      "actorID": "_pippo",
+      "sentenceTitle" : "Benvenuto",
+      "text": "Buongiorno! Benvenuto a Gotham City! Prima volta qui?",
+      "choices": [
+        {
+          "Text": "si",
+          "NextSentence" : "Pimpa"
+        }
+      ]
+    },
+    {
+      "actorID": "_nemo",
+      "sentenceTitle" : "Pimpa",
+      "text": "Gotham City? La ho già sentita. Mi pare ci abitasse la Pimpa."
+    },
+    {
+      "actorID": "_nemo",
+      "text": "Gotham City? La ho già sentita. Mi pare ci abitasse la Pimpa."
+    }
+  ]
+}

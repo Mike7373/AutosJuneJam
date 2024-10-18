@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Characters;
 using UnityEngine;
+using FMOD.Studio;
+using FMODUnity;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AthenaPunch : MonoBehaviour
 {
     ActionRunner actionRunner;
     Animator animator;
+    EventInstance punchSound;
 
     public void Awake()
     {
@@ -18,8 +22,16 @@ public class AthenaPunch : MonoBehaviour
         StartCoroutine(Punch());
     }
 
+    void Start()
+    {
+        punchSound = RuntimeManager.CreateInstance(FMODEvents.instance.punch);
+        punchSound.release();
+        punchSound.start();    
+    }
+
     public void OnDestroy()
     {
+        punchSound.stop(STOP_MODE.ALLOWFADEOUT);
         animator.SetBool(AnimatorProperties.IsPunching, false);
     }
 
