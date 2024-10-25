@@ -69,6 +69,11 @@ public class DialogueActor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restituisce l'istanza dell'actor a cui appartiene l'id passato come parametro
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public static DialogueActor FindActorByID(string id)
     {
         foreach (DialogueActor actor in _actorInstances)

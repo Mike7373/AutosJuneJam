@@ -22,11 +22,17 @@ public class DialogueBox : MonoBehaviour
         Instance = this;
     }
 
+    /// <summary>
+    /// Attiva la freccina nel dialogo
+    /// </summary>
     public void ShowArrow()
     {
         _arrow.SetActive(true);
     }
     
+    /// <summary>
+    /// Disattiva la freccina nel dialogo
+    /// </summary>
     public void HideArrow()
     {
         _arrow.SetActive(false);

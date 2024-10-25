@@ -44,7 +44,7 @@
       "text": "Volevo solo essere cortese... Dopo questa rispostaccia ho capito che la mia unica via è passare la mia vita da solo...",
       "choices": [
         {
-          "text": "",
+          "text": "Chiudi",
           "nextSentence": ""
         }
       ]
@@ -55,7 +55,7 @@
       "text": "Stai parlando di me?? Guarda che sono un GuErRieRooOoOooo!!",
       "choices": [
         {
-          "text": "",
+          "text": "Chiudi",
           "nextSentence": ""
         }
       ]

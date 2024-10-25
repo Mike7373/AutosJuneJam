@@ -34,12 +34,20 @@ public class ChoiceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         _button.onClick.RemoveAllListeners();
     }
 
+    /// <summary>
+    /// Inizializza il bottone
+    /// </summary>
+    /// <param name="choice"></param>
+    /// <param name="prefix"></param>
     public void Initialize(Choice choice, int prefix)
     {
         GetComponentInChildren<TMP_Text>().text = $"{prefix}. {choice.text}";
         _choice = choice;
     }
     
+    /// <summary>
+    /// Invoca AnswerEvent proprietario di DialogueBrain
+    /// </summary>
     private void OnButtonClicked()
     {
         DialogueBrain.AnswerEvent.Invoke(_choice.nextSentence);

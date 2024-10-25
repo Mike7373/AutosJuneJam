@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,11 +8,9 @@ public class DialogueBrain : MonoBehaviour
 {
     public DialogueBox dialogueBox;
 
-    [Header("Dialogue List")] [SerializeField]
+    [Header("Dialogue List")] 
+    [SerializeField]
     private List<TextAsset> _dialogues = new();
-
-    //I seguenti campi sono gestiti da ogni istanza ma solo uno per volta
-    //(se c'è un modo migliore beh... please tell me your secrets o.o)
     private static Dictionary<string, Sentence> _currentDialogue = new();
     private static int _dialogueIndex;
     private static Sentence _currentSentence;
@@ -41,7 +40,7 @@ public class DialogueBrain : MonoBehaviour
     }
 
     /// <summary>
-    /// Avvia un dialogo tramite una coroutine.
+    /// Avvia il dialogo da questa istanza
     /// </summary>
     /// <returns></returns>
     public void StartDialogue()
@@ -70,7 +69,7 @@ public class DialogueBrain : MonoBehaviour
     }
 
     /// <summary>
-    /// Carica un dialogo dal file json assegnato a _dialogues.
+    /// Carica un dialogo dal file json assegnato a _dialogues
     /// </summary>
     /// <returns></returns>
     private List<Sentence> LoadCurrentDialogue()
@@ -85,6 +84,10 @@ public class DialogueBrain : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// Carica la frase successiva con le relative risposte. Se non c'è una frase successiva chiude il dialogo.
+    /// </summary>
+    /// <param name="nextSentence"></param>
     public void SendAswer(string nextSentence)
     {
         if (nextSentence != "")
@@ -100,7 +103,7 @@ public class DialogueBrain : MonoBehaviour
     }
 
     /// <summary>
-    /// Il maestoso luogo in cui cui la dialogue box prende forma :)
+    /// Carica dinamicamente i dati del dialogo dentro alla UI
     /// </summary>
     /// <returns></returns>
     private void DialogueSetup()
