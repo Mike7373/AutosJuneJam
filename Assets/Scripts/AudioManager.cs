@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
   void InitializeOST(EventReference OSTEventReference)
   {
     OSTEventInstance = RuntimeManager.CreateInstance(OSTEventReference);
-    //OSTEventInstance.start();
+    OSTEventInstance.start();
   }
 
   public void SetOST(MusicArea mood)
