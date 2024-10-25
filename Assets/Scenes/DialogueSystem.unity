@@ -250,7 +250,7 @@ MonoBehaviour:
   _actorName: Athena
   _actorType: 1
   _actorID: _athena
-  isPlayer: 0
+  _isPlayer: 0
 --- !u!4 &233883932
 Transform:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   _actorName: Liquirizia
   _actorType: 0
   _actorID: _liquirizia
-  isPlayer: 0
+  _isPlayer: 0
 --- !u!1 &862253884
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +483,7 @@ MonoBehaviour:
   _actorName: Debora
   _actorType: 1
   _actorID: _debora
-  isPlayer: 1
+  _isPlayer: 1
 --- !u!4 &958252231
 Transform:
   m_ObjectHideFlags: 0
@@ -563,7 +563,7 @@ MonoBehaviour:
   _actorName: Polso
   _actorType: 1
   _actorID: _polso
-  isPlayer: 0
+  _isPlayer: 0
 --- !u!4 &1607959950
 Transform:
   m_ObjectHideFlags: 0
@@ -693,6 +693,18 @@ PrefabInstance:
     - target: {fileID: 962206161953720471, guid: c90935d19ae030e408b507cd4ad268b1, type: 3}
       propertyPath: m_Name
       value: DialogueCanvasPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576262910950187510, guid: c90935d19ae030e408b507cd4ad268b1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576262910950187510, guid: c90935d19ae030e408b507cd4ad268b1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2576262910950187510, guid: c90935d19ae030e408b507cd4ad268b1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8114758251064661106, guid: c90935d19ae030e408b507cd4ad268b1, type: 3}
       propertyPath: m_Pivot.x

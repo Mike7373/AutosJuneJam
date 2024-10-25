@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c64e85e28b532f4aa5923aae39d7c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _choiceButtonPrefab: {fileID: 8311862469772885132, guid: 21cb84e3fa60f4f4ab21681abd5fa4c2, type: 3}
+  _choiceButtonPrefab: {fileID: 4253544832235683875, guid: 21cb84e3fa60f4f4ab21681abd5fa4c2, type: 3}
   _buttonsContainer: {fileID: 5786710013119549228}
   _layoutGroup: {fileID: 7435656903816390373}
 --- !u!114 &6622767243799825378

@@ -11,7 +11,6 @@ public class DialogueBox : MonoBehaviour
     public TMP_Text dialogueText;
     public GameObject _choiceBox;
     [SerializeField] private GameObject _arrow;
-    //[SerializeField] private float _actorIconResizeValue = 0.4f;
 
     private void Awake()
     {
