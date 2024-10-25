@@ -94,6 +94,8 @@ fmod_editor.log
 
 
 # Ignora le lightmaps
+**/LightingData.asset
+**/LightingData.asset.meta
 **/Lightmap-[0-9]*_comp_dir.png
 **/Lightmap-[0-9]*_comp_dir.png.meta
 **/Lightmap-[0-9]*_comp_shadowmask.png
