@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 
+
+// FEATURES: (Le segno per spiegare agli altri come sono implementate)
+// Angolo di rotazione delle braccia\torso prima di far ruotare il giocatore.
+// La testa guarda la pistola con l'IK, in modo da sembrare che guardi nel mirino.
 public class AthenaAim : MonoBehaviour
 {
 
@@ -49,6 +53,9 @@ public class AthenaAim : MonoBehaviour
         animator.SetIKRotationWeight(AvatarIKGoal.LeftHand,1);  
         animator.SetIKPosition(AvatarIKGoal.LeftHand,pistolIKHandle.position);
         animator.SetIKRotation(AvatarIKGoal.LeftHand,pistolIKHandle.rotation);
+        
+        animator.SetLookAtWeight(1);
+        animator.SetLookAtPosition(pistolIKHandle.position);
     }
 
     void AimActionCanceled()

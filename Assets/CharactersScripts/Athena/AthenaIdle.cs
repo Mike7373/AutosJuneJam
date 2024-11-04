@@ -33,7 +33,6 @@ public class AthenaIdle : MonoBehaviour
 
     void AimActionPerformed(object obj)
     {
-        Debug.Log("MIRAAA");
         actionRunner.StartAction<AthenaAim>();
     }
 

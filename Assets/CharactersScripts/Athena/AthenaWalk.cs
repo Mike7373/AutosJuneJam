@@ -17,6 +17,8 @@ public class AthenaWalk : MonoBehaviour
     CharacterInputAction punchAction;
     CharacterInputAction runModifierAction;
     CharacterInputAction moveAction;
+    CharacterInputAction aimAction;
+    
     EventInstance footsteps;
     
     void Awake()
@@ -32,10 +34,12 @@ public class AthenaWalk : MonoBehaviour
         punchAction = characterInput.GetAction("Punch");
         moveAction = characterInput.GetAction("Move");
         runModifierAction = characterInput.GetAction("RunModifier");
+        aimAction = characterInput.GetAction("Aim");
         
         moveAction.canceled += MoveActionOncanceled;
         jumpAction.performed += JumpActionOnperformed;
         punchAction.performed += PunchActionOnperformed;
+        aimAction.performed += AimActionPerformed;
         
         animator.SetBool(AnimatorProperties.IsMoving, true);
         
@@ -55,8 +59,14 @@ public class AthenaWalk : MonoBehaviour
         moveAction.canceled -= MoveActionOncanceled;
         jumpAction.performed -= JumpActionOnperformed;
         punchAction.performed -= PunchActionOnperformed;
+        aimAction.performed -= AimActionPerformed;
         animator.SetBool(AnimatorProperties.IsMoving, false);
         footsteps.stop(STOP_MODE.ALLOWFADEOUT);
+    }
+    
+    void AimActionPerformed(object obj)
+    {
+        actionRunner.StartAction<AthenaAim>();
     }
     
     void PunchActionOnperformed(object f)
