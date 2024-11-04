@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class AthenaIdle : MonoBehaviour
 {
-
     ActionRunner actionRunner;
     GroundChecker groundChecker;
 
     CharacterInputAction jumpAction;
     CharacterInputAction punchAction;
     CharacterInputAction moveAction;
+    CharacterInputAction aimAction;
 
     void Awake()
     {
@@ -21,18 +21,27 @@ public class AthenaIdle : MonoBehaviour
         jumpAction = characterInput.GetAction("Jump");
         punchAction = characterInput.GetAction("Punch");
         moveAction = characterInput.GetAction("Move");
+        aimAction = characterInput.GetAction("Aim");
         
         // Qui devo prima registrare gli handlers, perchè la coroutine mi fa un passaggio di stato 
         // nello stesso frame e non capisco perchè, la Stop non deregistra gli handlers
         // Forse con la versione a componenti con Start()  e Update() si risolve.
         jumpAction.performed += JumpActionOnperformed;
         punchAction.performed += PunchActionOnperformed;
+        aimAction.performed += AimActionPerformed;
+    }
+
+    void AimActionPerformed(object obj)
+    {
+        Debug.Log("MIRAAA");
+        actionRunner.StartAction<AthenaAim>();
     }
 
     void OnDestroy()
     {
         jumpAction.performed -= JumpActionOnperformed;
         punchAction.performed -= PunchActionOnperformed;
+        aimAction.performed -= AimActionPerformed;
     }
 
     

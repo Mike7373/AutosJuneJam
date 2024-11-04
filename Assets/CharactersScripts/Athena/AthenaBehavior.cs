@@ -1,6 +1,7 @@
 using Characters;
 using Input;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 /**
  * E' un movimento bidimensionale che avviene lungo una direzione stabilita.
@@ -17,20 +18,28 @@ using UnityEngine;
  RequireComponent(typeof(GroundChecker), typeof(ActionRunner))]
 public class AthenaBehavior : MonoBehaviour
 {
+    public enum RigLayers
+    {
+        Pistol = 0
+    }
+    
     public Vector3 movementAxis = Vector3.right;
     public float speed          = 2.0f;
     public float runSpeed       = 5.0f;
     public float jumpRange      = 8;
     public float jumpSpeed      = 3;
+    
+    [field: SerializeField] public Transform pistolIKHandle {get; private set;}
+    [field: SerializeField] public Transform pistolRotatingPivot {get; private set;}
 
     Animator animator;
     GroundChecker groundChecker;
     ActionRunner actionRunner;
-    
     CharacterInputAction runModifierAction;
     
     void Start()
     {
+        //animator.SetLookAtPosition();
         animator = GetComponent<Animator>();
         groundChecker = GetComponent<GroundChecker>();
         actionRunner = GetComponent<ActionRunner>();
