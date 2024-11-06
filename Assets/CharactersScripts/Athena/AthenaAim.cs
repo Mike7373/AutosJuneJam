@@ -21,7 +21,7 @@ public class AthenaAim : MonoBehaviour
     Transform pistolIKHandle;
     Transform pistolPivot;
 
-    float pistolMaxAngle = 20;             // Angolo massimo delle braccia rispetto al corpo oltre al quale il giocatore ruota 
+    float pistolMaxAngle = 5;             // Angolo massimo delle braccia rispetto al corpo oltre al quale il giocatore ruota 
     
     void Start()
     {
@@ -41,22 +41,23 @@ public class AthenaAim : MonoBehaviour
         //ikRigBuilder.layers[(int) AthenaBehavior.RigLayers.Pistol].active = true;
     }
     
+    /*
     void OnAnimatorIK(int layerIndex)
     {
         
         animator.SetIKPositionWeight(AvatarIKGoal.RightHand,1);
-        animator.SetIKRotationWeight(AvatarIKGoal.RightHand,1);  
         animator.SetIKPosition(AvatarIKGoal.RightHand,pistolIKHandle.position);
-        animator.SetIKRotation(AvatarIKGoal.RightHand,pistolIKHandle.rotation);
+        //animator.SetIKRotationWeight(AvatarIKGoal.RightHand,1);  
+        //animator.SetIKRotation(AvatarIKGoal.RightHand,pistolIKHandle.rotation);
         
         animator.SetIKPositionWeight(AvatarIKGoal.LeftHand,1);
-        animator.SetIKRotationWeight(AvatarIKGoal.LeftHand,1);  
         animator.SetIKPosition(AvatarIKGoal.LeftHand,pistolIKHandle.position);
-        animator.SetIKRotation(AvatarIKGoal.LeftHand,pistolIKHandle.rotation);
+        //animator.SetIKRotationWeight(AvatarIKGoal.LeftHand,1);  
+        //animator.SetIKRotation(AvatarIKGoal.LeftHand,pistolIKHandle.rotation);
         
-        animator.SetLookAtWeight(1);
+        animator.SetLookAtWeight(0.4f);
         animator.SetLookAtPosition(pistolIKHandle.position);
-    }
+    }*/
 
     void AimActionCanceled()
     {

@@ -31,7 +31,7 @@ public class AthenaBehavior : MonoBehaviour
     
     [field: SerializeField] public Transform pistolIKHandle {get; private set;}
     [field: SerializeField] public Transform pistolRotatingPivot {get; private set;}
-
+    
     Animator animator;
     GroundChecker groundChecker;
     ActionRunner actionRunner;
