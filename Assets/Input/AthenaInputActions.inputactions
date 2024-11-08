@@ -315,7 +315,7 @@
                 {
                     "name": "",
                     "id": "1d2497fb-42a7-4613-9a99-c90b9b9fd969",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
