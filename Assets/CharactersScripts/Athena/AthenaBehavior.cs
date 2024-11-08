@@ -28,9 +28,9 @@ public class AthenaBehavior : MonoBehaviour
     public float runSpeed       = 5.0f;
     public float jumpRange      = 8;
     public float jumpSpeed      = 3;
-    
-    [field: SerializeField] public Transform pistolIKHandle {get; private set;}
-    [field: SerializeField] public Transform pistolRotatingPivot {get; private set;}
+
+    [field: SerializeField] public Transform pistolRealPivot {get; private set;}
+    [field: SerializeField] public Transform pistolPivot {get; private set;}
     
     Animator animator;
     GroundChecker groundChecker;
