@@ -153,7 +153,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 638660673227754288
+  lastModified: 638666821090660201
   FileSizes:
   - Name: Desktop
     Value: 104032
@@ -221,7 +221,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638660673210706663
+  lastModified: 638666820448763339
   FileSizes:
   - Name: Desktop
     Value: 1486
@@ -371,7 +371,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638660673210716654
+  lastModified: 638666821090650223
   FileSizes:
   - Name: Desktop
     Value: 1808
@@ -415,7 +415,7 @@ MonoBehaviour:
   - {fileID: -4649071497674087366}
   StringsBanks:
   - {fileID: -138184828453362965}
-  cacheTime: 638660673227754288
+  cacheTime: 638666821090660201
   cacheVersion: 131620
 --- !u!114 &776673744977837303
 MonoBehaviour:
@@ -511,7 +511,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/OST.bank
   Name: OST
   StudioPath: bank:/OST
-  lastModified: 638660673227114035
+  lastModified: 638666820450403002
   FileSizes:
   - Name: Desktop
     Value: 3022944
@@ -738,7 +738,7 @@ MonoBehaviour:
   Path: Assets/Audio/Duality/Build/Desktop/Ambience.bank
   Name: Ambience
   StudioPath: bank:/Ambience
-  lastModified: 638660673210676631
+  lastModified: 638666820448663609
   FileSizes:
   - Name: Desktop
     Value: 1008576

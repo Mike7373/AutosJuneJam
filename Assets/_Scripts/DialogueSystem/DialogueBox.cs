@@ -11,7 +11,6 @@ public class DialogueBox : MonoBehaviour
     public TMP_Text dialogueText;
     public GameObject _choiceBox;
     [SerializeField] private GameObject _arrow;
-    //[SerializeField] private float _actorIconResizeValue = 0.4f;
 
     private void Awake()
     {
@@ -23,11 +22,17 @@ public class DialogueBox : MonoBehaviour
         Instance = this;
     }
 
+    /// <summary>
+    /// Attiva la freccina nel dialogo
+    /// </summary>
     public void ShowArrow()
     {
         _arrow.SetActive(true);
     }
     
+    /// <summary>
+    /// Disattiva la freccina nel dialogo
+    /// </summary>
     public void HideArrow()
     {
         _arrow.SetActive(false);

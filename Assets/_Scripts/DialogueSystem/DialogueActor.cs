@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(DialogueBrain))]
 public class DialogueActor : MonoBehaviour
@@ -20,8 +21,12 @@ public class DialogueActor : MonoBehaviour
     private string _actorID;
 
     [VerticalGroup("ActorData/Info")] [LabelWidth(100)] [SerializeField]
-    private bool isPlayer;
+    private bool _isPlayer;
 
+    public bool IsPlayer
+    {
+        get { return _isPlayer; }
+    }
     private static List<DialogueActor> _actorInstances = new();
 
     #endregion
@@ -50,7 +55,7 @@ public class DialogueActor : MonoBehaviour
     private void Awake()
     {
         _actorInstances.Add(this);
-        if (isPlayer)
+        if (_isPlayer)
         {
             if (PlayerActor == null)
             {
@@ -64,6 +69,11 @@ public class DialogueActor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restituisce l'istanza dell'actor a cui appartiene l'id passato come parametro
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
     public static DialogueActor FindActorByID(string id)
     {
         foreach (DialogueActor actor in _actorInstances)

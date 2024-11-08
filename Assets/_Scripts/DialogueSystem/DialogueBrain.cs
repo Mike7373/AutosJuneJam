@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,25 +8,25 @@ public class DialogueBrain : MonoBehaviour
 {
     public DialogueBox dialogueBox;
 
-    [Header("Dialogue List")] [SerializeField]
+    [Header("Dialogue List")] 
+    [SerializeField]
     private List<TextAsset> _dialogues = new();
-
-    //I seguenti campi sono gestiti da ogni istanza ma solo uno per volta
-    //(se c'è un modo migliore beh... please tell me your secrets o.o)
     private static Dictionary<string, Sentence> _currentDialogue = new();
-    private static bool skip;
     private static int _dialogueIndex;
     private static Sentence _currentSentence;
-    public static UnityEvent<string> AnswerEvent = new();
-    private static bool _endDialogue;
+    public static readonly UnityEvent<string> AnswerEvent = new();
+
+    private void OnEnable()
+    {
+        AnswerEvent.AddListener(SendAswer);
+    }
 
     private void Start()
     {
-        AnswerEvent.AddListener(SendAswer);
-        StartCoroutine(StartDialogue());
+        StartDialogue();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         AnswerEvent.RemoveListener(SendAswer);
     }
@@ -35,27 +35,24 @@ public class DialogueBrain : MonoBehaviour
     {
         if (UnityEngine.Input.GetKeyDown(KeyCode.Space) && _currentSentence.choices.Count <= 1)
         {
-            SendAswer(_currentSentence.choices[0].nextSentence);
+            AnswerEvent.Invoke(_currentSentence.choices[0].nextSentence);
         }
     }
 
     /// <summary>
-    /// Avvia un dialogo tramite una coroutine.
+    /// Avvia il dialogo da questa istanza
     /// </summary>
     /// <returns></returns>
-    public IEnumerator StartDialogue()
+    public void StartDialogue()
     {
-        _endDialogue = false;
         List<Sentence> dialogue = LoadCurrentDialogue();
         _currentDialogue = dialogue.ToDictionary(sentence => sentence.sentenceID);
         dialogueBox.gameObject.SetActive(true);
         dialogueBox.ShowArrow();
-
         //REGOLA: la prima frase di ogni dialogo deve avere "0" come sentenceID
         _currentSentence = _currentDialogue["0"];
-
-        yield return DialogueLoop();
-        EndDialogue(true);
+        dialogueBox.playerIcon.sprite = DialogueActor.PlayerActor.Icon;
+        DialogueSetup();
     }
 
     /// <summary>
@@ -68,12 +65,11 @@ public class DialogueBrain : MonoBehaviour
         {
             _dialogueIndex++;
         }
-
         dialogueBox.gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Carica un dialogo dal file json assegnato a _dialogues.
+    /// Carica un dialogo dal file json assegnato a _dialogues
     /// </summary>
     /// <returns></returns>
     private List<Sentence> LoadCurrentDialogue()
@@ -88,68 +84,44 @@ public class DialogueBrain : MonoBehaviour
         return null;
     }
 
-    public static void SendAswer(string nextSentence)
+    /// <summary>
+    /// Carica la frase successiva con le relative risposte. Se non c'è una frase successiva chiude il dialogo.
+    /// </summary>
+    /// <param name="nextSentence"></param>
+    public void SendAswer(string nextSentence)
     {
         if (nextSentence != "")
         {
             _currentSentence = _currentDialogue[nextSentence];
+            ChoiceBox.ClearButtons();
+            DialogueSetup();
         }
         else
         {
-            _endDialogue = true;
+            EndDialogue(true);
         }
-
-        skip = true;
-    }
-
-    public static string GetAnswer(string choiceText)
-    {
-        List<Choice> choices = _currentSentence.choices;
-        foreach (Choice choice in choices)
-        {
-            if (choiceText == choice.text)
-            {
-                return choice.nextSentence;
-            }
-        }
-
-        return null;
     }
 
     /// <summary>
-    /// Il maestoso luogo in cui cui la dialogue box prende forma :)
+    /// Carica dinamicamente i dati del dialogo dentro alla UI
     /// </summary>
     /// <returns></returns>
-    private IEnumerator DialogueLoop()
+    private void DialogueSetup()
     {
-        dialogueBox.playerIcon.sprite = DialogueActor.PlayerActor.Icon;
-
         ChoiceBox choicebox = dialogueBox._choiceBox.GetComponent<ChoiceBox>();
-        do
+        choicebox.gameObject.SetActive(false);
+        dialogueBox.characterIcon.sprite = DialogueActor.FindActorByID(_currentSentence.actorID).Icon;
+        dialogueBox.actorName.text = DialogueActor.FindActorByID(_currentSentence.actorID).ActorName;
+        dialogueBox.dialogueText.text = _currentSentence.text;
+        //All'ultima battuta del dialogo nascondo la freccina
+        if (_currentSentence.choices.Count > 1 || _currentSentence.choices[0].text != "" )
         {
-            choicebox.gameObject.SetActive(false);
-            dialogueBox.characterIcon.sprite = DialogueActor.FindActorByID(_currentSentence.actorID).Icon;
-
-            dialogueBox.actorName.text = DialogueActor.FindActorByID(_currentSentence.actorID).ActorName;
-            dialogueBox.dialogueText.text = _currentSentence.text;
-            //All'ultima battuta del dialogo nascono la freccina
-            if (_currentSentence.choices.Count > 1)
-            {
-                choicebox.gameObject.SetActive(true);
-                choicebox.SpawnButtons(_currentSentence.choices);
-            }
-            else if (_currentSentence.choices[0].nextSentence == "")
-            {
-                dialogueBox.HideArrow();
-            }
-
-            //attendo la pressione di un tasto che mette skip a true
-            while (!skip)
-            {
-                yield return null;
-            }
-
-            skip = false;
-        } while (!_endDialogue);
+            choicebox.gameObject.SetActive(true);
+            choicebox.SpawnButtons(_currentSentence.choices);
+        }
+        else if (_currentSentence.choices[0].nextSentence == "")
+        {
+            dialogueBox.HideArrow();
+        }
     }
 }
