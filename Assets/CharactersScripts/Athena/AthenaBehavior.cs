@@ -30,7 +30,7 @@ public class AthenaBehavior : MonoBehaviour
     public float jumpRange      = 8;
     public float jumpSpeed      = 3;
 
-    [field: SerializeField] public PistolV2    pistolPrefab {get; private set;}
+    [field: SerializeField] public Pistol    pistolPrefab {get; private set;}
     
     Animator animator;
     GroundChecker groundChecker;

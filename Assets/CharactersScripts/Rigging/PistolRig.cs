@@ -9,10 +9,11 @@ public class PistolRig : MonoBehaviour
     public MultiParentConstraint pistolOnGrip;
     public Transform pistolControl;
 
-    public void Bind(PistolV2 pistol)
+    public void Bind(Pistol pistol)
     {
         pistolOnGrip.data.constrainedObject = pistol.transform;
         pistol.pistolControl = pistolControl;
+        GetComponentInParent<RigBuilder>().Build();
     }
 }
 
