@@ -13,7 +13,7 @@ public class Pistol : MonoBehaviour
 
     public Transform pivotAtRest;
 
-    const float FLOAT_THRESHOLD = 0.001f;
+    
     float lastAngleY;
     public void AimTo(Vector3 point)
     {

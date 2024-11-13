@@ -1,3 +1,4 @@
+using System;
 using Characters;
 using Input;
 using UnityEngine;
@@ -29,8 +30,7 @@ public class AthenaBehavior : MonoBehaviour
     public float jumpRange      = 8;
     public float jumpSpeed      = 3;
 
-    [field: SerializeField] public Transform pistolRealPivot {get; private set;}
-    [field: SerializeField] public Transform pistolPivot {get; private set;}
+    [field: SerializeField] public PistolV2    pistolPrefab {get; private set;}
     
     Animator animator;
     GroundChecker groundChecker;
@@ -39,7 +39,6 @@ public class AthenaBehavior : MonoBehaviour
     
     void Start()
     {
-        //animator.SetLookAtPosition();
         animator = GetComponent<Animator>();
         groundChecker = GetComponent<GroundChecker>();
         actionRunner = GetComponent<ActionRunner>();
@@ -56,8 +55,6 @@ public class AthenaBehavior : MonoBehaviour
     {
         // TODO: Setta l'animator solo quando cambia il valore di "IsGrounded()"
         animator.SetBool(AnimatorProperties.IsGrounded, groundChecker.IsGrounded());
-
-        //transform.position += Vector3.left * Time.fixedDeltaTime * 5;
     }
 
     void OnDestroy()
@@ -76,12 +73,11 @@ public class AthenaBehavior : MonoBehaviour
         animator.SetBool(AnimatorProperties.SpeedModifier, false);
     }
     
-    public static void DebugContacts(Collision c, Color color)
+    
+    void OnAnimatorMove()
     {
-        for (int i = 0; i < c.contactCount; i++)
-        {
-            var contact = c.GetContact(i);
-            Debug.DrawRay(contact.point, contact.normal, color, 4);
-        }
+        // WARNING: Non rimuovere questo metodo, altrimenti il personaggio non si muove più quando
+        // ha un rig con un MultiParentConstraint.
+        // Serve a segnare come abilitato il root motion.
     }
 }

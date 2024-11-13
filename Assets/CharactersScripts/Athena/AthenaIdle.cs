@@ -33,7 +33,7 @@ public class AthenaIdle : MonoBehaviour
 
     void AimActionPerformed(object obj)
     {
-        actionRunner.StartAction<AthenaAim>();
+        actionRunner.StartAction<AthenaAimV2>();
     }
 
     void OnDestroy()

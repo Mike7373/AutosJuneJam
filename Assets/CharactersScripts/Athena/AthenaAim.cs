@@ -1,6 +1,7 @@
 using Characters;
 using Input;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Animations.Rigging;
 using UnityEngine.InputSystem;
 
@@ -63,11 +64,13 @@ public class AthenaAim : MonoBehaviour
     
     void Start()
     {
+        CoherenceCheck();
+        
         raycastMask = ~(1 << gameObject.layer);       
         
         actionRunner   = GetComponent<ActionRunner>();
         ikRigBuilder   = GetComponent<RigBuilder>();
-        pistolShadowPivot = GetComponent<AthenaBehavior>().pistolPivot;
+        pistolShadowPivot = null; // GetComponent<AthenaBehavior>().pistolPivot;
         
         var characterInput = GetComponent<CharacterInput>();
         aimAction  = characterInput.GetAction("Aim");
@@ -168,6 +171,20 @@ public class AthenaAim : MonoBehaviour
                 luceMirino.transform.position = hit.point-ray.direction*0.1f;
                 luceMirino.transform.LookAt(hit.point);
             }*/
+        }
+    }
+    
+ 
+    /**
+     * Fa dei check sui reguisiti dello script circa la configurazione del game object e logga dei warning
+     * nel caso qualcosa non sia a posto.
+     * Utile per debuggare quando in game le cose non funzionano come dovrebbero.
+     */
+    void CoherenceCheck()
+    {
+        if (gameObject.layer == 0)
+        {
+            Debug.LogWarning($"Lo script {this.GetType().Name} per girare correttamente deve essere su un layer diverso da  quello di default.");
         }
     }
     

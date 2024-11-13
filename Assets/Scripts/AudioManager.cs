@@ -9,7 +9,7 @@ public class AudioManager : MonoBehaviour
 
   private EventInstance OSTEventInstance;
 
-  private void Awake()
+  void Awake()
   {
     if (instance != null)
     {
@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
     instance = this;
   }
 
-  private void Start()
+  void Start()
   {
     InitializeOST(FMODEvents.instance.level1);
   }
@@ -44,4 +44,23 @@ public class AudioManager : MonoBehaviour
   {
     Cleanup();
   }
+  
+  /**
+   * https://docs.unity3d.com/2022.3/Documentation/Manual/DomainReloading.html
+   *
+   * Questo metodo serve per far funzionare lo script quando in fase di sviluppo disattiviamo l'opzione:
+   *  "Edit->Project Settings->Editor->Enter Play Mode Settings->Reload Domain"
+   *
+   * Il compito del "Reload Domain" quando si preme play è quello di resettare lo stato di tutti gli script.
+   * Se lo disattiviamo i membri statici non vengono più resettati e quando ripremiamo play assumono il valore
+   * della precedente run.
+   *
+   * Con il metodo di sotto, resettiamo lo stato dell'AudioManager in fase di avvio.
+   */
+  [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+  static void ResetStaticFieldsOnInit()
+  {
+    instance = null;
+  }
+  
 }
