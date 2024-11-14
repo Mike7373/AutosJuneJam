@@ -74,10 +74,5 @@ public class AthenaBehavior : MonoBehaviour
     }
     
     
-    void OnAnimatorMove()
-    {
-        // WARNING: Non rimuovere questo metodo, altrimenti il personaggio non si muove più quando
-        // ha un rig con un MultiParentConstraint.
-        // Serve a segnare come abilitato il root motion.
-    }
+
 }
