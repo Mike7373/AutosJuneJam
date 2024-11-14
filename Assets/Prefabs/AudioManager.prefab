@@ -1,0 +1,189 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &755478460015416360
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8610128985024685982}
+  - component: {fileID: 6008873237996309711}
+  m_Layer: 0
+  m_Name: FMODEvents
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8610128985024685982
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755478460015416360}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3244962193595667189}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6008873237996309711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755478460015416360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceeced4b8b07dae40acf76cdac3176c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <song1>k__BackingField:
+    Guid:
+      Data1: 1159443654
+      Data2: 1203269525
+      Data3: -1033142358
+      Data4: 1912762646
+    Path: event:/OST/Song1
+  <song2>k__BackingField:
+    Guid:
+      Data1: -464293115
+      Data2: 1162259304
+      Data3: -1810717816
+      Data4: 756927807
+    Path: event:/OST/Song2
+  <songMenu>k__BackingField:
+    Guid:
+      Data1: 2056273533
+      Data2: 1212768032
+      Data3: 908550789
+      Data4: 257940170
+    Path: event:/OST/SongMenu
+  <level1>k__BackingField:
+    Guid:
+      Data1: -1559503731
+      Data2: 1323653232
+      Data3: 1198566583
+      Data4: -300672394
+    Path: event:/OST/Level1
+  <footsteps>k__BackingField:
+    Guid:
+      Data1: 503461101
+      Data2: 1082899192
+      Data3: 511476147
+      Data4: -1623270690
+    Path: event:/SFX/Player/Footsteps
+  <run>k__BackingField:
+    Guid:
+      Data1: -1501703870
+      Data2: 1095785965
+      Data3: 1925815951
+      Data4: 608220640
+    Path: event:/SFX/Player/FootstepsRun
+  <jump>k__BackingField:
+    Guid:
+      Data1: 1774918945
+      Data2: 1076832422
+      Data3: 1661115301
+      Data4: 2053185736
+    Path: event:/SFX/Player/Jump
+  <punch>k__BackingField:
+    Guid:
+      Data1: 1030067922
+      Data2: 1113019318
+      Data3: 1492557746
+      Data4: 1677040631
+    Path: event:/SFX/Player/Player_punch
+  <yes>k__BackingField:
+    Guid:
+      Data1: -1803025550
+      Data2: 1184518434
+      Data3: 1435601032
+      Data4: -1830686373
+    Path: event:/SFX/UI/UI_yes
+  <no>k__BackingField:
+    Guid:
+      Data1: -1405749645
+      Data2: 1185001191
+      Data3: -1286322517
+      Data4: -1562786479
+    Path: event:/SFX/UI/UI_no
+  <duality>k__BackingField:
+    Guid:
+      Data1: -753532944
+      Data2: 1100908414
+      Data3: 881177484
+      Data4: 1622705063
+    Path: event:/SFX/UI/UI_duality
+  <ambience>k__BackingField:
+    Guid:
+      Data1: -753532944
+      Data2: 1100908414
+      Data3: 881177484
+      Data4: 1622705063
+    Path: event:/SFX/UI/UI_duality
+  <cityNoise>k__BackingField:
+    Guid:
+      Data1: 812095860
+      Data2: 1293306790
+      Data3: -634089032
+      Data4: 1673963513
+    Path: event:/Ambience/City
+  <cityNoise2>k__BackingField:
+    Guid:
+      Data1: 88018092
+      Data2: 1139930907
+      Data3: -1633618764
+      Data4: -521694148
+    Path: event:/Ambience/City2
+--- !u!1 &5439548581293212318
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3244962193595667189}
+  - component: {fileID: 597974837885054935}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3244962193595667189
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439548581293212318}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.05325, y: 0.9357483, z: 14.946013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8610128985024685982}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &597974837885054935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439548581293212318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c371460d52d8c648af11fa8d84ea049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -15,6 +15,8 @@ public class FMODEvents : MonoBehaviour
    [field: SerializeField] public EventReference run {get; private set;}
    [field: SerializeField] public EventReference jump {get; private set;}
    [field: SerializeField] public EventReference punch {get; private set;}
+   [field: SerializeField] public EventReference shoot
+   {get; private set;}
 
    [field: Header("UI SFX")]
    [field: SerializeField] public EventReference yes {get; private set;}

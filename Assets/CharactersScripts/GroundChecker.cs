@@ -27,5 +27,14 @@ public class GroundChecker : MonoBehaviour
         groundingColliders.Remove(c.collider);
     }
     
+    public static void DebugContacts(Collision c, Color color)
+    {
+        for (int i = 0; i < c.contactCount; i++)
+        {
+            var contact = c.GetContact(i);
+            Debug.DrawRay(contact.point, contact.normal, color, 4);
+        }
+    }
+    
 }
 

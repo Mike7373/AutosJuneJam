@@ -1,6 +1,8 @@
+using System;
 using Characters;
 using Input;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 /**
  * E' un movimento bidimensionale che avviene lungo una direzione stabilita.
@@ -17,16 +19,22 @@ using UnityEngine;
  RequireComponent(typeof(GroundChecker), typeof(ActionRunner))]
 public class AthenaBehavior : MonoBehaviour
 {
+    public enum RigLayers
+    {
+        Pistol = 0
+    }
+    
     public Vector3 movementAxis = Vector3.right;
     public float speed          = 2.0f;
     public float runSpeed       = 5.0f;
     public float jumpRange      = 8;
     public float jumpSpeed      = 3;
 
+    [field: SerializeField] public Pistol    pistolPrefab {get; private set;}
+    
     Animator animator;
     GroundChecker groundChecker;
     ActionRunner actionRunner;
-    
     CharacterInputAction runModifierAction;
     
     void Start()
@@ -47,8 +55,6 @@ public class AthenaBehavior : MonoBehaviour
     {
         // TODO: Setta l'animator solo quando cambia il valore di "IsGrounded()"
         animator.SetBool(AnimatorProperties.IsGrounded, groundChecker.IsGrounded());
-
-        //transform.position += Vector3.left * Time.fixedDeltaTime * 5;
     }
 
     void OnDestroy()
@@ -67,12 +73,6 @@ public class AthenaBehavior : MonoBehaviour
         animator.SetBool(AnimatorProperties.SpeedModifier, false);
     }
     
-    public static void DebugContacts(Collision c, Color color)
-    {
-        for (int i = 0; i < c.contactCount; i++)
-        {
-            var contact = c.GetContact(i);
-            Debug.DrawRay(contact.point, contact.normal, color, 4);
-        }
-    }
+    
+
 }
