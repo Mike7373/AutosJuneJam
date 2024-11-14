@@ -18,7 +18,7 @@ public class AthenaIdle : MonoBehaviour
     {
         actionRunner = GetComponent<ActionRunner>();
         groundChecker = GetComponent<GroundChecker>();
-        navigationManager = FindAnyObjectByType<NavigationManager>(); 
+         
 
         var characterInput = GetComponent<CharacterInput>();
         jumpAction = characterInput.GetAction("Jump");
@@ -32,7 +32,15 @@ public class AthenaIdle : MonoBehaviour
         jumpAction.performed += JumpActionOnperformed;
         punchAction.performed += PunchActionOnperformed;
         aimAction.performed += AimActionPerformed;
-        navigationManager.onNavigate += OnNavigate;
+        
+        navigationManager = FindAnyObjectByType<NavigationManager>();
+        if (navigationManager != null)
+        {
+            // TODO: Togli check != null. (Oppure logga un warning)
+            // l'ho messo ora per usare velocemente athena idle anche altrove. 
+            navigationManager.onNavigate += OnNavigate;    
+        }
+        
     }
 
     void AimActionPerformed(object obj)
@@ -45,7 +53,12 @@ public class AthenaIdle : MonoBehaviour
         jumpAction.performed -= JumpActionOnperformed;
         punchAction.performed -= PunchActionOnperformed;
         aimAction.performed -= AimActionPerformed;
-        navigationManager.onNavigate -= OnNavigate;
+
+        if (navigationManager != null)
+        {
+            // TODO: Togli check != null
+            navigationManager.onNavigate -= OnNavigate;
+        }
     }
 
     
