@@ -7,6 +7,8 @@ public class AthenaIdle : MonoBehaviour
     ActionRunner actionRunner;
     GroundChecker groundChecker;
 
+    NavigationManager navigationManager;
+
     CharacterInputAction jumpAction;
     CharacterInputAction punchAction;
     CharacterInputAction moveAction;
@@ -16,6 +18,7 @@ public class AthenaIdle : MonoBehaviour
     {
         actionRunner = GetComponent<ActionRunner>();
         groundChecker = GetComponent<GroundChecker>();
+        navigationManager = FindAnyObjectByType<NavigationManager>(); 
 
         var characterInput = GetComponent<CharacterInput>();
         jumpAction = characterInput.GetAction("Jump");
@@ -29,6 +32,7 @@ public class AthenaIdle : MonoBehaviour
         jumpAction.performed += JumpActionOnperformed;
         punchAction.performed += PunchActionOnperformed;
         aimAction.performed += AimActionPerformed;
+        navigationManager.onNavigate += OnNavigate;
     }
 
     void AimActionPerformed(object obj)
@@ -41,6 +45,7 @@ public class AthenaIdle : MonoBehaviour
         jumpAction.performed -= JumpActionOnperformed;
         punchAction.performed -= PunchActionOnperformed;
         aimAction.performed -= AimActionPerformed;
+        navigationManager.onNavigate -= OnNavigate;
     }
 
     
@@ -69,6 +74,13 @@ public class AthenaIdle : MonoBehaviour
                 actionRunner.StartAction<AthenaWalk>();
             }
         }
+    }
+
+    private void OnNavigate(Navigable navigable)
+    {
+        AthenaNavigation nextState = (AthenaNavigation) actionRunner.StartAction<AthenaNavigation>();
+        nextState.navigable = navigable;
+        nextState.startPosition = transform.position;
     }
 
 }
