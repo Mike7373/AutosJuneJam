@@ -291,11 +291,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 47feaf150ec6a8b4db03523d1d92e920, type: 3}
   m_PrefabInstance: {fileID: 1601583918}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &65642289 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-  m_PrefabInstance: {fileID: 2016685381}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &68161877
 GameObject:
   m_ObjectHideFlags: 0
@@ -65208,64 +65203,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4d5d9d3746bfd5a4c97aa95493463bb6, type: 3}
   m_PrefabInstance: {fileID: 2005826912}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &2016685381
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 6201070295850026000}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-      propertyPath: m_Name
-      value: Prisoner B Styperek
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 5866666021909216657, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f7e0bc71e2616354daaaf9a085608d51, type: 3}
 --- !u!1001 &2017898911
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66620,8 +66557,7 @@ Transform:
   m_LocalPosition: {x: 6.6219997, y: -0.367, z: -1.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 65642289}
+  m_Children: []
   m_Father: {fileID: 221408409}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6500162193029911564
@@ -66811,6 +66747,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PLAYER-REMY
       objectReference: {fileID: 0}
+    - target: {fileID: 4725086191506720017, guid: f50e00a64d337ee42b2d4fb6da0d75ff, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 558625d32f9fe0246a605ef23a13fde6, type: 3}
     - target: {fileID: 5436137577638220821, guid: f50e00a64d337ee42b2d4fb6da0d75ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.74327
