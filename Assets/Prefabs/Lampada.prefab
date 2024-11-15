@@ -159,75 +159,75 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1415129284491778981}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.13455486
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.32122755
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.0806911
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -7511558181221131132, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fbbc48091a6c61640bfddd543fd68879, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -7511558181221131132, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: adf1ea3eaaffe1d47af18eef777764ad, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: -7511558181221131132, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 85551b39da49dd94993577eaa3a208ad, type: 2}
-    - target: {fileID: 919132149155446097, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: 919132149155446097, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_Name
-      value: lantern_chandelier_01_4k
+      value: lantern_chandelier_01_1k
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+    - target: {fileID: 919132149155446097, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -235,9 +235,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
 --- !u!4 &3728486514808187510 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 75a25406cfb1c194f93a0b4c7cb0fa85, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e3c1210a0aae35943835ad4cf25f4516, type: 3}
   m_PrefabInstance: {fileID: 3761780874950249885}
   m_PrefabAsset: {fileID: 0}

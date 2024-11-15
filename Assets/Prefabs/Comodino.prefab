@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2325997464688805306}
+  - {fileID: 8899011563216612955}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &5881750407317001136
@@ -54,458 +54,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.2047443, y: 1.1994758, z: 0.5087986}
   m_Center: {x: 0.002486229, y: 0.60026217, z: -0.0168581}
---- !u!1 &2112171575244709560
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5458568012558529210, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4875896912224331314}
-  - component: {fileID: 1451787526824428466}
-  - component: {fileID: 5141309801269140329}
-  m_Layer: 0
-  m_Name: painted_wooden_cabinet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &4875896912224331314
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1432983228702783823, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112171575244709560}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2325997464688805306}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1451787526824428466
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2118823905439748725, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112171575244709560}
-  m_Mesh: {fileID: 3628105642357782153, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
---- !u!23 &5141309801269140329
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 481669008770975592, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112171575244709560}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -2767348361161000451, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &2742013297190816585
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8071508603589989603, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2325997464688805306}
-  m_Layer: 0
-  m_Name: Model
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &2325997464688805306
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2742013297190816585}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4875896912224331314}
-  - {fileID: 1511573987095534509}
-  - {fileID: 6474451143909610220}
-  - {fileID: 2133852333170005925}
-  - {fileID: 8116229647696406436}
-  m_Father: {fileID: 8207425644216291259}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &4464154687061901506
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7704261438842888048, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2133852333170005925}
-  - component: {fileID: 1298196739598115804}
-  - component: {fileID: 147805586511733310}
-  m_Layer: 0
-  m_Name: painted_wooden_cabinet_drawer_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &2133852333170005925
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5794149312200102191, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4464154687061901506}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.28029862, y: 1.0465044, z: 0.2915936}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2325997464688805306}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1298196739598115804
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7940306630937328238, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4464154687061901506}
-  m_Mesh: {fileID: 1609861066344132188, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
---- !u!23 &147805586511733310
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5997524531016142766, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4464154687061901506}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -2767348361161000451, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4954224488211920013
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6127483778192668163, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6474451143909610220}
-  - component: {fileID: 7484491218433035441}
-  - component: {fileID: 6344924890355767181}
-  m_Layer: 0
-  m_Name: painted_wooden_cabinet_door_02
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &6474451143909610220
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2436182782180359759, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4954224488211920013}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.70590246, y: -0.041251983, z: -0.041251987, w: 0.70590246}
-  m_LocalPosition: {x: -0.5677881, y: 0.533416, z: 0.21147114}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2325997464688805306}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7484491218433035441
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 771290200376719598, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4954224488211920013}
-  m_Mesh: {fileID: -2280106334210462226, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
---- !u!23 &6344924890355767181
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8752566665714491774, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4954224488211920013}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -2767348361161000451, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &7320367705274870473
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 300475351535504654, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8116229647696406436}
-  - component: {fileID: 3920096802124050274}
-  - component: {fileID: 8855839427797190389}
-  m_Layer: 0
-  m_Name: painted_wooden_cabinet_drawer_02
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &8116229647696406436
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 5892461407962477834, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7320367705274870473}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0.2745668, y: 1.0465044, z: 0.23514809}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2325997464688805306}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &3920096802124050274
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4689893143669268853, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7320367705274870473}
-  m_Mesh: {fileID: 6481126452567132126, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
---- !u!23 &8855839427797190389
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1489807582389784209, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7320367705274870473}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -2767348361161000451, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &8842456320678822107
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7536798407005927752, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1511573987095534509}
-  - component: {fileID: 1678725865509043373}
-  - component: {fileID: 961003159587244284}
-  m_Layer: 0
-  m_Name: painted_wooden_cabinet_door_01
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
---- !u!4 &1511573987095534509
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 3373258584100306367, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8842456320678822107}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.7069816, y: 0.013303848, z: 0.013303848, w: 0.70698166}
-  m_LocalPosition: {x: 0.5682284, y: 0.5324437, z: 0.21147114}
-  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2325997464688805306}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &1678725865509043373
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8846598370959439670, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8842456320678822107}
-  m_Mesh: {fileID: -4756734907335474279, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
---- !u!23 &961003159587244284
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 893492762663904903, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-  m_PrefabInstance: {fileID: 1188223917208834697}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8842456320678822107}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: -2767348361161000451, guid: b2c1aea399778a340842119fe7a900ea, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &1188223917208834697
+--- !u!1001 &9004132318908238256
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -513,52 +62,57 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8207425644216291259}
     m_Modifications:
-    - target: {fileID: 8071508603589989603, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
-      propertyPath: m_Name
-      value: Model
-      objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8883371035262307929, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
+      propertyPath: m_Name
+      value: painted_wooden_cabinet_1k
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8eb6fdcc8ba93274aa2e4ca6266b0392, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
+--- !u!4 &8899011563216612955 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 51c8f7848fd03e441bce8113977c3370, type: 3}
+  m_PrefabInstance: {fileID: 9004132318908238256}
+  m_PrefabAsset: {fileID: 0}
