@@ -5,12 +5,30 @@ using FMOD.Studio;
 using FMODUnity;
 using STOP_MODE = FMOD.Studio.STOP_MODE;
 
+/**
+ *
+ * Behavior di movimento lungo un'asse.
+ * 
+ * Note:
+ * Il personaggio deve essere attaccato al suolo quando cammina, per non levitare, possiamo introdurre un leggero
+ * movimento verso il basso, in questo modo la isGrounded del movementController funziona ad ogni frame.
+ *  
+ * TODO:
+ *  Vorrei essere certo di vincolare il movimento lungo una direzione e su di un piano. (Ad esempio Z=0)
+ *  Errori di approssimazione dei float o risoluzioni di collisioni nel character controller possono spostare
+ *  il personaggio dal piano in cui il movimento del giocatore deve ssere vincolato.
+ *  Se ci muoviamo lungo gli  assi x, y e z è facile perchè dopo il movimento posso reimpostare direttamente l'asse
+ *  scelto al valore desiderato. Ma se mi muovo lungo una direzione arbitraria, come vaccio a mantenerla?
+ *  Potrei provare con qualcosa del genere:
+ *      character.move(dist)
+ *      character.position = project(character.position, movement_plane)
+ *  Cioè proietto la posizione del giocatore sul piano.
+*/
 public class AthenaWalk : MonoBehaviour
 {
     AthenaBehavior player;
-    Rigidbody rigidBody;
+    CharacterController movementController;
     Animator animator;
-    GroundChecker groundChecker;
     ActionRunner actionRunner;
 
     CharacterInputAction jumpAction;
@@ -25,10 +43,9 @@ public class AthenaWalk : MonoBehaviour
     {
         actionRunner = GetComponent<ActionRunner>();
         player = GetComponent<AthenaBehavior>();
-        rigidBody = GetComponent<Rigidbody>();
+        movementController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        groundChecker = GetComponent<GroundChecker>();
-        
+
         var characterInput = GetComponent<CharacterInput>();
         jumpAction = characterInput.GetAction("Jump");
         punchAction = characterInput.GetAction("Punch");
@@ -40,6 +57,8 @@ public class AthenaWalk : MonoBehaviour
         jumpAction.performed += JumpActionOnperformed;
         punchAction.performed += PunchActionOnperformed;
         aimAction.performed += AimActionPerformed;
+        runModifierAction.performed += RunModifierPerformed;
+        runModifierAction.canceled += RunModifierCancelled;
         
         animator.SetBool(AnimatorProperties.IsMoving, true);
         
@@ -55,15 +74,26 @@ public class AthenaWalk : MonoBehaviour
 
     void OnDestroy()
     {
-        rigidBody.velocity = Vector3.zero;
         moveAction.canceled -= MoveActionOncanceled;
         jumpAction.performed -= JumpActionOnperformed;
         punchAction.performed -= PunchActionOnperformed;
         aimAction.performed -= AimActionPerformed;
+        runModifierAction.performed -= RunModifierPerformed;
+        runModifierAction.canceled -= RunModifierCancelled;
         animator.SetBool(AnimatorProperties.IsMoving, false);
         footsteps.stop(STOP_MODE.ALLOWFADEOUT);
     }
     
+    void RunModifierPerformed(object _)
+    {
+        animator.SetBool(AnimatorProperties.SpeedModifier, true);
+    }
+
+    void RunModifierCancelled()
+    {
+        animator.SetBool(AnimatorProperties.SpeedModifier, false);
+    }
+
     void AimActionPerformed(object obj)
     {
         actionRunner.StartAction<AthenaAim>();
@@ -83,29 +113,28 @@ public class AthenaWalk : MonoBehaviour
     {
         actionRunner.StartAction<AthenaIdle>();
     }
-
-    void FixedUpdate()
+    
+    void Update()
     {
-        // TRANSAZIONE
-        if (!groundChecker.IsGrounded())
+        if (!movementController.isGrounded)
         {
             actionRunner.StartAction<AthenaFalling>();
-            return;
-        }
-
-        // Corsa
-        bool speedModifier = runModifierAction.IsInProgress();
-        float speed = speedModifier ? player.runSpeed : player.speed;
-        Vector2 inputValue = moveAction.ReadValue<Vector2>();
-        int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-        if (axisDirection != 0)
-        {
-            rigidBody.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
-            rigidBody.velocity = speed * axisDirection * player.movementAxis;
         }
         else
         {
-            rigidBody.velocity = Vector3.zero;
+            // Corsa
+            bool speedModifier = runModifierAction.IsInProgress();
+            float speed = speedModifier ? player.runSpeed : player.speed;
+            Vector2 inputValue = moveAction.ReadValue<Vector2>();
+            if (inputValue.x != 0)
+            {
+                int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
+                transform.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
+
+                Vector3 movement = player.movementAxis * (speed * axisDirection * Time.deltaTime) + Vector3.down;
+                movementController.Move(movement);
+            }
         }
     }
+
 }

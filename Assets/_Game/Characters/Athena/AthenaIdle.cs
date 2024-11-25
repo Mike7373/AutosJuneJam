@@ -5,7 +5,7 @@ using UnityEngine;
 public class AthenaIdle : MonoBehaviour
 {
     ActionRunner actionRunner;
-    GroundChecker groundChecker;
+    CharacterController movementController;
 
     NavigationManager navigationManager;
 
@@ -16,10 +16,10 @@ public class AthenaIdle : MonoBehaviour
 
     void Awake()
     {
+        movementController = GetComponent<CharacterController>();
+        //movementController.enableOverlapRecovery = true;
+        
         actionRunner = GetComponent<ActionRunner>();
-        groundChecker = GetComponent<GroundChecker>();
-         
-
         var characterInput = GetComponent<CharacterInput>();
         jumpAction = characterInput.GetAction("Jump");
         punchAction = characterInput.GetAction("Punch");
@@ -74,9 +74,9 @@ public class AthenaIdle : MonoBehaviour
     }
 
     
-    void FixedUpdate()
+    void Update()
     {
-        if (!groundChecker.IsGrounded())
+        if (!movementController.isGrounded)
         {
             actionRunner.StartAction<AthenaFalling>();
         }

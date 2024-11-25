@@ -105,4 +105,8 @@ fmod_editor.log
 **/ReflectionProbe-[0-9]*.exr
 **/ReflectionProbe-[0-9]*.exr.meta
 
+# Custom
+
+TODO.txt
+
 

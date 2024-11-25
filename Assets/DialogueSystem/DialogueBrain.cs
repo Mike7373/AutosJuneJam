@@ -55,6 +55,19 @@ public class DialogueBrain : MonoBehaviour
         DialogueSetup();
     }
 
+    
+    public void StartDialogue(Dialogue d)
+    {
+        _currentDialogue = d.sentenceList.ToDictionary(sentence => sentence.sentenceID);
+        dialogueBox.gameObject.SetActive(true);
+        dialogueBox.ShowArrow();
+        //REGOLA: la prima frase di ogni dialogo deve avere "0" come sentenceID
+        //FIX: Usare la lista
+        _currentSentence = d.sentenceList[0];
+        dialogueBox.playerIcon.sprite = DialogueActor.PlayerActor.Icon;
+        DialogueSetup();
+    }
+
     /// <summary>
     /// Chiude la dialogue box
     /// </summary>

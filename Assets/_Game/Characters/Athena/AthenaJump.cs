@@ -11,20 +11,20 @@ public class AthenaJump : MonoBehaviour
     AthenaBehavior player;
     ActionRunner actionRunner;
     Animator animator;
-    Rigidbody rigidBody;
+
+    CharacterController movementController;
     
     CharacterInputAction jumpAction;
     CharacterInputAction moveAction;
     CharacterInputAction runModifierAction;
     EventInstance jumpSound;
-
     
     void Awake()
     {
-        player = GetComponent<AthenaBehavior>();
-        animator = GetComponent<Animator>();
-        rigidBody = GetComponent<Rigidbody>();
+        player       = GetComponent<AthenaBehavior>();
+        animator     = GetComponent<Animator>();
         actionRunner = GetComponent<ActionRunner>();
+        movementController = GetComponent<CharacterController>();
         
         var characterInput = GetComponent<CharacterInput>();
         runModifierAction = characterInput.GetAction("RunModifier");
@@ -48,7 +48,6 @@ public class AthenaJump : MonoBehaviour
     {
         animator.SetBool(AnimatorProperties.IsJumping, false);
         jumpAction.canceled -= EndJumpInput;
-        rigidBody.velocity = Vector3.zero;
     }
 
     void EndJumpInput()
@@ -60,12 +59,13 @@ public class AthenaJump : MonoBehaviour
     /**
      * Il salto imposta la velocità direttamente, finchè si tiene premuto il tasto di salto questa velocità viene
      * mantenuta. Se viene rilasciato prima, si cade prima. Serve a fare anche i saltini.
-     * TODO: Forse meglio sostituire jumpDistance con jumpTime.
+     * 
+     * TODO: Forse meglio sostituire jumpDistance con jumpTime. YES
      */
     IEnumerator JumpCoroutine()
     {
         float jumpDistance = 0;
-        float lastPos = rigidBody.position.y;
+        float lastPos = transform.position.y;
         while (jumpDistance < player.jumpRange)
         {
             // In volo mi muovo
@@ -76,17 +76,17 @@ public class AthenaJump : MonoBehaviour
             float speed = speedModifier ? player.runSpeed : player.speed;
             if (axisDirection != 0)
             {
-                rigidBody.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
+                transform.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
                 velocity = speed * axisDirection * player.movementAxis;
             }
 
             // Finchè sto saltando alzo la mia posizione
             velocity += new Vector3(0, player.jumpSpeed, 0);
-            rigidBody.velocity = velocity;
-            
-            yield return new WaitForFixedUpdate();
-            jumpDistance += rigidBody.position.y - lastPos;
-            lastPos = rigidBody.position.y;
+            movementController.Move(velocity * Time.deltaTime);
+
+            yield return null;
+            jumpDistance += transform.position.y - lastPos;
+            lastPos = transform.position.y;
         }
         actionRunner.StartAction<AthenaFalling>();
     }

@@ -27,7 +27,9 @@ namespace Input
      * 
      * E' possibile a runtime sostituire il characterInput di una entità.
      *
-     * TODO: Incapsulamento.
+     * TODO: Incapsulamento. (eeehh??)
+     * TODO: Dictonary<int, CharacterInputAction> cioè con gli hash.
+     * 
      */
     public abstract class CharacterInput : MonoBehaviour
     {
