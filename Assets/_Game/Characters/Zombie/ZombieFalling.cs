@@ -5,37 +5,30 @@ using UnityEngine;
 public class ZombieFalling : MonoBehaviour
 {
     ZombieBehaviour zombie;
-    Rigidbody rigidBody;
-    GroundChecker groundChecker;
+    CharacterController movementController;
     ActionRunner actionRunner;
     
     CharacterInputAction runModifierAction;
     CharacterInputAction moveAction;
+    Animator animator;
 
     void Awake()
     {
-        zombie = GetComponent<ZombieBehaviour>();
-        groundChecker = GetComponent<GroundChecker>();
+        zombie       = GetComponent<ZombieBehaviour>();
         actionRunner = GetComponent<ActionRunner>();
-        rigidBody = GetComponent<Rigidbody>();
-        rigidBody.useGravity = true;
-        
+        animator     = GetComponent<Animator>();
+        movementController = GetComponent<CharacterController>();
         var characterInput = GetComponent<CharacterInput>();
-        moveAction = characterInput.GetAction("Move");
         runModifierAction = characterInput.GetAction("RunModifier");
+        moveAction        = characterInput.GetAction("Move");
     }
 
-    void OnDisable()
+    void Update()
     {
-        rigidBody.useGravity = false;
-        rigidBody.velocity = Vector3.zero;
-    }
-
-    void FixedUpdate()
-    {
-        if (groundChecker.IsGrounded())
+        if (movementController.isGrounded)
         {
             actionRunner.StartAction<ZombieIdle>();
+            animator.SetBool(AnimatorProperties.IsGrounded, true);
         }
         else
         {
@@ -47,12 +40,12 @@ public class ZombieFalling : MonoBehaviour
             if (axisDirection != 0)
             {
                 Vector3 velocity = speed * axisDirection * zombie.movementAxis;
-                rigidBody.rotation = Quaternion.LookRotation(zombie.movementAxis * axisDirection, Vector3.up);
-                rigidBody.velocity = new Vector3(velocity.x, rigidBody.velocity.y, velocity.z);
+                transform.rotation = Quaternion.LookRotation(zombie.movementAxis * axisDirection, Vector3.up);
+                movementController.Move((velocity + Vector3.down * 4f) * Time.deltaTime);
             }
             else
             {
-                rigidBody.velocity = new Vector3(0, rigidBody.velocity.y, 0);
+                movementController.Move(Vector3.down * (Time.deltaTime * 4f));    // TODO: Fall gravity
             }
         }
     }

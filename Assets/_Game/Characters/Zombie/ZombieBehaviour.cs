@@ -2,8 +2,8 @@ using Characters;
 using Input;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody),typeof(Animator),typeof(GroundChecker)),
- RequireComponent(typeof(CharacterInput), typeof(ActionRunner))]
+[RequireComponent(typeof(Animator)),
+ RequireComponent(typeof(AICharacterInput), typeof(ActionRunner))]
 public class ZombieBehaviour : MonoBehaviour
 {
     public float speed = 1.0f;

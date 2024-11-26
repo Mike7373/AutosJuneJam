@@ -6,14 +6,14 @@ using UnityEngine;
 public class ZombieIdle : MonoBehaviour
 {
     ActionRunner actionRunner;
-    GroundChecker groundChecker;
+    CharacterController movementController;
     
     CharacterInputAction punchAction;
     CharacterInputAction moveAction;
     
     void Awake()
     {
-        groundChecker = GetComponent<GroundChecker>();
+        movementController = GetComponent<CharacterController>();
         actionRunner = GetComponent<ActionRunner>();
         var characterInput = GetComponent<CharacterInput>();
         punchAction = characterInput.GetAction("Punch");
@@ -31,9 +31,9 @@ public class ZombieIdle : MonoBehaviour
         actionRunner.StartAction<ZombiePunch>();
     }
 
-    void FixedUpdate()
+    void Update()
     {
-        if (!groundChecker.IsGrounded())
+        if (!movementController.isGrounded)
         {
             actionRunner.StartAction<ZombieFalling>();
         }

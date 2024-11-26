@@ -41,10 +41,11 @@ public class AthenaWalk : MonoBehaviour
     
     void Awake()
     {
+        player       = GetComponent<AthenaBehavior>();
         actionRunner = GetComponent<ActionRunner>();
-        player = GetComponent<AthenaBehavior>();
+        animator     = GetComponent<Animator>();
         movementController = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+
 
         var characterInput = GetComponent<CharacterInput>();
         jumpAction = characterInput.GetAction("Jump");
@@ -62,6 +63,8 @@ public class AthenaWalk : MonoBehaviour
         
         animator.SetBool(AnimatorProperties.IsMoving, true);
         
+        // TODO: Portalo su WalkableComponentData, può diventare un Object e basta senza portarsi dietro 
+        // l'overload delle routine di un MonoBehavior e della Transform?
         footsteps = RuntimeManager.CreateInstance(FMODEvents.instance.footsteps);
         footsteps.setVolume(0.2f);
     }
@@ -131,7 +134,8 @@ public class AthenaWalk : MonoBehaviour
                 int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
                 transform.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
 
-                Vector3 movement = player.movementAxis * (speed * axisDirection * Time.deltaTime) + Vector3.down;
+                Vector3 movement = player.movementAxis * (speed * axisDirection * Time.deltaTime);
+                movement.y = -1 * Time.deltaTime;
                 movementController.Move(movement);
             }
         }

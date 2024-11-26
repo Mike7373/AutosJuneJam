@@ -14,23 +14,17 @@ public class AthenaFalling : MonoBehaviour
     
     void Awake()
     {
-        Debug.Log("Falling!");
-        player = GetComponent<AthenaBehavior>();
+        player       = GetComponent<AthenaBehavior>();
         actionRunner = GetComponent<ActionRunner>();
-        animator = GetComponent<Animator>();
-
+        animator     = GetComponent<Animator>();
         movementController = GetComponent<CharacterController>();
-        
         var characterInput = GetComponent<CharacterInput>();
         runModifierAction = characterInput.GetAction("RunModifier");
-        moveAction = characterInput.GetAction("Move");
-        animator.SetBool(AnimatorProperties.IsGrounded, false);
-
+        moveAction        = characterInput.GetAction("Move");
     }
     
     void Update()
     {
-        
         if (movementController.isGrounded)
         {
             actionRunner.StartAction<AthenaIdle>();
@@ -47,11 +41,11 @@ public class AthenaFalling : MonoBehaviour
             {
                 Vector3 velocity = speed * axisDirection * player.movementAxis;
                 transform.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
-                movementController.Move((velocity + Vector3.down) * Time.deltaTime);
+                movementController.Move((velocity + Vector3.down * 4f) * Time.deltaTime);
             }
             else
             {
-                movementController.Move(Vector3.down * (Time.deltaTime * 5f));    // TODO: Fall gravity
+                movementController.Move(Vector3.down * (Time.deltaTime * 4f));    // TODO: Fall gravity
             }
         }
     }

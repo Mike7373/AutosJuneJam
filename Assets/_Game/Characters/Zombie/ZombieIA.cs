@@ -96,13 +96,6 @@ public class ZombieIA : MonoBehaviour
                 {
                     moveAction.Cancel();
                 }
-                /*
-                else                
-                {
-                    // Sfodera la pistola
-                    pistol  
-                }
-                */
             }
         }
     }

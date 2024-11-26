@@ -17,7 +17,6 @@ public class AthenaIdle : MonoBehaviour
     void Awake()
     {
         movementController = GetComponent<CharacterController>();
-        //movementController.enableOverlapRecovery = true;
         
         actionRunner = GetComponent<ActionRunner>();
         var characterInput = GetComponent<CharacterInput>();

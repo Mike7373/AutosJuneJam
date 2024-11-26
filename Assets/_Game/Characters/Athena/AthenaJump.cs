@@ -36,6 +36,7 @@ public class AthenaJump : MonoBehaviour
         StartCoroutine(JumpCoroutine());
         jumpSound = RuntimeManager.CreateInstance(FMODEvents.instance.jump);
         jumpSound.setVolume(0.5f);
+        animator.SetBool(AnimatorProperties.IsGrounded, false);
     }
     
     void Start()
