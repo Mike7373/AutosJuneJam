@@ -2,8 +2,7 @@ using Characters;
 using Input;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterInput), typeof(Animator)),
- RequireComponent(typeof(GroundChecker), typeof(ActionRunner))]
+[RequireComponent(typeof(CharacterInput), typeof(Animator), typeof(ActionRunner))]
 public class AthenaBehavior : MonoBehaviour
 {
     public enum RigLayers

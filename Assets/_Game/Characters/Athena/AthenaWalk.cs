@@ -58,8 +58,6 @@ public class AthenaWalk : MonoBehaviour
         jumpAction.performed += JumpActionOnperformed;
         punchAction.performed += PunchActionOnperformed;
         aimAction.performed += AimActionPerformed;
-        runModifierAction.performed += RunModifierPerformed;
-        runModifierAction.canceled += RunModifierCancelled;
         
         animator.SetBool(AnimatorProperties.IsMoving, true);
         
@@ -81,21 +79,11 @@ public class AthenaWalk : MonoBehaviour
         jumpAction.performed -= JumpActionOnperformed;
         punchAction.performed -= PunchActionOnperformed;
         aimAction.performed -= AimActionPerformed;
-        runModifierAction.performed -= RunModifierPerformed;
-        runModifierAction.canceled -= RunModifierCancelled;
         animator.SetBool(AnimatorProperties.IsMoving, false);
         footsteps.stop(STOP_MODE.ALLOWFADEOUT);
     }
     
-    void RunModifierPerformed(object _)
-    {
-        animator.SetBool(AnimatorProperties.SpeedModifier, true);
-    }
 
-    void RunModifierCancelled()
-    {
-        animator.SetBool(AnimatorProperties.SpeedModifier, false);
-    }
 
     void AimActionPerformed(object obj)
     {
@@ -118,6 +106,28 @@ public class AthenaWalk : MonoBehaviour
     }
     
     void Update()
+    {
+        // Corsa
+        bool speedModifier = runModifierAction.IsInProgress();
+        animator.SetBool(AnimatorProperties.SpeedModifier, speedModifier);
+        float speed = speedModifier ? player.runSpeed : player.speed;
+        Vector2 inputValue = moveAction.ReadValue<Vector2>();
+        if (inputValue.x != 0)
+        {
+            int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
+            transform.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
+
+            Vector3 movement = player.movementAxis * (speed * axisDirection * Time.deltaTime);
+            movement.y = -1;
+            movementController.Move(movement);
+        }
+        if (!movementController.isGrounded)
+        {
+            actionRunner.StartAction<AthenaFalling>();
+        }
+    }
+    
+    void UpdateOLD()
     {
         if (!movementController.isGrounded)
         {
