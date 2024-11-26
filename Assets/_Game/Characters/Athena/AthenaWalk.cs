@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Characters;
 using Input;
 using UnityEngine;
@@ -7,11 +8,11 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 /**
  *
- * Behavior di movimento lungo un'asse.
+ * Behavior di movimento lungo un'asse. (Collegato al resto dei Behavior di Athena)
  * 
  * Note:
- * Il personaggio deve essere attaccato al suolo quando cammina, per non levitare, possiamo introdurre un leggero
- * movimento verso il basso, in questo modo la isGrounded del movementController funziona ad ogni frame.
+ * Il personaggio deve essere attaccato al suolo quando cammina, per non levitare e per scendere le scale, introduciamo
+ * un leggero movimento verso il basso, in questo modo la isGrounded del movementController funziona ad ogni frame.
  *  
  * TODO:
  *  Vorrei essere certo di vincolare il movimento lungo una direzione e su di un piano. (Ad esempio Z=0)
@@ -26,7 +27,7 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
 */
 public class AthenaWalk : MonoBehaviour
 {
-    AthenaBehavior player;
+    Walker walker;
     CharacterController movementController;
     Animator animator;
     ActionRunner actionRunner;
@@ -41,7 +42,7 @@ public class AthenaWalk : MonoBehaviour
     
     void Awake()
     {
-        player       = GetComponent<AthenaBehavior>();
+        walker       = GetComponent<Walker>();
         actionRunner = GetComponent<ActionRunner>();
         animator     = GetComponent<Animator>();
         movementController = GetComponent<CharacterController>();
@@ -82,8 +83,6 @@ public class AthenaWalk : MonoBehaviour
         animator.SetBool(AnimatorProperties.IsMoving, false);
         footsteps.stop(STOP_MODE.ALLOWFADEOUT);
     }
-    
-
 
     void AimActionPerformed(object obj)
     {
@@ -110,44 +109,20 @@ public class AthenaWalk : MonoBehaviour
         // Corsa
         bool speedModifier = runModifierAction.IsInProgress();
         animator.SetBool(AnimatorProperties.SpeedModifier, speedModifier);
-        float speed = speedModifier ? player.runSpeed : player.speed;
+        float speed = speedModifier ? walker.runSpeed : walker.speed;
         Vector2 inputValue = moveAction.ReadValue<Vector2>();
         if (inputValue.x != 0)
         {
             int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-            transform.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
+            transform.rotation = Quaternion.LookRotation(walker.movementAxis * axisDirection, Vector3.up);
 
-            Vector3 movement = player.movementAxis * (speed * axisDirection * Time.deltaTime);
+            Vector3 movement = walker.movementAxis * (speed * axisDirection * Time.deltaTime);
             movement.y = -1;
             movementController.Move(movement);
         }
         if (!movementController.isGrounded)
         {
             actionRunner.StartAction<AthenaFalling>();
-        }
-    }
-    
-    void UpdateOLD()
-    {
-        if (!movementController.isGrounded)
-        {
-            actionRunner.StartAction<AthenaFalling>();
-        }
-        else
-        {
-            // Corsa
-            bool speedModifier = runModifierAction.IsInProgress();
-            float speed = speedModifier ? player.runSpeed : player.speed;
-            Vector2 inputValue = moveAction.ReadValue<Vector2>();
-            if (inputValue.x != 0)
-            {
-                int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-                transform.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
-
-                Vector3 movement = player.movementAxis * (speed * axisDirection * Time.deltaTime);
-                movement.y = -1 * Time.deltaTime;
-                movementController.Move(movement);
-            }
         }
     }
 

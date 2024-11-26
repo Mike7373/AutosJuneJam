@@ -4,11 +4,10 @@ using Input;
 using UnityEngine;
 using FMOD.Studio;
 using FMODUnity;
-using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 public class AthenaJump : MonoBehaviour
 {
-    AthenaBehavior player;
+    Walker walker;
     ActionRunner actionRunner;
     Animator animator;
 
@@ -21,7 +20,7 @@ public class AthenaJump : MonoBehaviour
     
     void Awake()
     {
-        player       = GetComponent<AthenaBehavior>();
+        walker       = GetComponent<Walker>();
         animator     = GetComponent<Animator>();
         actionRunner = GetComponent<ActionRunner>();
         movementController = GetComponent<CharacterController>();
@@ -67,22 +66,22 @@ public class AthenaJump : MonoBehaviour
     {
         float jumpDistance = 0;
         float lastPos = transform.position.y;
-        while (jumpDistance < player.jumpRange)
+        while (jumpDistance < walker.jumpRange)
         {
             // In volo mi muovo
             Vector3 velocity = Vector3.zero;
             Vector2 inputValue = moveAction.ReadValue<Vector2>();
             int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
             bool speedModifier = runModifierAction.IsInProgress();
-            float speed = speedModifier ? player.runSpeed : player.speed;
+            float speed = speedModifier ? walker.runSpeed : walker.speed;
             if (axisDirection != 0)
             {
-                transform.rotation = Quaternion.LookRotation(player.movementAxis * axisDirection, Vector3.up);
-                velocity = speed * axisDirection * player.movementAxis;
+                transform.rotation = Quaternion.LookRotation(walker.movementAxis * axisDirection, Vector3.up);
+                velocity = speed * axisDirection * walker.movementAxis;
             }
 
             // Finchè sto saltando alzo la mia posizione
-            velocity += new Vector3(0, player.jumpSpeed, 0);
+            velocity += new Vector3(0, walker.jumpSpeed, 0);
             movementController.Move(velocity * Time.deltaTime);
 
             yield return null;

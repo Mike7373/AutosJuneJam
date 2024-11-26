@@ -18,7 +18,7 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
  */
 public class ZombieWalk : MonoBehaviour
 {
-    ZombieBehaviour zombie;
+    Walker walker;
     CharacterController movementController;
     ActionRunner actionRunner;
     
@@ -33,7 +33,7 @@ public class ZombieWalk : MonoBehaviour
 
     void Awake()
     {
-        zombie       = GetComponent<ZombieBehaviour>();
+        walker       = GetComponent<Walker>();
         
         actionRunner = GetComponent<ActionRunner>();
         animator     = GetComponent<Animator>();
@@ -96,14 +96,14 @@ public class ZombieWalk : MonoBehaviour
         else
         {
             bool speedModifier = runModifierAction.IsInProgress();
-            float speed = speedModifier ? zombie.runSpeed : zombie.speed;
+            float speed = speedModifier ? walker.runSpeed : walker.speed;
             Vector2 inputValue = moveAction.ReadValue<Vector2>();
             if (inputValue.x != 0)
             {
                 int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-                transform.rotation = Quaternion.LookRotation(zombie.movementAxis * axisDirection, Vector3.up);
+                transform.rotation = Quaternion.LookRotation(walker.movementAxis * axisDirection, Vector3.up);
 
-                Vector3 movement = zombie.movementAxis * (speed * axisDirection * Time.deltaTime);
+                Vector3 movement = walker.movementAxis * (speed * axisDirection * Time.deltaTime);
                 movement.y = -1 * Time.deltaTime;
                 movementController.Move(movement);
             }

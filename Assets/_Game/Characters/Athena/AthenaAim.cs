@@ -30,7 +30,7 @@ public class AthenaAim : MonoBehaviour
         aimAction.canceled += AimActionCanceled;
         
         // TODO: pistolPrefab unico riferimento ad AthenaBehavior, come lo tolgo?
-        pistolPrefab = GetComponent<AthenaBehavior>().pistolPrefab;
+        pistolPrefab = GetComponent<Shooter>().pistolPrefab;
         pistol = Instantiate(pistolPrefab, transform);
         
         pistolRig = GetComponent<PistolRig>();

@@ -16,7 +16,7 @@ public class ActionRunner : MonoBehaviour
 {
     [NonSerialized]
     public MonoBehaviour currentBehaviour;
-    
+
     public Component StartAction<T>() where T : MonoBehaviour
     {
         if (currentBehaviour)

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZombieFalling : MonoBehaviour
 {
-    ZombieBehaviour zombie;
+    Walker walker;
     CharacterController movementController;
     ActionRunner actionRunner;
     
@@ -14,7 +14,7 @@ public class ZombieFalling : MonoBehaviour
 
     void Awake()
     {
-        zombie       = GetComponent<ZombieBehaviour>();
+        walker       = GetComponent<Walker>();
         actionRunner = GetComponent<ActionRunner>();
         animator     = GetComponent<Animator>();
         movementController = GetComponent<CharacterController>();
@@ -36,11 +36,11 @@ public class ZombieFalling : MonoBehaviour
             Vector2 inputValue = moveAction.ReadValue<Vector2>();
             int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
             bool speedModifier = runModifierAction.IsInProgress();
-            float speed = speedModifier ? zombie.runSpeed : zombie.speed;
+            float speed = speedModifier ? walker.runSpeed : walker.speed;
             if (axisDirection != 0)
             {
-                Vector3 velocity = speed * axisDirection * zombie.movementAxis;
-                transform.rotation = Quaternion.LookRotation(zombie.movementAxis * axisDirection, Vector3.up);
+                Vector3 velocity = speed * axisDirection * walker.movementAxis;
+                transform.rotation = Quaternion.LookRotation(walker.movementAxis * axisDirection, Vector3.up);
                 movementController.Move((velocity + Vector3.down * 4f) * Time.deltaTime);
             }
             else

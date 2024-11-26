@@ -10,6 +10,7 @@ public class ZombieIA : MonoBehaviour
     Random rng;
 
     ZombieBehaviour zombie;
+    Walker walker;
     ActionRunner actionRunner;
     CharacterInputAction moveAction;
     CharacterInputAction punchAction;
@@ -18,8 +19,10 @@ public class ZombieIA : MonoBehaviour
     void Start()
     {
         rng = new Random((uint)DateTime.Now.ToFileTime());
-        zombie = GetComponent<ZombieBehaviour>();
+        zombie       = GetComponent<ZombieBehaviour>();
         actionRunner = GetComponent<ActionRunner>();
+        walker       = GetComponent<Walker>();
+        
         var characterInput = GetComponent<CharacterInput>();
         moveAction = characterInput.GetAction("Move");
         punchAction = characterInput.GetAction("Punch");
@@ -78,7 +81,7 @@ public class ZombieIA : MonoBehaviour
                 // Il Dot product di due vettori unitari è il coseno dell'angolo fra i due, il segno mi da
                 // quindi la direzione di movimento.
                 var direction3d = distance.normalized;
-                int axisDirection = Math.Sign(Vector3.Dot(direction3d, zombie.movementAxis));
+                int axisDirection = Math.Sign(Vector3.Dot(direction3d, walker.movementAxis));
                 moveAction.Perform(new Vector2(axisDirection, 0));
             }
         }
