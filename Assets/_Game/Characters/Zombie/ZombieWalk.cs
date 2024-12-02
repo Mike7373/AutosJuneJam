@@ -20,11 +20,9 @@ public class ZombieWalk : MonoBehaviour
 {
     Walker walker;
     CharacterController movementController;
+    Animator animator;
     ActionRunner actionRunner;
     
-    Vector3 movementDirection;
-    
-    Animator animator;
     CharacterInputAction punchAction;
     CharacterInputAction runModifierAction;
     CharacterInputAction moveAction;
@@ -50,9 +48,7 @@ public class ZombieWalk : MonoBehaviour
         runModifierAction.canceled  += RunModifierCancelled;
         animator.SetBool(AnimatorProperties.IsMoving, true);
         
-        // TODO: Portalo su WalkableComponentData può diventare un Object e basta senza portarsi dietro 
-        // l'overload delle routine di un MonoBehavior? Va bene anche uno ScriptableObject?
-        footsteps = RuntimeManager.CreateInstance(FMODEvents.instance.footsteps);
+        footsteps = RuntimeManager.CreateInstance(walker.footsteps);
         footsteps.setVolume(0.2f);
     }
 
@@ -89,24 +85,23 @@ public class ZombieWalk : MonoBehaviour
     
     void Update()
     {
+        bool speedModifier = runModifierAction.IsInProgress();
+        animator.SetBool(AnimatorProperties.SpeedModifier, speedModifier);
+        float speed = speedModifier ? walker.runSpeed : walker.speed;
+        Vector2 inputValue = moveAction.ReadValue<Vector2>();
+        if (inputValue.x != 0)
+        {
+            int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
+            transform.localRotation = Quaternion.LookRotation(Vector3.forward*axisDirection, Vector3.up);
+            Vector3 movement = transform.forward * (speed * Time.deltaTime);
+            movement.y = -1;
+            movementController.Move(movement);
+            
+            transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
+        }
         if (!movementController.isGrounded)
         {
             actionRunner.StartAction<ZombieFalling>();
-        }
-        else
-        {
-            bool speedModifier = runModifierAction.IsInProgress();
-            float speed = speedModifier ? walker.runSpeed : walker.speed;
-            Vector2 inputValue = moveAction.ReadValue<Vector2>();
-            if (inputValue.x != 0)
-            {
-                int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-                transform.rotation = Quaternion.LookRotation(walker.movementAxis * axisDirection, Vector3.up);
-
-                Vector3 movement = walker.movementAxis * (speed * axisDirection * Time.deltaTime);
-                movement.y = -1 * Time.deltaTime;
-                movementController.Move(movement);
-            }
         }
     }
 

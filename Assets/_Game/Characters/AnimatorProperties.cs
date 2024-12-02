@@ -15,5 +15,6 @@ namespace Characters
         public static readonly int PunchTrigger = Animator.StringToHash("Punch");
         public static readonly int WalkTrigger = Animator.StringToHash("Walk");
         public static readonly int IsAiming = Animator.StringToHash("IsAiming");
+        public static readonly int Shoot = Animator.StringToHash("Shoot");
     }
 }

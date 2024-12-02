@@ -183,9 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f65a0997476689346a16733415be1dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  runSpeed: 6
-  movementAxis: {x: 1, y: 0, z: 0}
 --- !u!114 &6457179006052130892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,3 +200,10 @@ MonoBehaviour:
   runSpeed: 5
   jumpRange: 1
   jumpSpeed: 3
+  footsteps:
+    Guid:
+      Data1: 503461101
+      Data2: 1082899192
+      Data3: 511476147
+      Data4: -1623270690
+    Path: event:/SFX/Player/Footsteps

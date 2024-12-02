@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using Characters;
 using Input;
 using UnityEngine;
@@ -10,20 +9,13 @@ using STOP_MODE = FMOD.Studio.STOP_MODE;
  *
  * Behavior di movimento lungo un'asse. (Collegato al resto dei Behavior di Athena)
  * 
- * Note:
- * Il personaggio deve essere attaccato al suolo quando cammina, per non levitare e per scendere le scale, introduciamo
+ * NOTE:
+ * - Il personaggio deve essere attaccato al suolo quando cammina, per non levitare e per scendere le scale, introduciamo
  * un leggero movimento verso il basso, in questo modo la isGrounded del movementController funziona ad ogni frame.
- *  
- * TODO:
- *  Vorrei essere certo di vincolare il movimento lungo una direzione e su di un piano. (Ad esempio Z=0)
- *  Errori di approssimazione dei float o risoluzioni di collisioni nel character controller possono spostare
- *  il personaggio dal piano in cui il movimento del giocatore deve ssere vincolato.
- *  Se ci muoviamo lungo gli  assi x, y e z è facile perchè dopo il movimento posso reimpostare direttamente l'asse
- *  scelto al valore desiderato. Ma se mi muovo lungo una direzione arbitraria, come vaccio a mantenerla?
- *  Potrei provare con qualcosa del genere:
- *      character.move(dist)
- *      character.position = project(character.position, movement_plane)
- *  Cioè proietto la posizione del giocatore sul piano.
+ *
+ * - Il movimento avviene lungo l'asse "forward" dell'oggetto e il movimento è vincolato al piano Z Y con la X fissata a zero.
+ *   Per muoversi in qualunque direzione, il game object viene messo come figlio di una transform che ne indica la direzione di movimento.
+ *   In questo modo vincolare il movimento sul piano è semplice perchè basta muoversi sulla forward e impostare la X a zero.
 */
 public class AthenaWalk : MonoBehaviour
 {
@@ -62,9 +54,7 @@ public class AthenaWalk : MonoBehaviour
         
         animator.SetBool(AnimatorProperties.IsMoving, true);
         
-        // TODO: Portalo su WalkableComponentData, può diventare un Object e basta senza portarsi dietro 
-        // l'overload delle routine di un MonoBehavior e della Transform?
-        footsteps = RuntimeManager.CreateInstance(FMODEvents.instance.footsteps);
+        footsteps = RuntimeManager.CreateInstance(walker.footsteps);
         footsteps.setVolume(0.2f);
     }
 
@@ -106,19 +96,19 @@ public class AthenaWalk : MonoBehaviour
     
     void Update()
     {
-        // Corsa
         bool speedModifier = runModifierAction.IsInProgress();
         animator.SetBool(AnimatorProperties.SpeedModifier, speedModifier);
-        float speed = speedModifier ? walker.runSpeed : walker.speed;
         Vector2 inputValue = moveAction.ReadValue<Vector2>();
         if (inputValue.x != 0)
         {
+            float speed = speedModifier ? walker.runSpeed : walker.speed;
             int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-            transform.rotation = Quaternion.LookRotation(walker.movementAxis * axisDirection, Vector3.up);
-
-            Vector3 movement = walker.movementAxis * (speed * axisDirection * Time.deltaTime);
+            transform.localRotation = Quaternion.LookRotation(Vector3.forward*axisDirection, Vector3.up);
+            Vector3 movement = transform.forward * (speed * Time.deltaTime);
             movement.y = -1;
             movementController.Move(movement);
+            
+            transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
         }
         if (!movementController.isGrounded)
         {

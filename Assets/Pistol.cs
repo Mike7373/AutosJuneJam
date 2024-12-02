@@ -1,13 +1,18 @@
+using System;
+using FMODUnity;
 using UnityEngine;
 
 public class Pistol : MonoBehaviour
 {
+    [NonSerialized]
     public Transform pistolControl;
+
+    public EventReference shootSound;       // TODO: Mettere in scriptable object
     
-    float pistolMaxAngle = 5;             // Angolo massimo delle braccia rispetto al corpo oltre al quale il giocatore ruota (TODO: Vedere dove deve finire questa proprietà) 
+    const float FLOAT_THRESHOLD = 0.001f;   // TODO: Mettere questa proprietà da qualche parte
+    float pistolMaxAngle = 5;               // Angolo massimo delle braccia rispetto al corpo oltre al quale il giocatore ruota (TODO: Vedere dove deve finire questa proprietà)
+    
     float lastAngleY;
-    
-    const float FLOAT_THRESHOLD = 0.001f;
     
     public void AimTo(Vector3 target)
     {
@@ -36,6 +41,19 @@ public class Pistol : MonoBehaviour
             }
         }
         lastAngleY = pistolControl.localRotation.eulerAngles.y;
+        
+        // TODO: Gestione raycast hit e luce mirino.
+    }
+
+    
+    /**
+     * Spara lungo la direzione del pistolControl. 
+     */
+    public void Shoot()
+    {
+        var shootSoundInstance = RuntimeManager.CreateInstance(shootSound);
+        shootSoundInstance.start();
+        shootSoundInstance.release();
     }
     
     

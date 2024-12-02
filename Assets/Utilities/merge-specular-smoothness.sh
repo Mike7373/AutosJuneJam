@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Questo script fonde una texture specular e una di glossiness\spe e roughness in una sola texture di specular + smoothness.
+# Questo script fonde una texture specular\glossiness e una di smoothness in una sola texture di specular + smoothness.
 # In sostanza mette la smoothness nel canale alfa della nuova texture e per l'RGB usa la specular
 # Se stiamo usando dei png, mantiene l'uso dei png, altrimenti utilizza exr compresso
 

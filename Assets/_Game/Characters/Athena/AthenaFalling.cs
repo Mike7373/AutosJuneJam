@@ -11,6 +11,8 @@ public class AthenaFalling : MonoBehaviour
     CharacterInputAction runModifierAction;
     CharacterInputAction moveAction;
     Animator animator;
+
+    float fallSpeed = 4;
     
     void Awake()
     {
@@ -34,19 +36,20 @@ public class AthenaFalling : MonoBehaviour
         {
             // In volo mi muovo
             Vector2 inputValue = moveAction.ReadValue<Vector2>();
-            int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-            bool speedModifier = runModifierAction.IsInProgress();
-            float speed = speedModifier ? walker.runSpeed : walker.speed;
-            if (axisDirection != 0)
+            if (inputValue.x != 0)
             {
-                Vector3 velocity = speed * axisDirection * walker.movementAxis;
-                transform.rotation = Quaternion.LookRotation(walker.movementAxis * axisDirection, Vector3.up);
-                movementController.Move((velocity + Vector3.down * 4f) * Time.deltaTime);
+                bool speedModifier = runModifierAction.IsInProgress();
+                float speed        = speedModifier ? walker.runSpeed : walker.speed;
+                int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
+                transform.localRotation = Quaternion.LookRotation(Vector3.forward*axisDirection, Vector3.up);
+                Vector3 movement = transform.forward * speed + Vector3.down * fallSpeed;
+                movementController.Move(movement * Time.deltaTime);
             }
             else
             {
-                movementController.Move(Vector3.down * (Time.deltaTime * 4f));    // TODO: Fall gravity
+                movementController.Move(Vector3.down * (Time.deltaTime * fallSpeed));    // TODO: Fall gravity
             }
+            transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
         }
     }
 }

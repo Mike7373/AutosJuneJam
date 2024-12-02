@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0beb8f693ab362a41a9e1fb5d125b831, type: 3}
       propertyPath: m_Name
-      value: PistolV2
+      value: Pistola
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0beb8f693ab362a41a9e1fb5d125b831, type: 3}
       propertyPath: m_Layer
@@ -89,3 +89,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450c4cda54e44beba33966cab0494018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootSound:
+    Guid:
+      Data1: 1667717177
+      Data2: 1115801604
+      Data3: 832026553
+      Data4: -1296365753
+    Path: event:/SFX/Weapons/PistolShoot

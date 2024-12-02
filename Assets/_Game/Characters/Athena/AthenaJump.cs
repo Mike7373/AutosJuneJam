@@ -68,21 +68,28 @@ public class AthenaJump : MonoBehaviour
         float lastPos = transform.position.y;
         while (jumpDistance < walker.jumpRange)
         {
-            // In volo mi muovo
             Vector3 velocity = Vector3.zero;
             Vector2 inputValue = moveAction.ReadValue<Vector2>();
-            int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
-            bool speedModifier = runModifierAction.IsInProgress();
-            float speed = speedModifier ? walker.runSpeed : walker.speed;
-            if (axisDirection != 0)
+            
+            if (inputValue.x != 0)
             {
-                transform.rotation = Quaternion.LookRotation(walker.movementAxis * axisDirection, Vector3.up);
-                velocity = speed * axisDirection * walker.movementAxis;
+                Debug.Log("Mi muovo su X!!!");
+                int axisDirection  = inputValue.x > 0 ? 1 : inputValue.x < 0 ? -1 : 0;
+                bool speedModifier = runModifierAction.IsInProgress();
+                float speed = speedModifier ? walker.runSpeed : walker.speed;
+                transform.localRotation = Quaternion.LookRotation(Vector3.forward*axisDirection, Vector3.up);
+                velocity = transform.forward * speed;
             }
+
+            Debug.Log($"Speed: {velocity}");
 
             // Finchè sto saltando alzo la mia posizione
             velocity += new Vector3(0, walker.jumpSpeed, 0);
+            
+            Debug.Log($"Speed con gravità: {velocity}");
+            
             movementController.Move(velocity * Time.deltaTime);
+            transform.localPosition = new Vector3(0, transform.localPosition.y, transform.localPosition.z);
 
             yield return null;
             jumpDistance += transform.position.y - lastPos;
