@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 450c4cda54e44beba33966cab0494018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabBulletDecal: {fileID: 6051169316252391030, guid: 1b63ac98892a0314d9aa8b4a6a25abac, type: 3}
   shootSound:
     Guid:
       Data1: 1667717177
