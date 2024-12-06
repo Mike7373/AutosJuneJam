@@ -3,6 +3,8 @@ using Characters.Rigging;
 using Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
+using Cursor = UnityEngine.Cursor;
 
 // TODO: Prendi la camera da una componente? (La camera va presa dall'Athena Behaviour, o gli viene passata in fase di creazione allAthenaAim, oppure la prende tramite query sulla scena (Dependency injection)
 
@@ -45,14 +47,16 @@ public class AthenaAim : MonoBehaviour
 
         Cursor.visible = false;
     }
-    
+
     /**
      * Dapprima faccio la AimTo laddove è puntato il cursore, successivamente sposto la mira
      * ascoltando le mouse move. In questo modo il movimento dell'arma risulta naturale.
      * 
      */
+    Vector2 lastMousePos;
     void Start()
     {
+        // TODO: C'è modo di prendere la mouse position dalle input actions?
         var ray = Camera.main.ScreenPointToRay(Mouse.current.position.value);
         Debug.DrawRay(ray.origin, ray.direction * 30, Color.yellow);
 
@@ -60,6 +64,7 @@ public class AthenaAim : MonoBehaviour
         if (Physics.Raycast(ray, out var hit, 300, raycastMask))
         {
             pistol.AimTo(hit.point);
+            lastMousePos = Mouse.current.position.value;
             lookAction.performed += LookPerformed;
         }
     }
@@ -84,7 +89,12 @@ public class AthenaAim : MonoBehaviour
     {
         var mouseMovement = (Vector2) obj;
         // Scambio gli assi per far corrispondere il movimento del mouse a pitch e yaw
-        pistol.RotateAim(new Vector2(-mouseMovement.y, mouseMovement.x));
+        //pistol.RotateAim(new Vector2(-mouseMovement.y, mouseMovement.x));
+        
+//        pistol.RotateAim3(new Vector2(mouseMovement.x, mouseMovement.y));
+        
+        
+        //         pistolControl.Rotate(pitchYaw.normalized, pitchYaw.magnitude*aimSensibility);
     }
 
     void ShootPerformed(object obj)

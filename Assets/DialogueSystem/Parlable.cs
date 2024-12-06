@@ -29,7 +29,7 @@ using UnityEngine;
  *
  *      Caso d'uso 1: Parlare con una sola persona.
  *          - Assegno componente "Attore"
- *          - Assegno componente "Dialogo"
+ *          - Assegno componente "Dialogo" NOTA: Non deve stare per forza sull'attore la componente dialogo, può stare su qualsiasi gameObject, l'importante è che riferisca gli attori che parlano.
  *          - Assegno Text Asset.
  *          - Popolo il mapping nella componente "Dialogo"
  *          - Opzionalmente, può partire un'euristica per popolare automaticamente il mapping, es:

@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(DialogueBrain))]
 public class DialogueActor : MonoBehaviour
@@ -23,30 +22,18 @@ public class DialogueActor : MonoBehaviour
     [VerticalGroup("ActorData/Info")] [LabelWidth(100)] [SerializeField]
     private bool _isPlayer;
 
-    public bool IsPlayer
-    {
-        get { return _isPlayer; }
-    }
+    public bool IsPlayer => _isPlayer;
     private static List<DialogueActor> _actorInstances = new();
 
     #endregion
 
     #region Properties
 
-    public Sprite Icon
-    {
-        get { return _icon; }
-    }
+    public Sprite Icon => _icon;
 
-    public string ActorName
-    {
-        get { return _actorName; }
-    }
+    public string ActorName => _actorName;
 
-    public string ActorID
-    {
-        get { return _actorID; }
-    }
+    public string ActorID => _actorID;
 
     public static DialogueActor PlayerActor { get; private set; }
 

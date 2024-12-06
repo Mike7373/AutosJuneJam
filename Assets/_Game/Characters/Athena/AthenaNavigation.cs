@@ -74,15 +74,5 @@ public class AthenaNavigation : MonoBehaviour
             yield return null;
         }
     }
-    IEnumerator WaitDummy()
-    {
-        
-        int i = 1000;
-        while (i>=0) {
-            i--;
-            //Debug.Log(navMeshAgent.remainingDistance);
-            //Debug.Log(navMeshAgent.pathStatus);
-            yield return null;
-        }
-    }
+   
 }

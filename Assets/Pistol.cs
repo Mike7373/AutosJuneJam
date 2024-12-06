@@ -25,31 +25,36 @@ public class Pistol : MonoBehaviour
     
     const float FLOAT_THRESHOLD = 0.001f;                         // TODO: Mettere questa proprietà da qualche parte
     [SerializeField] float pistolMaxAngle   = 5;                  // Angolo massimo delle braccia rispetto al corpo oltre al quale il giocatore ruota (TODO: Vedere dove deve finire questa proprietà)
-    
-    
+
     public void AimTo(Vector3 target)
     {
         pistolControl.LookAt(target);
-        float diff = pistolControl.localRotation.eulerAngles.y - transform.parent.localRotation.eulerAngles.y;
+        /*float diff = pistolControl.localRotation.eulerAngles.y - transform.parent.localRotation.eulerAngles.y;
         transform.parent.Rotate(new Vector3(0, diff, 0));
         pistolControl.Rotate(new Vector3(0, -diff,0));
-        lastAngleY = pistolControl.localRotation.eulerAngles.y;
+        lastAngleY = pistolControl.localRotation.eulerAngles.y;*/
     }
     
     /**
-     * RotationDirection rappresenta il mouseMovement sugli assi x e y.
-     * Pitch: (Rotazione su asse X)
-     * Yaw:  (Rotazione su asse Y)      
+     * Spara lungo la direzione del pistolControl. 
      */
-    public void RotateAim(Vector2 pitchYaw)
+    public void Shoot()
     {
-        Vector3 axisRotation = Camera.main.transform.TransformPoint(pitchYaw.normalized);
-        pistolControl.Rotate(axisRotation, pitchYaw.magnitude*aimSensibility);
+        var shootSoundInstance = RuntimeManager.CreateInstance(shootSound);
+        shootSoundInstance.start();
+        shootSoundInstance.release();
         
-        //pistolControl.Rotate(pitchYaw.normalized, pitchYaw.magnitude*aimSensibility, Space.World);
-        //AdjustAim();
+        var pistolRay = new Ray(pistolControl.position, pistolControl.forward);
+        if (Physics.Raycast(pistolRay, out var hit))
+        {
+            // Decal, lo istanzio  sul punto colpito e che guarda verso il punto colpito. L'offset è gestibile 
+            // tramite la proprietà "pivot" del decal.
+            Instantiate(prefabBulletDecal, hit.point, Quaternion.LookRotation(-hit.normal));
+            // Sistema di particelle che guarda verso l'esterno 
+            Instantiate(prefabBulletHitParticles, hit.point, Quaternion.LookRotation(hit.normal));
+        }
     }
-    
+
     void AdjustAim()
     {
         // La pistola può ruotare al massimo di "pistolMaxAngle" gradi sulla Y, se la rotazione eccede allora
@@ -79,7 +84,7 @@ public class Pistol : MonoBehaviour
 
     void Update()
     {
-        //Damping matrice padre
+        //Damping Torso
         //Vector3 newForward = Vector3.SmoothDamp(transform.parent.forward)
         //transform.parent.rotation = Quaternion.LookRotation(newForward, Vector3.up);
         
@@ -96,26 +101,6 @@ public class Pistol : MonoBehaviour
         else
         {
             laserDecal.gameObject.SetActive(false);                
-        }
-    }
-    
-    /**
-     * Spara lungo la direzione del pistolControl. 
-     */
-    public void Shoot()
-    {
-        var shootSoundInstance = RuntimeManager.CreateInstance(shootSound);
-        shootSoundInstance.start();
-        shootSoundInstance.release();
-        
-        var pistolRay = new Ray(pistolControl.position, pistolControl.forward);
-        if (Physics.Raycast(pistolRay, out var hit))
-        {
-            // Decal, lo istanzio  sul punto colpito e che guarda verso il punto colpito. L'offset è gestibile 
-            // tramite la proprietà "pivot" del decal.
-            Instantiate(prefabBulletDecal, hit.point, Quaternion.LookRotation(-hit.normal));
-            // Sistema di particelle che guarda verso l'esterno 
-            Instantiate(prefabBulletHitParticles, hit.point, Quaternion.LookRotation(hit.normal));
         }
     }
     
