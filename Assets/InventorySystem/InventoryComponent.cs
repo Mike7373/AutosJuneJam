@@ -2,25 +2,25 @@ using System.Collections.Generic;
 
 namespace InventorySystem
 {
-    public abstract class InventoryCompontent
+    public abstract class InventoryComponent
     {
         protected static int _instancesCount = 0;
-        protected readonly List<InventoryCompontent> _invComponents;
+        protected readonly List<InventoryComponent> _invComponents;
         public string Name { get; protected set; }
         public string ID { get; protected set; }
         
 
-        public List<InventoryCompontent> GetComponents()
+        public List<InventoryComponent> GetComponents()
         {
             return _invComponents;
         }
 
-        public virtual void Add(InventoryCompontent component)
+        public virtual void Add(InventoryComponent component)
         {
             _invComponents.Add(component);
         }
         
-        public virtual void Remove(InventoryCompontent component)
+        public virtual void Remove(InventoryComponent component)
         {
             _invComponents.Remove(component);
         }

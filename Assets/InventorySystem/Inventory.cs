@@ -1,6 +1,6 @@
 namespace InventorySystem
 {
-    public class Inventory : InventoryCompontent
+    public class Inventory : InventoryComponent
     {
         public Inventory(string name)
         {

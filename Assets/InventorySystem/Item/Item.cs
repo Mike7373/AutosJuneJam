@@ -3,7 +3,7 @@ using UnityEngine;
 namespace InventorySystem
 {
     //Leaf
-    public class Item : InventoryCompontent
+    public class Item : InventoryComponent
     {
         public Sprite Icon { get; }
         public int Amount { get; }
@@ -17,12 +17,12 @@ namespace InventorySystem
             Amount = 0;
         }
         
-        public override void Add(InventoryCompontent component)
+        public override void Add(InventoryComponent component)
         {
             Debug.LogError($"You can't use the method Add() on a leaf!");
         }
 
-        public override void Remove(InventoryCompontent component)
+        public override void Remove(InventoryComponent component)
         {
             Debug.LogError($"You can't use the method Add() on a leaf!");
         }
