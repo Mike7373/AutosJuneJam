@@ -4,5 +4,6 @@ using System.Collections.Generic;
 [Serializable]
 public class Dialogue
 {
-    public List<Sentence> sentenceList;
+    public string title;
+    public List<Sentence> sentences;
 }

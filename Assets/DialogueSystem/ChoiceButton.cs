@@ -17,6 +17,7 @@ public class ChoiceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private int _normalTextSize = 40;
     [SerializeField] private int _hoverTextSize = 40;
 
+    DialogueBrain _dialogueBrain;
     private Button _button;
     private Choice _choice;
 
@@ -26,7 +27,7 @@ public class ChoiceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         _buttonText.fontSize = _normalTextSize;
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnButtonClicked);
-        ChoiceBox.currentButtons.Add(this);
+        _dialogueBrain = FindObjectOfType<DialogueBrain>();
     }
 
     private void OnDestroy()
@@ -50,7 +51,7 @@ public class ChoiceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     /// </summary>
     private void OnButtonClicked()
     {
-        DialogueBrain.AnswerEvent.Invoke(_choice.nextSentence);
+        _dialogueBrain.AnswerEvent.Invoke(_choice.nextSentence);
     }
 
     #region Obsolete Methods

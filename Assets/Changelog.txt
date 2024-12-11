@@ -1,0 +1,4 @@
+﻿
+Aggiunto "title" al Dialogue
+Rinominato "sentenceList" in "sentences" nell "Dialogue"
+Refactoring DialogueBrain.SendAnswer

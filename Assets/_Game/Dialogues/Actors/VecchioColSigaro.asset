@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79265b54413e4b849cae00211a2d02df, type: 3}
   m_Name: VecchioColSigaro
   m_EditorClassIdentifier: 
-  _icon: {fileID: 21300000, guid: 45e6cfd30245c8e489093568794717b2, type: 3}
-  _actorName: Vecchiardo
-  _actorID: vecchio-1
+  portrait: {fileID: 21300000, guid: 45e6cfd30245c8e489093568794717b2, type: 3}
+  actorName: Polso

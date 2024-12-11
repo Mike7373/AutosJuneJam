@@ -1,5 +1,6 @@
 {
-  "sentenceList": [
+  "title": "Dialogo Test",
+  "sentences": [
     {
       "actorID": "_athena",
       "sentenceID": "0",

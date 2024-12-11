@@ -1,117 +1,73 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
+using DialogueSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class DialogueBrain : MonoBehaviour
 {
-    public DialogueBox dialogueBox;
+    public readonly UnityEvent<string> AnswerEvent = new();
 
-    [Header("Dialogue List")] 
-    [SerializeField]
-    private List<TextAsset> _dialogues = new();
-    private static Dictionary<string, Sentence> _currentDialogue = new();
-    private static int _dialogueIndex;
-    private static Sentence _currentSentence;
-    public static readonly UnityEvent<string> AnswerEvent = new();
+    DialogueBox dialogueBox;
+    
+    Dialogue currentDialogue;
+    Dictionary<string, Actor> actorMapping;
+    Dictionary<string, Sentence> currentDialogueSentences = new();
+    Sentence currentSentence;
 
-    private void OnEnable()
+    void Start()
+    {
+        dialogueBox = FindObjectOfType<DialogueBox>();
+    }
+
+    void OnEnable()
     {
         AnswerEvent.AddListener(SendAswer);
     }
 
-    private void Start()
-    {
-        StartDialogue();
-    }
-
-    private void OnDisable()
+    void OnDisable()
     {
         AnswerEvent.RemoveListener(SendAswer);
     }
 
-    private void Update()
+    public void StartDialogue(Dialogue d, Dictionary<string, Actor> actors)
     {
-        if (UnityEngine.Input.GetKeyDown(KeyCode.Space) && _currentSentence.choices.Count <= 1)
-        {
-            AnswerEvent.Invoke(_currentSentence.choices[0].nextSentence);
-        }
-    }
-
-    /// <summary>
-    /// Avvia il dialogo da questa istanza
-    /// </summary>
-    /// <returns></returns>
-    public void StartDialogue()
-    {
-        List<Sentence> dialogue = LoadCurrentDialogue();
-        _currentDialogue = dialogue.ToDictionary(sentence => sentence.sentenceID);
+        currentDialogue = d;
+        this.actorMapping = actors;
+        
+        currentDialogueSentences = currentDialogue.sentences.ToDictionary(sentence => sentence.sentenceID);
+        currentSentence = currentDialogue.sentences[0];
+        
         dialogueBox.gameObject.SetActive(true);
-        dialogueBox.ShowArrow();
-        //REGOLA: la prima frase di ogni dialogo deve avere "0" come sentenceID
-        _currentSentence = _currentDialogue["0"];
-        dialogueBox.playerIcon.sprite = DialogueActor.PlayerActor.Icon;
+
         DialogueSetup();
     }
 
-    
-    public void StartDialogue(Dialogue d)
+    public void EndDialogue()
     {
-        _currentDialogue = d.sentenceList.ToDictionary(sentence => sentence.sentenceID);
-        dialogueBox.gameObject.SetActive(true);
-        dialogueBox.ShowArrow();
-        //REGOLA: la prima frase di ogni dialogo deve avere "0" come sentenceID
-        //FIX: Usare la lista
-        _currentSentence = d.sentenceList[0];
-        dialogueBox.playerIcon.sprite = DialogueActor.PlayerActor.Icon;
-        DialogueSetup();
-    }
-
-    /// <summary>
-    /// Chiude la dialogue box
-    /// </summary>
-    /// <param name="incrementIndex"> true -> _dialogueIndex++</param>
-    public void EndDialogue(bool incrementIndex)
-    {
-        if (incrementIndex)
-        {
-            _dialogueIndex++;
-        }
         dialogueBox.gameObject.SetActive(false);
-    }
-
-    /// <summary>
-    /// Carica un dialogo dal file json assegnato a _dialogues
-    /// </summary>
-    /// <returns></returns>
-    private List<Sentence> LoadCurrentDialogue()
-    {
-        if (_dialogues.Count > 0)
-        {
-            List<Sentence> dialogue = JsonUtility.FromJson<Dialogue>(_dialogues[_dialogueIndex].text).sentenceList;
-            return dialogue;
-        }
-
-        Debug.LogError("You must assign at least 1 TextAsset to load it!");
-        return null;
     }
 
     /// <summary>
     /// Carica la frase successiva con le relative risposte. Se non c'è una frase successiva chiude il dialogo.
     /// </summary>
-    /// <param name="nextSentence"></param>
-    public void SendAswer(string nextSentence)
+    /// <param name="nextSentenceId"></param>
+    public void SendAswer(string nextSentenceId)
     {
-        if (nextSentence != "")
+        Sentence nextSentence = null;
+        if (!string.IsNullOrEmpty(nextSentenceId) && !currentDialogueSentences.TryGetValue(nextSentenceId, out nextSentence))
         {
-            _currentSentence = _currentDialogue[nextSentence];
-            ChoiceBox.ClearButtons();
+            Debug.LogError($"SentenceId {nextSentenceId} non trovata nel dialogo {currentDialogue.title}");
+        }
+        if (nextSentence != null)
+        {
+            currentSentence = nextSentence;
+            dialogueBox.choiceBox.ClearButtons();
             DialogueSetup();
         }
         else
         {
-            EndDialogue(true);
+            EndDialogue();
         }
     }
 
@@ -121,19 +77,34 @@ public class DialogueBrain : MonoBehaviour
     /// <returns></returns>
     private void DialogueSetup()
     {
-        ChoiceBox choicebox = dialogueBox._choiceBox.GetComponent<ChoiceBox>();
-        choicebox.gameObject.SetActive(false);
-        dialogueBox.characterIcon.sprite = DialogueActor.FindActorByID(_currentSentence.actorID).Icon;
-        dialogueBox.actorName.text = DialogueActor.FindActorByID(_currentSentence.actorID).ActorName;
-        dialogueBox.dialogueText.text = _currentSentence.text;
-        //All'ultima battuta del dialogo nascondo la freccina
-        if (_currentSentence.choices.Count > 1 || _currentSentence.choices[0].text != "" )
+        var playerIcon = actorMapping.Where(kv => kv.Value._isPlayer)
+            .Select(kv => kv.Value.actorData.portrait)
+            .First();
+        
+        if (playerIcon == null)
         {
-            choicebox.gameObject.SetActive(true);
-            choicebox.SpawnButtons(_currentSentence.choices);
+            // TODO: Dialogo senza player ma solo fra due giocatori?
+            //       Non ha senso determinare ogni volta il player, se è fisso va determinato nel mapping.
+            Debug.LogWarning("Non ho trovato un player fra i partecipanti al dialogo!");
         }
-        else if (_currentSentence.choices[0].nextSentence == "")
+        else
         {
+            dialogueBox.leftPortrait.sprite = playerIcon;
+        }
+        dialogueBox.rightPortrait.sprite = actorMapping[currentSentence.actorID].actorData.portrait;
+        dialogueBox.actorName.text       = actorMapping[currentSentence.actorID].actorData.actorName;
+        dialogueBox.dialogueText.text    = currentSentence.text;
+        
+        if (currentSentence.choices.Count > 0)
+        {
+            dialogueBox.choiceBox.gameObject.SetActive(true);
+            dialogueBox.choiceBox.SpawnButtons(currentSentence.choices);
+            dialogueBox.ShowArrow();
+        }
+        else
+        {
+            //All'ultima battuta del dialogo nascondo la freccina
+            dialogueBox.choiceBox.gameObject.SetActive(false);
             dialogueBox.HideArrow();
         }
     }

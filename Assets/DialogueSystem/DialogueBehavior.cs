@@ -12,7 +12,7 @@ public struct ActorIdMapping
 {
     [ReadOnly]
     public string actorId;
-    public ActorV2 actor;
+    public Actor actor;
 }
 
 
@@ -21,7 +21,7 @@ public class DialogueBehavior : MonoBehaviour
     [SerializeField]
     TextAsset dialogueJson;
     
-    public Dictionary<string,ActorV2> actorMapping = new();
+    public Dictionary<string,Actor> actorMapping = new();
     
     [NonSerialized]
     public Dialogue dialogue;
@@ -62,7 +62,7 @@ public class DialogueBehavior : MonoBehaviour
     static HashSet<string> FindDialogueActors(Dialogue dialogue)
     {
         var ret = new HashSet<string>();
-        foreach (var s in dialogue.sentenceList)
+        foreach (var s in dialogue.sentences)
         {
             ret.Add(s.actorID);
         }

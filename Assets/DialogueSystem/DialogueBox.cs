@@ -4,22 +4,22 @@ using UnityEngine.UI;
 
 public class DialogueBox : MonoBehaviour
 {
-    public static DialogueBox Instance;
-    public Image playerIcon;
-    public Image characterIcon;
+    public Image leftPortrait;
+    public Image rightPortrait;
     public TMP_Text actorName;
     public TMP_Text dialogueText;
-    public GameObject _choiceBox;
+    
+    public ChoiceBox choiceBox;
     [SerializeField] private GameObject _arrow;
 
     private void Awake()
     {
-        if (Instance != null)
+        var other = FindObjectOfType<DialogueBox>();
+        if (other != this)
         {
+            Debug.LogWarning("Esiste già un'altra dialogue box in scena, mi distruggo!");
             Destroy(gameObject);
         }
-
-        Instance = this;
     }
 
     /// <summary>
