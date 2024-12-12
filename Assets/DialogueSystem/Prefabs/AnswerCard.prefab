@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 8550624701913321674}
   - component: {fileID: 1100572556409840968}
   m_Layer: 5
-  m_Name: SentenceCard
+  m_Name: AnswerCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
