@@ -9,10 +9,7 @@ public class ChoiceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 {
     [Header("Elements")] 
     [SerializeField] private TMP_Text _buttonText;
-
-    [Header("Button Settings")] 
-    [SerializeField] private Color _normalTextColor = Color.black;
-    [SerializeField] private Color _hoverTextColor = Color.white;
+    
     //Aggiungere unità di misura (px)
     [SerializeField] private int _normalTextSize = 40;
     [SerializeField] private int _hoverTextSize = 40;
@@ -23,7 +20,6 @@ public class ChoiceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void Start()
     {
-        _buttonText.color = _normalTextColor;
         _buttonText.fontSize = _normalTextSize;
         _button = GetComponent<Button>();
         _button.onClick.AddListener(OnButtonClicked);
@@ -75,13 +71,11 @@ public class ChoiceButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        _buttonText.color = _hoverTextColor;
         _buttonText.fontSize = _hoverTextSize;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        _buttonText.color = _normalTextColor;
         _buttonText.fontSize = _normalTextSize;
     }
 }

@@ -6,7 +6,6 @@ public class ChoiceBox : MonoBehaviour
 {
     [SerializeField] private ChoiceButton _choiceButtonPrefab;
     [SerializeField] private RectTransform _buttonsContainer;
-    [SerializeField] private VerticalLayoutGroup _layoutGroup;
     
     /// <summary>
     /// Istanzia i prefab delle choice in quantità pari al numero di choice previste nel dialogo
@@ -14,30 +13,15 @@ public class ChoiceBox : MonoBehaviour
     /// <param name="choices"></param>
     public void SpawnButtons(List<Choice> choices)
     {
-        float buttonHeight = 0;
         for (int i = 0; i < choices.Count; i++)
         {
             ChoiceButton button = Instantiate(_choiceButtonPrefab, _buttonsContainer.transform);
             button.Initialize(choices[i], i+1);
-            
             if (i == 0)
             {
                 button.GetComponent<Button>().Select();
-                buttonHeight = button.GetComponent<RectTransform>().sizeDelta.y;
             }
         }
-        ResizeHeight(choices.Count, buttonHeight);
-    }
-
-    /// <summary>
-    /// Ridimensiona l'altezza della box delle risposte in modo che possno essere visualizzate sempre tutte le opzioni in modo corretto
-    /// TODO: Deve farlo la UI con il layout
-    /// </summary>
-    /// <param name="children"></param>
-    /// <param name="childHeight"></param>
-    private void ResizeHeight(int children, float childHeight)
-    {
-        _buttonsContainer.sizeDelta = new Vector2(_buttonsContainer.sizeDelta.x, children * childHeight + _layoutGroup.spacing*children);
     }
 
     /// <summary>

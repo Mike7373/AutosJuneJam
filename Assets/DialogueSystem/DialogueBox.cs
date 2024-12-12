@@ -2,6 +2,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+/**
+ * Nella nuova dialogue box 
+ */
 public class DialogueBox : MonoBehaviour
 {
     public Image leftPortrait;
