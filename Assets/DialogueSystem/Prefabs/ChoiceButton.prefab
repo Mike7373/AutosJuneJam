@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1 '
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 03485ae096d670f4a8e063af1a7bf28c, type: 2}
   m_sharedMaterial: {fileID: -324765084894816979, guid: 03485ae096d670f4a8e063af1a7bf28c, type: 2}
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 48
+  m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -242,10 +242,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_NormalColor: {r: 0.37312207, g: 0.8867924, b: 0.38787803, a: 1}
+    m_HighlightedColor: {r: 0.14027049, g: 0.7509433, b: 0.15891694, a: 1}
+    m_PressedColor: {r: 0.008024176, g: 0.6075471, b: 0.027363606, a: 1}
+    m_SelectedColor: {r: 0.32862222, g: 0.6830188, b: 0.33944348, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -261,10 +261,22 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 247990434033538184}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6987770551904404305}
+        m_TargetAssemblyTypeName: ChoiceButton, Assembly-CSharp
+        m_MethodName: PublishChoice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6987770551904404305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,9 +289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9320d38df5de40c7b3fba9550a22a03f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonText: {fileID: 247990434033538184}
-  _normalTextSize: 40
-  _hoverTextSize: 40
+  index: {fileID: 3955345773531278256}
+  content: {fileID: 247990434033538184}
 --- !u!1 &8384851454217158234
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,8 +384,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 58
+  m_fontSizeBase: 58
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

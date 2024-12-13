@@ -1,1 +1,4 @@
 ﻿
+Oltre al refactoring generale:
+
+Più dialoguebox in scena possibili, perchè sì, quindi tolto il vincolo di singleton nella awake.

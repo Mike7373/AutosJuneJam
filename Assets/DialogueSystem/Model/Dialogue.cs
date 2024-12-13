@@ -5,5 +5,5 @@ using System.Collections.Generic;
 public class Dialogue
 {
     public string title;
-    public List<Sentence> sentences;
+    public List<Sentence> sentences = new();
 }

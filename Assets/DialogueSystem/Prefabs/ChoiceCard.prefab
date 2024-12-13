@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 8550624701913321674}
   - component: {fileID: 1100572556409840968}
   - component: {fileID: 8869187673307169251}
+  - component: {fileID: 8268585745715439511}
   m_Layer: 5
   m_Name: ChoiceCard
   m_TagString: Untagged
@@ -174,7 +175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30.122498, y: 33.594307}
+  m_AnchoredPosition: {x: 30.122498, y: 33.59436}
   m_SizeDelta: {x: 864.108, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &2593757027231965148
@@ -244,7 +245,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 10
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -267,6 +268,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 0
   m_VerticalFit: 2
+--- !u!114 &8268585745715439511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2803775699001050167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e36a8244f30017845a58a2df892223f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5093906406576729265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -354,11 +367,6 @@ PrefabInstance:
     - target: {fileID: 247722568198360640, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 247990434033538184, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
-      propertyPath: m_text
-      value: 'New Text abra New Text abra New Text abra New Text abraNew Text abra
-        New Text '
       objectReference: {fileID: 0}
     - target: {fileID: 3270473120567255010, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -510,22 +518,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 247990434033538184, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
-      propertyPath: m_margin.w
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 247990434033538184, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
-      propertyPath: m_margin.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 247990434033538184, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
-      propertyPath: m_margin.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 247990434033538184, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
-      propertyPath: m_margin.z
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 3270473120567255010, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -549,6 +541,10 @@ PrefabInstance:
     - target: {fileID: 3270473120567255010, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3955345773531278256, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
+      propertyPath: m_text
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6775473980581573992, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -671,10 +667,6 @@ PrefabInstance:
     - target: {fileID: 247722568198360640, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 247990434033538184, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
-      propertyPath: m_text
-      value: 'New Text abra New Text abra New Text abra New '
       objectReference: {fileID: 0}
     - target: {fileID: 3270473120567255010, guid: a0f0075047f3e1044a09c94be2b698fb, type: 3}
       propertyPath: m_AnchorMax.y

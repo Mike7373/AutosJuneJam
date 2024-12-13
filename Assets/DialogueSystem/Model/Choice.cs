@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class Choice
 {
-    public int choiceID;
+    public string choiceId;
     public string text;
     public string nextSentence;
 }
