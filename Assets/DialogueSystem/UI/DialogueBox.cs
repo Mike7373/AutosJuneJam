@@ -60,6 +60,8 @@ public class DialogueBox : MonoBehaviour
         }
     }
     
+    // TODO: Rifare l'evento di answer che va nell'engine, in questo modo il resto della UI
+    //       non dipende da questa specifica dialoguebox ma solo dall'engine
     public void Answer(Choice c)
     {
         DialogueEngine.DialogueState ds = dialogueEngine.Answer(c);
@@ -76,5 +78,4 @@ public class DialogueBox : MonoBehaviour
 
     // TODO: Freccina a fianco della scelta corrente, farla comparire a sinistra del numero?
     //[SerializeField] private GameObject _arrow;
-    
 }
