@@ -421,6 +421,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400c556983be71840986126156404c33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 3877817354252072991}
+  sentenceTitle: {fileID: 3480073270670319861}
+  sentenceText: {fileID: 5726280007375414409}
 --- !u!1 &5333085653745261461
 GameObject:
   m_ObjectHideFlags: 0
